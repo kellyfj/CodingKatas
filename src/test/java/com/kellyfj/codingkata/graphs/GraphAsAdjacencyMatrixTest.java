@@ -45,6 +45,28 @@ public class GraphAsAdjacencyMatrixTest extends TestCase {
         g.prettyPrint();
     }
 
+
+    public void testGetAdjacdentNodes() {
+        GraphAsAdjacencyMatrix g = new GraphAsAdjacencyMatrix(nodeList);
+        for(int i=0; i<nodeList.size(); i++)
+        {
+            for(int j=0; j<nodeList.size(); j++)
+            {
+                if(i%2==j%2){
+                    g.addEdge(nodeList.get(i), nodeList.get(j));
+                }
+            }
+        }
+        
+        for(int i=0;i<nodeList.size();i++)
+        {
+           List<Node> adjacentNodes = g.getAdjacentNodes(nodeList.get(i));
+           assertTrue(adjacentNodes.size()==5);
+        }
+        
+        g.prettyPrint();
+    }
+    
     private List<Node> createNodeList(int max) {
 
         List<Node> returnVal = new ArrayList<Node>(max);
