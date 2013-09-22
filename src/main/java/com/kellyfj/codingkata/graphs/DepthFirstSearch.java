@@ -6,13 +6,10 @@ import java.util.Set;
 
 public class DepthFirstSearch {
     private static final Set<Node> visitedNode = new HashSet<Node>();
-    private static int maxNodes;
-    
     
     public static String traverse(Graph g)
     {
         List<Node> nodeList = g.getNodeList();
-        maxNodes = nodeList.size();
         
         //Start with the first node 
         Node n = nodeList.get(0);
