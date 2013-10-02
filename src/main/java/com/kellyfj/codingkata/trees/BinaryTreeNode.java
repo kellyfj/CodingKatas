@@ -1,10 +1,13 @@
 package com.kellyfj.codingkata.trees;
 
+import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
+
 public class BinaryTreeNode {
     
     private int value;
-    private BinaryTreeNode left;
-    private BinaryTreeNode right;
+    protected BinaryTreeNode left;
+    protected BinaryTreeNode right;
     
     public BinaryTreeNode(int value)
     {
@@ -45,5 +48,40 @@ public class BinaryTreeNode {
             return leftDepth+1;
         else
             return rightDepth +1;
+    }
+    
+    public BinaryTreeNode getDeepestNode()
+    {
+        Queue<BinaryTreeNode> queue = new LinkedBlockingQueue<BinaryTreeNode>();
+        queue.add(this);
+        BinaryTreeNode answer = null;
+        while(!queue.isEmpty())
+        {
+            answer= queue.poll();
+            if(answer.left!=null)
+                queue.add(answer.left);
+            if(answer.right!=null)
+                queue.add(answer.right);
+        }
+        return answer;
+    }
+    
+    public boolean isStructurallySame(BinaryTreeNode e)
+    {
+        if(e==null)
+            return false;
+        
+        boolean b1 = e.getValue() == this.getValue();
+        boolean b2 = this.getLeft() == null ? e.getLeft() == null : this.getLeft().isStructurallySame(e.getLeft());
+        boolean b3 = this.getRight() == null ? e.getRight() == null : this.getRight().isStructurallySame(e.getRight());
+        
+        return b1 && b2 && b3;
+    }
+    
+    public int getSumOfAllLeafValues()
+    {
+            int ansLeft = left==null ? 0 : left.getSumOfAllLeafValues();
+            int ansRight = right == null ? 0 : right.getSumOfAllLeafValues();
+            return this.value + ansLeft + ansRight;
     }
 }

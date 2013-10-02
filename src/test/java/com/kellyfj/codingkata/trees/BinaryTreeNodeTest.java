@@ -51,8 +51,19 @@ public class BinaryTreeNodeTest extends TestCase {
         
         assertEquals(100, bt100Left.getSize());
         assertEquals(100, bt100Left.getDepth());
+        assertEquals(99, bt100Left.getDeepestNode().getValue());
+        assertEquals(true,bt100Left.isStructurallySame(bt100Left));
+        int sum = bt100Left.getSumOfAllLeafValues();
+        assertEquals(4950,sum);
         
         assertEquals(99,bt100Balanced.getSize());
         assertEquals(50,bt100Balanced.getDepth());
+        assertEquals(99, bt100Balanced.getDeepestNode().getValue());
+        assertEquals(true,bt100Balanced.isStructurallySame(bt100Balanced));
+        assertFalse(bt100Left.isStructurallySame(bt100Balanced));
+        assertFalse(bt100Balanced.isStructurallySame(bt100Left));
+        sum = bt100Balanced.getSumOfAllLeafValues();
+        assertEquals(4900,sum);
+
     }
 }
