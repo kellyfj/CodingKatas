@@ -1,5 +1,7 @@
 package com.kellyfj.codingkata.sort;
 
+import java.util.Arrays;
+
 import junit.framework.TestCase;
 
 public class SortsTest extends TestCase {
@@ -15,23 +17,60 @@ public class SortsTest extends TestCase {
     }
 
     public void testBubbleSort() {
+        int[] smallArray = createTestArray();        
+        long start = System.currentTimeMillis();
+        int numPasses = Sorts.bubbleSort(smallArray);
+        long end = System.currentTimeMillis();
+        //printArray(smallArray);       
+        System.out.println("Bubble Sorting took "+(end-start)+" ms in "+numPasses+" passes");
+    }
+  
+    public void testSelectionSort() {
+        int[] smallArray = createTestArray();
+        long start = System.currentTimeMillis();
+        Sorts.selectionSort(smallArray);
+        long end = System.currentTimeMillis();
+        //printArray(smallArray);
+        System.out.println("Select Sorting took "+(end-start)+" ms ");
+    }
+    
+    public void testMergeSort() {
+        int[] smallArray = createTestArray();
+        long start = System.currentTimeMillis();
+        Sorts.mergeSort(smallArray);
+        long end = System.currentTimeMillis();
+        //printArray(smallArray);
+        System.out.println("Merge Sorting took "+(end-start)+" ms ");
+    }
+
+    public void testArraysDotSort() {
+        int[] smallArray = createTestArray();
+        long start = System.currentTimeMillis();
+        Arrays.sort(smallArray);
+        long end = System.currentTimeMillis();
+        //printArray(smallArray);
+        System.out.println("Standard Java Arrays.sort() Sorting took "+(end-start)+" ms ");
+    }
+    
+    private static final int[] testArray = new int[10000];
+    private static boolean isInitialized = false;
+    
+    private int[] createTestArray() {
         
-        int[] smallArray = new int[10000];
-        for(int i=0; i< smallArray.length; i++)
-        {
-            smallArray[i] = (int)(Math.random()*10000);
+        if(isInitialized)
+            return testArray;
+        
+        for(int i=0; i< testArray.length; i++) {
+            testArray[i] = (int)(Math.random()*10000);
         }
-        Sorts.bubbleSort(smallArray);
-        
-        printArray(smallArray);
-       
+        isInitialized = true;
+        return testArray;
     }
     
     private void printArray(int[] a)
     {
         StringBuilder sb = new StringBuilder();
-        for(int i=0; i< a.length; i++)
-        {
+        for(int i=0; i< a.length; i++) {
             sb.append(a[i]+",");
         }
         System.out.println(sb.toString());
