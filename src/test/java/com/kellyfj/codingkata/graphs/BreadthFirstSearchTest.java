@@ -52,7 +52,6 @@ public class BreadthFirstSearchTest extends TestCase {
         
         
         String s= BreadthFirstSearch.traverse(g);
-        System.out.println(s);
         
         assertEquals(s,"A,B,C,D,E,F,G,H,I,J,K,");
     }

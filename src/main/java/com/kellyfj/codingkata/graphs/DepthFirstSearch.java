@@ -1,11 +1,8 @@
 package com.kellyfj.codingkata.graphs;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class DepthFirstSearch {
-    private static final Set<Node> visitedNode = new HashSet<Node>();
     
     public static String traverse(Graph g)
     {
@@ -18,10 +15,7 @@ public class DepthFirstSearch {
 
     private static String DepthFirstTraversal(Graph g, Node n) {
        StringBuilder sb= new StringBuilder();
-       if(visitedNode.contains(n))
-           return sb.toString();
-       else
-           sb.append(n.getName()+",");
+       sb.append(n.getName()+",");
            
         List<Node> nodeList = g.getAdjacentNodes(n);
                 
