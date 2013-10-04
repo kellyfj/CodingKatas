@@ -104,5 +104,48 @@ public class Sorts {
       }
 
     }
+
     
+    /************************
+     *  Quick Sort
+     */
+    
+    public static void quickSort(int[] input)
+    {
+        quickSort(input, 0, input.length-1);
+    }
+    
+    private static void quickSort(int[] input, int low, int high)
+    {
+        int pivot;
+        if(high > low) {
+            pivot = partition(input, low, high);
+            quickSort(input, low, pivot-1);
+            quickSort(input, pivot+1, high);
+        }
+            
+    }
+
+    private static int partition(int[] input, int low, int high) {
+ 
+        int left, right, pivotItem = input[low];
+        left=low;
+        right=high;
+        while (left < right) {
+            while(input[left] <= pivotItem && left < input.length-2) left++;
+            while(input[right] > pivotItem ) right--;
+            
+            if(left < right)
+            {
+                //swap(input, left, right);
+                int temp = input[left];
+                input[left]=input[right];
+                input[right]=temp;
+            }
+        }
+        input[low]=input[right];
+        input[right] = pivotItem;
+        return right;
+        
+    }
 }

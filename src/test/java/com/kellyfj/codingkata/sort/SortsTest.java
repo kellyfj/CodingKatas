@@ -43,6 +43,16 @@ public class SortsTest extends TestCase {
         System.out.println("Merge Sorting took "+(end-start)+" ms ");
     }
 
+    
+    public void notestQuickSort() {
+        int[] smallArray = createTestArray();
+        long start = System.currentTimeMillis();
+        Sorts.quickSort(smallArray);
+        long end = System.currentTimeMillis();
+        //printArray(smallArray);
+        System.out.println("Quick Sorting took "+(end-start)+" ms ");
+    }
+    
     public void testArraysDotSort() {
         int[] smallArray = createTestArray();
         long start = System.currentTimeMillis();
