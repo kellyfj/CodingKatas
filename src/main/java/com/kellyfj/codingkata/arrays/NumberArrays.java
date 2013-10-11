@@ -1,6 +1,7 @@
 package com.kellyfj.codingkata.arrays;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class NumberArrays {
 
@@ -50,4 +51,38 @@ public class NumberArrays {
             return false;
         }
         
+        public static void shuffle(Object[] a) {
+            Random rnd = new Random();
+            int mid = a.length / 2;
+            for (int i = mid; i < a.length; i++) {
+                int lo = rnd.nextInt(mid);
+                Object buffer = a[lo];
+                a[lo] = a[i];
+                a[i] = buffer;
+            }
+        }
+        
+        public static void printArray(Object[] a) {
+            for(int i=0; i< a.length; i++) {
+                System.out.print(a[i].toString()+ " ");
+            }
+            System.out.println();
+        }
+        
+        public static int lengthOfLongestMonotonicSeries(int[] input) {
+
+            int max=1;
+            int num=1;
+            for(int i=0; i< input.length-1; i++) {
+ 
+                if(input[i] == input[i+1]-1) {
+                    num++;
+                    max=num>max ? num: max; 
+                } else {
+                    num = 0;
+                }
+            }
+            
+            return max;
+        }
     }

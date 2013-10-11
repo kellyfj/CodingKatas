@@ -13,6 +13,15 @@ public class StringUtilsTest {
        String rev = StringUtils.reverse(testString);
        
        assertEquals(rev,"fedcba");
+       StringBuilder sb = new StringBuilder(testString);
+       assertEquals(rev, sb.reverse().toString());
+    }
+    
+    @Test
+    public void testRegEx() {
+        String testString = "1abcdef2";
+        
+        StringUtils.regExTester(testString);
     }
 
 }

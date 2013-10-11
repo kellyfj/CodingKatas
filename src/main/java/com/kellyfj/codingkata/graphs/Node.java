@@ -9,13 +9,11 @@ public class Node implements Comparable<Node>{
 
     private final String name;
     
-    public Node(String name)
-    {
+    public Node(String name){
         this.name = name;
     }
     
-    public String getName()
-    {
+    public String getName(){
         return name;
     }
     
@@ -26,6 +24,7 @@ public class Node implements Comparable<Node>{
     @Override
     public String toString() { return name; }
     
+    @Override
     public int compareTo(Node other)
     {
         return Double.compare(minDistance, other.minDistance);

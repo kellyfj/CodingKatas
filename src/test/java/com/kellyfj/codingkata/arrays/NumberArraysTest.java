@@ -52,6 +52,33 @@ public class NumberArraysTest extends TestCase {
         }
         catch(IllegalArgumentException expected) {
         }
-
     }    
+    
+    /**
+     * Shuffle
+     */
+    public void testShuffle() {
+        Integer[] testArray = {5,4,3,2,1,9};
+        int beforeCount = testArray.length;
+        
+        System.out.println("BEFORE");
+        NumberArrays.printArray(testArray);
+        NumberArrays.shuffle(testArray);
+        assertTrue(beforeCount==testArray.length);
+        System.out.println("AFTER");
+        NumberArrays.printArray(testArray);
+    }
+    
+    public void testLongestMonotonicSequenceNone() {
+        int[] testArray = {5,4,3,2,1,9};      
+        int ret =   NumberArrays.lengthOfLongestMonotonicSeries(testArray);
+        assert(ret==0);
+    }
+
+    public void testLongestMonotonicSequenceAll() {
+        int[] testArray = {1,2,3,4,5};      
+        int ret =  NumberArrays.lengthOfLongestMonotonicSeries(testArray);
+       
+        assertEquals(ret,testArray.length);
+    }
 }
