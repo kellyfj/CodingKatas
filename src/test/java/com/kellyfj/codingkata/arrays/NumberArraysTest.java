@@ -1,5 +1,8 @@
 package com.kellyfj.codingkata.arrays;
 
+import java.util.List;
+import java.util.Set;
+
 import junit.framework.TestCase;
 
 public class NumberArraysTest extends TestCase {
@@ -95,9 +98,42 @@ public class NumberArraysTest extends TestCase {
         assertEquals(2, NumberArrays.countBinaryOnes(3));
         assertEquals(1, NumberArrays.countBinaryOnes(4));
         assertEquals(2, NumberArrays.countBinaryOnes(5));
-        assertEquals(3, NumberArrays.countBinaryOnes(7));
+        assertEquals(3, NumberArrays.countBinaryOnes(7));     
+    }
+    
+    public void testPowerSet() {
+        int[] testArray = {1,2,3};
         
-        
-        
+        List<Set<Integer>> listOfSets = NumberArrays.powerSet(testArray);             
+        printPowerSet(listOfSets);
+    }
+
+    private void printPowerSet(List<Set<Integer>> listOfSets) {
+        System.out.println("POWERSET");
+        for(Set<Integer> set : listOfSets) {
+            System.out.print("{");
+            for(Integer i : set) {
+                System.out.print(i+ " ");
+            }
+            System.out.println("}");
+        }
+    }
+    
+    public void testGetBinary() {
+        String s = NumberArrays.getBinaryRepresentation(2);
+        assertEquals("10", s);
+
+        s = NumberArrays.getBinaryRepresentation(3);
+        assertEquals("11", s);
+
+        s = NumberArrays.getBinaryRepresentation(7);
+        assertEquals("111", s);
+
+        s = NumberArrays.getBinaryRepresentation(1024);
+        assertEquals("10000000000", s);
+
+        s = NumberArrays.getBinaryRepresentation(Integer.MAX_VALUE);
+        assertEquals("1111111111111111111111111111111", s);
+        assertEquals(31, s.length());
     }
 }

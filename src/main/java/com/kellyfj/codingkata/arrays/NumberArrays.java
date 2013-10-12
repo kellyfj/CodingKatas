@@ -1,7 +1,11 @@
 package com.kellyfj.codingkata.arrays;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class NumberArrays {
 
@@ -124,4 +128,41 @@ public class NumberArrays {
             String binaryString = Integer.toBinaryString(number);
             return binaryString.length() - binaryString.replace("1", "").length();
         }
+        
+    public static String getBinaryRepresentation(int number) {
+        int b[] = new int[32];
+        int i = 0;
+        while (number != 0) {
+            i++;
+            b[i] = number % 2;
+            number = number / 2;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int j = i; j > 0; j--) {
+            sb.append(b[j]);
+        }
+        return sb.toString();
     }
+        
+    public static List<Set<Integer>> powerSet(int[] array) {
+        List<Set<Integer>> returnList = new ArrayList<Set<Integer>>();
+        if (array.length == 0) {
+            returnList.add(new HashSet<Integer>());
+            return returnList;
+        }
+
+        int head = array[0];
+        int[] rest = new int[] {};
+        if (array.length >= 2)
+            rest = Arrays.copyOfRange(array, 1, array.length);
+
+        for (Set<Integer> powerSets : powerSet(rest)) {
+            Set<Integer> newSet = new HashSet<Integer>();
+            newSet.add(head);
+            newSet.addAll(powerSets);
+            returnList.add(newSet);
+            returnList.add(powerSets);
+        }
+        return returnList;
+    }
+}
