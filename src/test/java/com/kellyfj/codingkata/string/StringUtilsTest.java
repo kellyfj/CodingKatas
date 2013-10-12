@@ -7,7 +7,7 @@ import org.junit.Test;
 public class StringUtilsTest {
 
     @Test
-    public void testReverse() {
+    public void testReverseString() {
        String testString = "abcdef";
        
        String rev = StringUtils.reverse(testString);
@@ -24,4 +24,22 @@ public class StringUtilsTest {
         StringUtils.regExTester(testString);
     }
 
+    
+    @Test 
+    public void testReverseWords() {
+        String test = "The quick brown fox jumped over the lazy dog";
+        
+        String ret = StringUtils.reverseAllWords(test);
+        
+        assertEquals("dog lazy the over jumped fox brown quick The",ret);
+    }
+    
+    @Test 
+    public void testReverseWordsWithoutSplit() {
+        String test = "The quick brown fox jumped over the lazy dog";
+        
+        String ret = StringUtils.reverseAllWordsWithoutSplit(test);
+        
+        assertEquals("dog lazy the over jumped fox brown quick The",ret);
+    }
 }

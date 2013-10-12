@@ -40,4 +40,52 @@ public class StringUtils {
                     + " and ending at index " + matcher.end());
         }
     }
+    
+    public static String reverseAllWords(String s) {
+        if (s == null)
+            throw new IllegalArgumentException("S cannot be null");
+        String[] words = s.split(" ");
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = words.length - 1; i >= 0; i--) {
+            sb.append(words[i] + " ");
+        }
+
+        return sb.toString().trim();
+    }
+    
+    
+ 
+    public static String reverseAllWordsWithoutSplit(String s) {
+        if (s == null)
+            throw new IllegalArgumentException("S cannot be null");
+       String reversedChars = new StringBuilder(s).reverse().toString();
+       
+       char[] chars = reversedChars.toCharArray();
+       int currPointer=0;
+       int startPointer=0;
+       while(currPointer < chars.length-1) {
+           currPointer++;
+           //if we see a space
+           if(chars[currPointer]== ' ') {
+               //reverse bytes between startPointer and currPointer
+               reversePartOfCharArray(chars, startPointer, currPointer);
+               startPointer=currPointer+1;
+           }
+       }
+       
+       //reverse last word
+       reversePartOfCharArray(chars, startPointer, chars.length);
+       
+       return new String(chars);
+    }
+
+    private static void reversePartOfCharArray(char[] ch, int from, int to) {
+        int diff= to-from;
+           for(int i=0; i<diff/2; i++) {
+               char temp = ch[from+i];
+               ch[from+i] = ch[(to-i)-1];
+               ch[(to-i)-1] = temp;
+           }
+    }
 }
