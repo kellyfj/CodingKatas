@@ -64,6 +64,26 @@ public class BinaryTreeNodeTest extends TestCase {
         assertFalse(bt100Balanced.isStructurallySame(bt100Left));
         sum = bt100Balanced.getSumOfAllLeafValues();
         assertEquals(4900,sum);
-
+    }
+    
+    public void testSerialize() {
+        
+        String s = bt.serialize();
+        assertNotNull(s);
+        assertEquals("1,N;2,L;3,L;",s);
+        
+        BinaryTreeNode deser = BinaryTreeNode.deserialize(s);
+        int size = deser.getSize();
+        assertEquals(3,size);
+        
+        assertEquals(bt,deser);
+        assertEquals(deser,bt);
+        assertNotSame(bt, bt100Left);
+        assertNotSame(bt100Left,bt);
+        
+        assertEquals(bt100Left,bt100Left);
+        assertEquals(bt100Balanced,bt100Balanced);
+        String s2 = bt100Left.serialize();
+        String s3 = bt100Balanced.serialize();
     }
 }

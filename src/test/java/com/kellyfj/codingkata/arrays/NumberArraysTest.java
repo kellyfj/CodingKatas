@@ -51,7 +51,7 @@ public class NumberArraysTest extends TestCase {
             fail("Exception expected");
         }
         catch(IllegalArgumentException expected) {
-        }
+        } 
     }    
     
     /**
@@ -72,7 +72,7 @@ public class NumberArraysTest extends TestCase {
     public void testLongestMonotonicSequenceNone() {
         int[] testArray = {5,4,3,2,1,9};      
         int ret =   NumberArrays.lengthOfLongestMonotonicSeries(testArray);
-        assert(ret==0);
+        assertEquals(1,ret);
     }
 
     public void testLongestMonotonicSequenceAll() {
@@ -80,5 +80,24 @@ public class NumberArraysTest extends TestCase {
         int ret =  NumberArrays.lengthOfLongestMonotonicSeries(testArray);
        
         assertEquals(ret,testArray.length);
+    }
+    
+    
+    public void testRearrange() {       
+        int[] testArray = {0,0,1,0,1,2,2,1,2};     
+        NumberArrays.rearrangeArray(testArray);
+       
+        NumberArrays.printArray(testArray);
+    }
+    
+    public void testCountBinaryOnes() {
+        assertEquals(1, NumberArrays.countBinaryOnes(2));
+        assertEquals(2, NumberArrays.countBinaryOnes(3));
+        assertEquals(1, NumberArrays.countBinaryOnes(4));
+        assertEquals(2, NumberArrays.countBinaryOnes(5));
+        assertEquals(3, NumberArrays.countBinaryOnes(7));
+        
+        
+        
     }
 }

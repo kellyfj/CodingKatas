@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 
 public class BinarySearchTreeNodeTest extends TestCase {
 
-    public void test()
+    public void testSerialize()
     {
         assertTrue(true);
     }

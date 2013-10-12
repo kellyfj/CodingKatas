@@ -22,6 +22,7 @@ public class NumberArrays {
         while(startPointer < endPointer) {
             int sum = array[startPointer] + array[endPointer];
             if(sum == target) {
+                System.out.println("Numbers ["+array[startPointer] +"] and ["+array[endPointer]+"] sum to ["+target+"]");
                 return true;
             } else {
                 if (sum > target) {
@@ -44,6 +45,7 @@ public class NumberArrays {
                 int sumOfTwoTarget = target - array[pointer];
                 boolean res = doesSumOfTwoEqualN(array, sumOfTwoTarget);
                 if(res){
+                    
                     return true;
                 }
                 pointer++;
@@ -69,6 +71,13 @@ public class NumberArrays {
             System.out.println();
         }
         
+        public static void printArray(int[] a) {
+            for(int i=0; i< a.length; i++) {
+                System.out.print(a[i]+ " ");
+            }
+            System.out.println();
+        }
+        
         public static int lengthOfLongestMonotonicSeries(int[] input) {
 
             int max=1;
@@ -84,5 +93,35 @@ public class NumberArrays {
             }
             
             return max;
+        }
+        
+        
+        public static void rearrangeArray(int[] input)
+        {
+            int numZeroes=0;
+            int numOnes=0;
+            int numTwos=0;
+            
+            for(int i=0; i< input.length; i++) {
+                if(input[i]==0)
+                    numZeroes++;
+                else if(input[i] ==1)
+                       numOnes++;
+                else if(input[i]==2)
+                    numTwos++;
+            }
+            
+            for(int i=0; i< numZeroes; i++)
+                input[i]=0;
+            for(int i=numZeroes; i< numZeroes+numOnes; i++)
+                input[i]=1;    
+            for(int i=numZeroes+numOnes; i< numZeroes+numOnes+numTwos; i++)
+                    input[i]=2;
+            
+        }
+        
+        public static int countBinaryOnes(int number) {
+            String binaryString = Integer.toBinaryString(number);
+            return binaryString.length() - binaryString.replace("1", "").length();
         }
     }
