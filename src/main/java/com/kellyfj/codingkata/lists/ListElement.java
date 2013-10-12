@@ -1,5 +1,8 @@
 package com.kellyfj.codingkata.lists;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ListElement {
 
     private int value;
@@ -29,5 +32,16 @@ public class ListElement {
             return 1+next.size();
     }
     
-   
+   public boolean containsCycle() {
+       Set s = new HashSet();
+       ListElement curr = next;
+       while(curr!=null) {
+           if(s.contains(curr))
+               return true;
+           else
+               s.add(curr);
+           curr = curr.getNext();
+       }
+       return false;
+   }
 }
