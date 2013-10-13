@@ -1,25 +1,51 @@
 package com.kellyfj.codingkata.lists;
 
+import java.util.Stack;
+
 public class ListUtils {
 
     public static ListElement reverseListConstantStorage(ListElement head) {
-        return reverse(null, head);
+        return reverseRecursively(null, head);
     }
 
-    private static ListElement reverse(ListElement previous, ListElement current) {
-
+    private static ListElement reverseRecursively(ListElement previous, ListElement current) {
         ListElement newHead = null;
         if (current.getNext() != null) {
-            newHead = reverse(current, current.getNext());
+            newHead = reverseRecursively(current, current.getNext());
         } else {// end of the list
             newHead = current;
             newHead.setNext(previous);
         }
-
         current.setNext(previous);
         return newHead;
     }
 
+    public static ListElement reverseIteratively(ListElement head) {
+
+        ListElement current = head;
+        Stack<ListElement> s = new Stack<ListElement>();
+        while (current.getNext() != null) {
+            s.push(current);
+            current = current.getNext();
+        }
+        // Don't forget last element in list
+        if (current != head) {
+            s.push(current);
+        }
+
+        ListElement first = s.pop();
+        ListElement second = null;
+        ListElement newHead = first;
+        while (!s.isEmpty()) {
+            second = s.pop();
+            first.setNext(second);
+            first = second;
+        }
+        second.setNext(null);
+
+        return newHead;
+    }
+    
     public static void printList(ListElement l) {
         if (l == null) {
             System.out.println("Empty");

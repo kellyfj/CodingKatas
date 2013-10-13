@@ -33,7 +33,7 @@ public class ListElement {
     }
     
    public boolean containsCycle() {
-       Set s = new HashSet();
+       Set<ListElement> s = new HashSet<ListElement>();
        ListElement curr = next;
        while(curr!=null) {
            if(s.contains(curr))

@@ -41,6 +41,18 @@ public class ListUtilsTest {
         ListElement newHead =  ListUtils.reverseListConstantStorage(head);
         ListUtils.printList(newHead);        
         assertEquals(size,newHead.size());
+        assertEquals(99, newHead.getValue());
+    }
+    
+    @Test
+    public void testReverseIteratively() {
+        ListUtils.printList(head);
+        int size = head.size();
+        
+        ListElement newHead =  ListUtils.reverseIteratively(head);
+        ListUtils.printList(newHead);        
+        assertEquals(size,newHead.size());
+        assertEquals(99, newHead.getValue());
     }
     
     @Test
