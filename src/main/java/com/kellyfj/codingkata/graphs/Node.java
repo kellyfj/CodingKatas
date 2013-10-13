@@ -29,4 +29,12 @@ public class Node implements Comparable<Node>{
     {
         return Double.compare(minDistance, other.minDistance);
     }
+    
+    @Override
+    public boolean equals(Object o) {
+        if(o==null) return false;
+        if(! (o instanceof Node)) return false;
+        Node n = (Node) o;
+        return n.getName().equals(this.getName());
+    }
 }
