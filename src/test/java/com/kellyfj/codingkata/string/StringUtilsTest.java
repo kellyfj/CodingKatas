@@ -57,5 +57,32 @@ public class StringUtilsTest {
 
         assertTrue(StringUtils.isMatch(".*","ab"));
         assertTrue(StringUtils.isMatch("a*b","aab"));
+        /**
+         *  | abc            | abc              | accept |
+            | *              | abc              | accept |
+            | *abc           | abc              | accept |
+            | *abc           | aaabbbabc        | accept |
+            | a*bc           | aaabbbabc        | accept |
+            | a*bc           | abc              | accept |
+            | a*             | abc              | accept |
+            | a*             | a                | accept |
+            | a*             | aa               | accept |
+            | a*             | abcdef           | accept |
+            | *abc*          | abc              | accept |
+            | *****          | abc              | accept |
+            | É              | abc              | accept |
+            | .*             | abc              | accept |
+            | .bc*           | abc              | accept |
+            | .b*c*a         | abca             | accept |
+            | *              | /EMPTY STRING/   | accept |
+            | abc            | abcd             | reject |
+            | *a             | abcd             | reject |
+            | a              | /EMPTY STRING/   | reject |
+            | .a*c           | abc              | reject |
+            | a.*b           | abc              | reject |
+            | ..             | abc              | reject |
+            | /EMPTY STRING/ | /EMPTY STRING/   | reject |
+            | /EMPTY STRING/ | abc              | reject |
+         */
     }
 }

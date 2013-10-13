@@ -89,34 +89,30 @@ public class StringUtils {
            }
     }
     
-    
     public static boolean isMatch(String regex, String s) {
-        if(regex==null)
+        if (regex == null)
             throw new IllegalArgumentException("RegEx argument cannot be null");
-        if(s==null)
+        if (s == null)
             throw new IllegalArgumentException("Test string cannot be null");
-        
+
         char[] regExArray = regex.toCharArray();
         char[] strArray = s.toCharArray();
-        return isMatch(regExArray,0,strArray,0);
+        return isMatch(regExArray, 0, strArray, 0);
     }
-    
-    private static boolean isMatch(char[] pattern, int patInd, char[] text, int txtInd)
-    {
+
+    private static boolean isMatch(char[] pattern, int patInd, char[] text, int txtInd) {
         if (text.length == txtInd && pattern.length == patInd)
             return true;
         if (text.length == txtInd || pattern.length == patInd)
             return false;
-        if ((text[txtInd] == pattern[patInd]) || (pattern[patInd] == '?') || (pattern[patInd] == '.'))
-            return isMatch(pattern, txtInd+1, text, txtInd+1);
+        if (text[txtInd] == pattern[patInd] || pattern[patInd] == '?' || pattern[patInd] == '.')
+            return isMatch(pattern, txtInd + 1, text, txtInd + 1);
         if (pattern[patInd] == '*')
-            return isMatch(pattern, patInd+1, text, txtInd+1) || 
-                   isMatch(pattern, patInd, text, txtInd+1) || 
-                   isMatch(pattern, patInd+1, text, txtInd) ;
-        else return false;
-    }
-        
-        
-        
+            return isMatch(pattern, patInd + 1, text, txtInd + 1) 
+                    || isMatch(pattern, patInd, text, txtInd + 1)
+                    || isMatch(pattern, patInd + 1, text, txtInd);
+        else 
+            return false;
+    }  
      
 }
