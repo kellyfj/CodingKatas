@@ -100,7 +100,7 @@ public class NumberArrays {
         }
         
         
-        public static void rearrangeArray(int[] input)
+        public static void dutchNationalFlagBasic(int[] input)
         {
             int numZeroes=0;
             int numOnes=0;
@@ -123,6 +123,31 @@ public class NumberArrays {
                     input[i]=2;
             
         }
+        
+        public static void dutchNationalFlagOnePass(int[] a, int mid) {
+            int startIndex = 0;
+            int endIndex = a.length - 1;
+            int temp;
+
+            for (int i = 0; i <= endIndex ;) {
+                if (a[i] < mid) {
+                    temp = a[i];
+                    a[i] = a[startIndex];
+                    a[startIndex] = temp;
+                    i++;
+                    startIndex++;
+                } else if (a[i] > mid) {
+                    temp = a[i];
+                    a[i] = a[endIndex];
+                    a[endIndex] = temp;
+                    endIndex--;
+                    // do not increment i. We have to revisit this again
+                } else {
+                    i++;
+                }
+            }
+        }
+        
         
         public static int countBinaryOnes(int number) {
             String binaryString = Integer.toBinaryString(number);

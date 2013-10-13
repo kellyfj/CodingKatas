@@ -86,12 +86,34 @@ public class NumberArraysTest extends TestCase {
     }
     
     
-    public void testRearrange() {       
-        int[] testArray = {0,0,1,0,1,2,2,1,2};     
-        NumberArrays.rearrangeArray(testArray);
-       
-        NumberArrays.printArray(testArray);
+    public void testDutchNationalFlagBasic() {       
+        int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};     
+        NumberArrays.dutchNationalFlagBasic(testArray);
+        NumberArrays.printArray(testArray);  
+        assertTrue(inOrder(testArray));
     }
+    
+    private boolean inOrder(int[] testArray) {
+        
+        boolean retVal = true;
+       for(int i=0; i<testArray.length-1; i++) {
+           int a = testArray[i];
+           int b = testArray[i+1];
+           if((a == b) || (a+1 == b))
+               continue;
+           else
+              retVal=false;
+       }
+       return retVal;
+    }
+
+    public void testDutchNationalFlagOnePass() {       
+        int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};     
+        NumberArrays.dutchNationalFlagOnePass(testArray,1);      
+        NumberArrays.printArray(testArray);   
+        assertTrue(inOrder(testArray));
+    }  
+    
     
     public void testCountBinaryOnes() {
         assertEquals(1, NumberArrays.countBinaryOnes(2));
