@@ -5,6 +5,36 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
 
+    public static boolean isPalindromeEasy(String s1, String s2) {
+        if(s1 == null || s2== null)
+            throw new IllegalArgumentException("Say something cool!");
+        if(s1.length() != s2.length())
+            return false;
+        
+        String s1reversed = new StringBuilder(s1).reverse().toString();
+        return s2.equals(s1reversed);  
+    }
+
+    public static boolean isPalindromeHard(String s1, String s2) {
+        if(s1 == null || s2== null)
+            throw new IllegalArgumentException("Say something cool!");
+        if(s1.length() != s2.length())
+            return false;
+        
+        char[] s1array = s1.toCharArray();
+        char[] s2array = s2.toCharArray();
+        
+        for(int i=0; i<s1array.length; i++) {
+            char ch1 = s1array[i];
+            char ch2 = s2array[(s2array.length-1)-i];
+            if(ch1!=ch2)
+                return false;
+            //else continue;
+        }
+        
+        return true;
+    }
+    
     public static String reverse(String s) {
         byte[] original = s.getBytes();
 

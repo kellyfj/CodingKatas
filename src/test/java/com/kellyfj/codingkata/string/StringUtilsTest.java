@@ -84,5 +84,35 @@ public class StringUtilsTest {
             | /EMPTY STRING/ | /EMPTY STRING/   | reject |
             | /EMPTY STRING/ | abc              | reject |
          */
-    }
+    } 
+        
+        @Test
+        public void testPalindrome(){
+            String s = "able was I ere I saw elba";
+            boolean b = StringUtils.isPalindromeEasy(s, s);
+            
+            assertTrue(b);
+        }
+        @Test
+        public void testPalindromeFalse(){
+            String s = "able was I ere I saw elba";
+            boolean b = StringUtils.isPalindromeEasy(s, s+" ");
+            
+            assertFalse(b);
+        }
+        @Test
+        public void testPalindromeHard(){
+            String s = "able was I ere I saw elba";
+            boolean b = StringUtils.isPalindromeHard(s, s);
+            
+            assertTrue(b);
+        }
+        @Test
+        public void testPalindromeHardFalse(){
+            String s = "able was I ere I saw elba";
+            boolean b = StringUtils.isPalindromeHard(s, s+" ");
+            
+            assertFalse(b);
+        }      
+        
 }
