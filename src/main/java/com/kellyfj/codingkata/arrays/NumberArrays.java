@@ -190,4 +190,13 @@ public class NumberArrays {
         }
         return returnList;
     }
+    
+    public static double calcSquareRoot(double num) {
+       double guess=1;
+       
+        while( Math.abs(guess * guess - num) > 0.0001){
+            guess = (guess + num / guess) / 2;
+        }
+        return guess;
+    }
 }
