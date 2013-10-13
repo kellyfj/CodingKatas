@@ -1,6 +1,8 @@
 package com.kellyfj.codingkata.string;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -41,5 +43,19 @@ public class StringUtilsTest {
         String ret = StringUtils.reverseAllWordsWithoutSplit(test);
         
         assertEquals("dog lazy the over jumped fox brown quick The",ret);
+    }
+    
+    
+    @Test
+    public void testRegex() {
+        assertTrue(StringUtils.isMatch(".*","aa"));
+        
+        assertFalse(StringUtils.isMatch("a","aa"));
+        assertTrue(StringUtils.isMatch("aa", "aa"));
+        assertFalse(StringUtils.isMatch("aa","aaa"));
+        assertTrue(StringUtils.isMatch("a*","aa"));
+
+        assertTrue(StringUtils.isMatch(".*","ab"));
+        assertTrue(StringUtils.isMatch("a*b","aab"));
     }
 }
