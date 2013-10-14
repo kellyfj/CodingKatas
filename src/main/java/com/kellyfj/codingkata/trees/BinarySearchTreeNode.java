@@ -1,11 +1,31 @@
 package com.kellyfj.codingkata.trees;
 
 import java.util.Arrays;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class BinarySearchTreeNode {
     private int value;
     protected BinarySearchTreeNode left;
     protected BinarySearchTreeNode right;
+
+    public static BinarySearchTreeNode lowestCommonAncestor(BinarySearchTreeNode subTreeHead, 
+            BinarySearchTreeNode a,
+            BinarySearchTreeNode b) {
+
+        if (subTreeHead == null)
+            return null;
+
+        if (subTreeHead.equals(a) || subTreeHead.equals(b))
+            return subTreeHead;
+        BinarySearchTreeNode l = lowestCommonAncestor(subTreeHead.getLeft(), a, b);
+        BinarySearchTreeNode r = lowestCommonAncestor(subTreeHead.getRight(), a, b);
+
+        if (l != null && r != null)
+            return subTreeHead; // if a and b are on both sides of the subtree
+        return l != null ? l : r; // either one of p,q is on one side OR p,q is
+                                  // not in L&R subtrees
+
+    }
 
     private static BinarySearchTreeNode sortedArrayToBST(int arr[], int start, int end) {
         if (start > end) return null;
@@ -110,5 +130,41 @@ public class BinarySearchTreeNode {
         int leftSize = left == null ? 0 : left.getSize();
         int rightSize = right == null ? 0 : right.getSize();
         return 1 + leftSize + rightSize;
+    }
+    
+    @Override
+    public boolean equals(Object a) {
+        if(a==null) return false;
+        if(! (a instanceof BinarySearchTreeNode)) return false;
+        BinarySearchTreeNode b = (BinarySearchTreeNode)a;
+        return b.getValue() == this.getValue();
+        
+    }
+    
+    @Override
+    public String toString() {
+        LinkedBlockingQueue<BinarySearchTreeNode> q = new LinkedBlockingQueue<BinarySearchTreeNode>();
+        final BinarySearchTreeNode DUMMY = new BinarySearchTreeNode(Integer.MAX_VALUE);
+        
+        q.add(this);
+        q.add(DUMMY);
+        StringBuilder sb = new StringBuilder();
+        while(!q.isEmpty()) {
+            BinarySearchTreeNode node = q.poll();
+            
+            if (node.equals(DUMMY)) {
+                if (!q.isEmpty()) {
+                    q.add(DUMMY);
+                }
+               sb.append("\n"); 
+            } else {
+                sb.append(node.getValue()+ " ");
+                if(node.getLeft() != null) q.add(node.getLeft());
+                if(node.getRight() != null) q.add(node.getRight());
+            }
+            
+        }
+        
+        return sb.toString();
     }
 }
