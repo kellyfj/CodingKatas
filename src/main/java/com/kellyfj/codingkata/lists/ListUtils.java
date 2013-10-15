@@ -28,15 +28,15 @@ public class ListUtils {
             current = current.getNext();
         }
 
-        ListElement first = s.pop();
-        ListElement second = null;
-        ListElement newHead = first;
+        ListElement curr = s.pop();
+        ListElement prev = null;
+        ListElement newHead = curr;
         while (!s.isEmpty()) {
-            second = s.pop();
-            first.setNext(second);
-            first = second;
+            prev = s.pop();
+            curr.setNext(prev);
+            curr = prev;
         }
-        second.setNext(null);
+        prev.setNext(null);
 
         return newHead;
     }
