@@ -14,7 +14,6 @@ public class ListUtils {
             newHead = reverseRecursively(current, current.getNext());
         } else {// end of the list
             newHead = current;
-            newHead.setNext(previous);
         }
         current.setNext(previous);
         return newHead;
@@ -24,13 +23,9 @@ public class ListUtils {
 
         ListElement current = head;
         Stack<ListElement> s = new Stack<ListElement>();
-        while (current.getNext() != null) {
+        while (current != null) {
             s.push(current);
             current = current.getNext();
-        }
-        // Don't forget last element in list
-        if (current != head) {
-            s.push(current);
         }
 
         ListElement first = s.pop();

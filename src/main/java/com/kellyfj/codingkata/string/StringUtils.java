@@ -136,7 +136,7 @@ public class StringUtils {
         if (text.length == txtInd || pattern.length == patInd)
             return false;
         if (text[txtInd] == pattern[patInd] || pattern[patInd] == '?' || pattern[patInd] == '.')
-            return isMatch(pattern, txtInd + 1, text, txtInd + 1);
+            return isMatch(pattern, patInd + 1, text, txtInd + 1);
         if (pattern[patInd] == '*')
             return isMatch(pattern, patInd + 1, text, txtInd + 1) 
                     || isMatch(pattern, patInd, text, txtInd + 1)

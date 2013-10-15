@@ -192,10 +192,12 @@ public class NumberArrays {
     }
     
     public static double calcSquareRoot(double num) {
-       double guess=1;
-       
-        while( Math.abs(guess * guess - num) > 0.0001){
+        double guess = 1;
+        double diff = Math.abs(guess * guess - num);
+        while (diff > 0.0001) {
+            diff = Math.abs(guess * guess - num);
             guess = (guess + num / guess) / 2;
+            //System.out.println("New Guess is [" + guess + "]");
         }
         return guess;
     }

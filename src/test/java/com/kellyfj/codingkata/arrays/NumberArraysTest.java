@@ -161,16 +161,20 @@ public class NumberArraysTest extends TestCase {
     
     
     public void testGetSquareRoot() {
-        
+
         double maxDiff = 0;
-        for(int i=1; i< 1000*1000; i++) {
-             double d = NumberArrays.calcSquareRoot(i);
-             double actual = Math.sqrt(i);
-             double diff = Math.abs(actual - d);
-             if(diff > maxDiff) {
-                 maxDiff=diff;
-                 System.out.printf("Max diff was %1.9f for Sqrt of %d \n",maxDiff,i);
-             }
+        for (int i = 1; i < 1000 * 1000; i++) {
+            double d = NumberArrays.calcSquareRoot(i);
+            double actual = Math.sqrt(i);
+            double diff = Math.abs(actual - d);
+            if (diff > maxDiff) {
+                maxDiff = diff;
+                System.out.printf("Max diff was %1.9f for Sqrt of %d \n", maxDiff, i);
+            }
         }
+    }
+
+    public void testGetSquareRoot2() {
+        NumberArrays.calcSquareRoot(16.0);
     }
 }
