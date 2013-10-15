@@ -2,8 +2,10 @@ package com.kellyfj.codingkata.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -14,7 +16,7 @@ public class NumberArrays {
      * Given an array, please determine whether it contains three numbers whose
      * sum equals to 0.
      */
-    public static boolean doesSumOfTwoEqualN(int[] array, int target) {
+    public static boolean doesSumOfTwoEqualN_orderNlogN(int[] array, int target) {
         if (array.length < 2)
             throw new IllegalArgumentException("Array length should be 2 or greater");
         Arrays.sort(array);
@@ -38,6 +40,42 @@ public class NumberArrays {
         return false;
     }
 
+    public static boolean doesSumOfTwoEqualN_orderN(int[] array, int sumOfTwoTarget) {
+        if (array.length < 2)
+            throw new IllegalArgumentException("Array length should be 2 or greater");
+        Map<Integer, Integer> numberCount = new HashMap<Integer, Integer>();
+
+        // Pre-process
+        for (int i = 0; i < array.length; i++) {
+            int number = array[i];
+            if (numberCount.containsKey(number)) {
+                Integer c = numberCount.get(number);
+                c++;
+                numberCount.put(number, c);
+            } else {
+                numberCount.put(number, 1);
+            }
+        }
+
+        // Check against Map§
+        for (int i = 0; i < array.length; i++) {
+            int firstNum = array[i];
+            int complement = sumOfTwoTarget - array[i];
+            if (numberCount.containsKey(complement)) {
+                if (firstNum == complement) {
+                    int count = numberCount.get(complement);
+                    if (count >= 2)
+                        return true;
+                } else {
+                    return true;
+                }
+
+            }
+        }
+
+        return false;
+    }
+    
     public static boolean doesSumOfThreeEqualN(int[] array, int target) {
         if (array.length < 3)
             throw new IllegalArgumentException("At least 3 elements expected in the array");
@@ -45,7 +83,7 @@ public class NumberArrays {
         int pointer = 0;
         while (pointer < array.length - 1) {
             int sumOfTwoTarget = target - array[pointer];
-            boolean res = doesSumOfTwoEqualN(array, sumOfTwoTarget);
+            boolean res = doesSumOfTwoEqualN_orderN(array, sumOfTwoTarget);
             if (res) {
                 return true;
             }
@@ -53,6 +91,8 @@ public class NumberArrays {
         }
         return false;
     }
+
+
 
     public static void shuffle(Object[] a) {
         Random rnd = new Random();
