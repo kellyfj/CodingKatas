@@ -8,6 +8,16 @@ public class BinarySearchTreeNode {
     protected BinarySearchTreeNode left;
     protected BinarySearchTreeNode right;
 
+    /**
+     * Recurse down the tree until you find a,b
+     * Then return a non-null and start unwinding the stack upwards until both
+     * left and right branches are not null and that node is your answer
+     * 
+     * @param subTreeHead
+     * @param a
+     * @param b
+     * @return
+     */
     public static BinarySearchTreeNode lowestCommonAncestor(BinarySearchTreeNode subTreeHead, 
             BinarySearchTreeNode a,
             BinarySearchTreeNode b) {
@@ -22,7 +32,7 @@ public class BinarySearchTreeNode {
 
         if (l != null && r != null)
             return subTreeHead; // if a and b are on both sides of the subtree
-        return l != null ? l : r; // either one of p,q is on one side OR p,q is
+        return l != null ? l : r; // either one of a,b is on one side OR a,b is
                                   // not in L&R subtrees
 
     }
