@@ -20,7 +20,7 @@ public class RomanNumeralUtils {
         if (number.startsWith("V")) return 5 + getInt(number.substring(1));
         if (number.startsWith("IV")) return 4 + getInt(number.substring(2));
         if (number.startsWith("I")) return 1 + getInt(number.substring(1));
-        throw new RuntimeException("something bad happened");
+        throw new RuntimeException("String Argument ("+number+") is not a valid Roman Numeral");
     }
    
     
