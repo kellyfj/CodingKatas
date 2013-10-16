@@ -144,5 +144,54 @@ public class StringUtils {
         else 
             return false;
     }  
-     
+    
+    
+    /**
+     * Code courtesy of <a href="http://www.java2s.com/Code/Java/Data-Type/Returnsthelevenshteindistanceoftwostrings.htm">this source</a>
+     * 
+     * @param s
+     * @param t
+     * @return
+     */
+    public static int levenshteinDistance(String s, String t) {
+        int sLen = s.length();
+        int tLen = t.length();
+        if (sLen == 0)
+            return tLen;
+        
+        if (tLen == 0)
+            return sLen;
+
+        int[] costsPrev = new int[sLen + 1]; // previous cost array, horiz.
+        int[] costs = new int[sLen + 1];     // cost array, horizontally
+        int[] tmpArr;                        // helper to swap arrays
+        int sptr, tptr;                      // current s and t index
+        int cost;                            // current cost value
+        char tIndexChar;                     // char of t at tIndexth pos.
+
+        for (sptr = 0; sptr <= sLen; sptr++)
+            costsPrev[sptr] = sptr;
+
+        for (tptr = 1; tptr <= tLen; tptr++) {
+            tIndexChar = t.charAt(tptr - 1);
+            costs[0] = tptr;
+
+            for (sptr = 1; sptr <= sLen; sptr++) {
+                cost = (s.charAt(sptr - 1) == tIndexChar) ? 0 : 1;
+                // minimum of cell to the left+1, to the top+1, to the
+                // diagonally left and to the up +cost
+                costs[sptr] = Math.min(Math.min(costs[sptr - 1] + 1, costsPrev[sptr] + 1),
+                                         costsPrev[sptr - 1] + cost);
+            }
+
+            // copy current distance counts to 'previous row' distance counts
+            tmpArr = costsPrev;
+            costsPrev = costs;
+            costs = tmpArr;
+        }
+
+        // we just switched costArr and prevCostArr, so prevCostArr now actually
+        // has the most recent cost counts
+        return costsPrev[sLen];
+    }
 }

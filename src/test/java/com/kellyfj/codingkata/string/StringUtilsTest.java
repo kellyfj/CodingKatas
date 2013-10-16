@@ -1,5 +1,6 @@
 package com.kellyfj.codingkata.string;
 
+import static org.apache.commons.lang3.StringUtils.getLevenshteinDistance;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -114,5 +115,25 @@ public class StringUtilsTest {
             
             assertFalse(b);
         }      
+
         
+        @Test
+        public void testVonLevenshteinDistance() {
+            String s1 = "abc";
+            String s2 = "abcd";
+            
+           int i = StringUtils.levenshteinDistance(s1, s2);
+           int j = getLevenshteinDistance(s1, s2);
+           assertEquals(j,i);          
+        }
+        
+        @Test
+        public void testVonLevenshteinDistance2() {
+            String s1 = "abcdHello World";
+            String s2 = "abcd";
+            
+           int i = StringUtils.levenshteinDistance(s1, s2);
+           int j = getLevenshteinDistance(s1, s2);
+           assertEquals(j,i);          
+        }
 }
