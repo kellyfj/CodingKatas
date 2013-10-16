@@ -175,19 +175,19 @@ public class NumberArraysTest extends TestCase {
         int[] testArray = {1,2,3};
         
         List<Set<Integer>> listOfSets = NumberArrays.powerSet(testArray);             
-        printPowerSet(listOfSets);
+        NumberArrays.printPowerSet(listOfSets);
+        assertEquals((double)listOfSets.size(),Math.pow(2,testArray.length));
+        System.out.println("There were "+listOfSets.size()+" sets in the powerset");
+    }
+    public void testPowerSet2() {
+        int[] testArray = {1,2,3,4,5,6,7,8,9,10};
+        
+        List<Set<Integer>> listOfSets = NumberArrays.powerSet(testArray);             
+        NumberArrays.printPowerSet(listOfSets);
+        assertEquals((double)listOfSets.size(),Math.pow(2,testArray.length));
+        System.out.println("There were "+listOfSets.size()+" sets in the powerset");
     }
 
-    private void printPowerSet(List<Set<Integer>> listOfSets) {
-        System.out.println("POWERSET");
-        for(Set<Integer> set : listOfSets) {
-            System.out.print("{");
-            for(Integer i : set) {
-                System.out.print(i+ " ");
-            }
-            System.out.println("}");
-        }
-    }
     
     public void testGetBinary() {
         String s = NumberArrays.getBinaryRepresentation(2);

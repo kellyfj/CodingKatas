@@ -57,7 +57,7 @@ public class NumberArrays {
             }
         }
 
-        // Check against Map§
+        // Check against Map
         for (int i = 0; i < array.length; i++) {
             int firstNum = array[i];
             int complement = sumOfTwoTarget - array[i];
@@ -223,6 +223,17 @@ public class NumberArrays {
             returnList.add(powerSets);
         }
         return returnList;
+    }
+    
+    public static void printPowerSet(List<Set<Integer>> listOfSets) {
+        System.out.println("POWERSET");
+        for(Set<Integer> set : listOfSets) {
+            System.out.print("{");
+            for(Integer i : set) {
+                System.out.print(i+ " ");
+            }
+            System.out.println("}");
+        }
     }
 
     public static double calcSquareRoot(double num) {
