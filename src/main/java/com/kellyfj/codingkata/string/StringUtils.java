@@ -46,6 +46,38 @@ public class StringUtils {
         return new String(reverse);
     }
 
+
+    public static String longestPalindromeSimple(String s) {
+        int n = s.length();
+        if (n == 0)
+            return "";
+        String longest = s.substring(0, 1); // a single char itself is a
+                                            // palindrome
+        for (int i = 0; i < n - 1; i++) {
+            String p1 = expandAroundCenter(s, i, i);
+            if (p1.length() > longest.length())
+                longest = p1;
+
+            String p2 = expandAroundCenter(s, i, i + 1);
+            if (p2.length() > longest.length())
+                longest = p2;
+        }
+        return longest;
+    }
+
+    private static String expandAroundCenter(String s, int c1, int c2) {
+        int n = s.length();
+        char[] chArray = s.toCharArray();
+
+        while (c1 >= 0 && c2 <= n - 1 && chArray[c1] == chArray[c2]) {
+            c1--;
+            c2++;
+        }
+        int l = c1 + 1;
+        int r = c2;
+        return s.substring(l, r);
+    }
+     
     public static void regExTester(String s) {
 
         String regex = "[A-Za-z]";

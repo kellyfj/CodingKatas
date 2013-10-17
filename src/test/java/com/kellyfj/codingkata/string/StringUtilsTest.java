@@ -116,6 +116,30 @@ public class StringUtilsTest {
             assertFalse(b);
         }      
 
+        @Test
+        public void testGetLongestPalindrome() {
+            String s = "able was I ere I saw elba";
+            String longestPdrome = StringUtils.longestPalindromeSimple(s);
+            
+            assertEquals(s,longestPdrome);             
+        }
+        
+        @Test
+        public void tetGetLongestPalindrome2() {
+            String s = "AZabbaZY";
+            String longestPdrome = StringUtils.longestPalindromeSimple(s);
+            
+            assertEquals("ZabbaZ",longestPdrome); 
+        }
+        
+        @Test
+        public void tetGetLongestPalindromeFail() {
+            String s = "ABCDEFGHI";
+            String longestPdrome = StringUtils.longestPalindromeSimple(s);
+            
+            assertEquals("A",longestPdrome); 
+        }
+        
         
         @Test
         public void testVonLevenshteinDistance() {
