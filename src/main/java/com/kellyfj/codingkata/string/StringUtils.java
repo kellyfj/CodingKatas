@@ -1,5 +1,12 @@
 package com.kellyfj.codingkata.string;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -225,5 +232,75 @@ public class StringUtils {
         // we just switched costArr and prevCostArr, so prevCostArr now actually
         // has the most recent cost counts
         return costsPrev[sLen];
+    }
+    
+    public static Set<List<String>> findAnagrams(String[] sArray) {
+
+        Map<String, List<String>> map = new HashMap<String, List<String>>();
+        // Create lookup table
+        for (int i = 0; i < sArray.length; i++) {
+            String s = sArray[i];
+            String key = getSortedString(s);
+            if (map.containsKey(key)) {
+                List<String> l = map.get(key);
+                l.add(s);
+                map.put(key, l);
+            } else {
+                List<String> l = new ArrayList<String>();
+                l.add(s);
+                map.put(key, l);
+            }
+        }
+
+        //Find anagrams using lookup table
+        Set<List<String>> retVal = new HashSet<List<String>>();
+        for (int i = 0; i < sArray.length; i++) {
+            String s = sArray[i];
+            String key = getSortedString(s);
+            List<String> list = map.get(key);
+            if (list.size() > 1 && !retVal.contains(list)) {
+                retVal.add(list);
+            }
+
+        }
+
+        return retVal;
+    }
+
+    private static String getSortedString(String s) {
+        char[] toBeSorted = s.toLowerCase().toCharArray();
+        Arrays.sort(toBeSorted);
+        String sNew = new String(toBeSorted);
+        return sNew;
+    }
+    
+    
+    public static String countAndSay(int nTimes) {
+        if (nTimes <= 0)
+            return null;
+        StringBuilder res = new StringBuilder("1");
+        for (int t = 0; t < nTimes; t++) {
+            StringBuilder temp = countCharacters(res);
+            res = temp;
+            System.out.println(res);
+        }
+        return res.toString();
+    }
+
+    private static StringBuilder countCharacters(StringBuilder res) {
+        StringBuilder newSB = new StringBuilder();
+        int count = 1;
+        for (int i = 1; i < res.length(); ++i) {
+            if (res.charAt(i) == res.charAt(i - 1)) {
+                count++;
+            } else {
+                newSB.append(count);
+                newSB.append(res.charAt(i - 1));
+                count = 1; // reset
+            }
+        }
+        newSB.append(count);
+        newSB.append(res.charAt(res.length() - 1));
+        return newSB;
     }
 }

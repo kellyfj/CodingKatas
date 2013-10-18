@@ -3,7 +3,11 @@ package com.kellyfj.codingkata.string;
 import static org.apache.commons.lang3.StringUtils.getLevenshteinDistance;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.List;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -159,5 +163,34 @@ public class StringUtilsTest {
            int i = StringUtils.levenshteinDistance(s1, s2);
            int j = getLevenshteinDistance(s1, s2);
            assertEquals(j,i);          
+        }
+        
+        @Test
+        public void testAnagramsFinder() {
+            
+           Set<List<String>> ret =  StringUtils.findAnagrams(new String[] { "able","momma","ELBA"});
+           assertNotNull(ret);
+           assertEquals(1,ret.size());
+           printSet(ret);
+           Object[] listOfStringsArray = ret.toArray();
+           
+           List<String> ls = (List<String>) listOfStringsArray[0];
+           assertEquals(ls.size(),2);     
+        }
+
+        private void printSet(Set<List<String>> ret) {
+            for(List<String> l : ret) {
+                   System.out.print("{");
+                   for(String s : l) {
+                       System.out.print(s+" ");
+                   }
+                   System.out.println("}");
+               }
+        }
+        
+        @Test
+        public void testCountAndSay() {
+            StringUtils.countAndSay(10);
+            //System.out.println(s);
         }
 }
