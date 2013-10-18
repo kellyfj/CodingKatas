@@ -18,16 +18,27 @@ public class ListUtils {
         current.setNext(previous);
         return newHead;
     }
+    
+    public static ListElement reverseIteratively_order1space(ListElement head) {
+        ListElement next = null;
+        ListElement prev = null;
+        while (head != null) {
+            next = head.getNext();
+            head.setNext(prev);
+            prev = head;
+            head = next;
+        }
+        head = prev;        
+        return head;
+    }
 
-    public static ListElement reverseIteratively(ListElement head) {
-
+    public static ListElement reverseIteratively_orderNspace(ListElement head) {
         ListElement current = head;
         Stack<ListElement> s = new Stack<ListElement>();
         while (current != null) {
             s.push(current);
             current = current.getNext();
         }
-
         ListElement curr = s.pop();
         ListElement prev = null;
         ListElement newHead = curr;
@@ -37,9 +48,10 @@ public class ListUtils {
             curr = prev;
         }
         prev.setNext(null);
-
         return newHead;
     }
+    
+
     
     public static void printList(ListElement l) {
         if (l == null) {

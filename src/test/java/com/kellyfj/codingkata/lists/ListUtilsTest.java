@@ -49,7 +49,18 @@ public class ListUtilsTest {
         ListUtils.printList(head);
         int size = head.size();
         
-        ListElement newHead =  ListUtils.reverseIteratively(head);
+        ListElement newHead =  ListUtils.reverseIteratively_orderNspace(head);
+        ListUtils.printList(newHead);        
+        assertEquals(size,newHead.size());
+        assertEquals(99, newHead.getValue());
+    }
+  
+    @Test
+    public void testReverseIteratively_order1Space() {
+        ListUtils.printList(head);
+        int size = head.size();
+        
+        ListElement newHead = ListUtils.reverseIteratively_order1space(head);
         ListUtils.printList(newHead);        
         assertEquals(size,newHead.size());
         assertEquals(99, newHead.getValue());
