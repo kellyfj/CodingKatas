@@ -1,5 +1,6 @@
 package com.kellyfj.codingkata.arrays;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -254,4 +255,45 @@ public class NumberArraysTest extends TestCase {
     public void testGetSquareRoot2() {
         NumberArrays.calcSquareRoot(16.0);
     }
+    
+    
+    public void testFindCombinationsToReachTargetSum() {
+        int target=6;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(4);
+        numbers.add(3);
+        numbers.add(2);
+        numbers.add(1);
+        
+        NumberArrays.findCombinationsToReachTargetSum(numbers, target);            
+    }
+    
+    public void testFindCombinationsToReachTargetSum2() {
+        int target=10;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(4);
+        numbers.add(3);
+        numbers.add(2);
+        numbers.add(1);
+        
+        NumberArrays.findCombinationsToReachTargetSum(numbers, target);            
+    }
+   
+    public void testFindCombinationsToReachTargetSum3() {
+        int target=11;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(4);
+        numbers.add(3);
+        numbers.add(2);
+        numbers.add(1);
+        
+        NumberArrays.findCombinationsToReachTargetSum(numbers, target);            
+    }
+    
+    
+    
+    
+    
+    
+    
 }

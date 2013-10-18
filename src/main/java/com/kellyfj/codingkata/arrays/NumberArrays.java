@@ -268,4 +268,34 @@ public class NumberArrays {
         }
         return guess;
     }
+    
+    
+    private static void findCombinationsToReachTargetSum(List<Integer> numbers, int target, List<Integer> intermed) {
+        int intermedSum = 0;
+        for (int i : intermed)
+            intermedSum += i;
+        
+        if (intermedSum == target)
+            System.out.println("sum(" + Arrays.toString(intermed.toArray()) + ")=" + target);
+        
+        if (intermedSum >= target)
+            return;
+        
+        //Pick a number
+        for (int i = 0; i < numbers.size(); i++) {
+            ArrayList<Integer> remaining = new ArrayList<Integer>();
+            int n = numbers.get(i);
+            
+            //Start adding the other numbers until we reach conditions above
+            for (int j = i + 1; j < numbers.size(); j++)
+                remaining.add(numbers.get(j));
+            ArrayList<Integer> intermedCopy = new ArrayList<Integer>(intermed);
+            intermedCopy.add(n);
+            findCombinationsToReachTargetSum(remaining, target, intermedCopy);
+        }
+    }
+
+    public static void findCombinationsToReachTargetSum(List<Integer> numbers, int target) {
+        findCombinationsToReachTargetSum(numbers, target, new ArrayList<Integer>());
+    }
 }
