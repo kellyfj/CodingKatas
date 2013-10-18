@@ -179,6 +179,9 @@ public class NumberArraysTest extends TestCase {
         assertEquals((double)listOfSets.size(),Math.pow(2,testArray.length));
         System.out.println("There were "+listOfSets.size()+" sets in the powerset");
     }
+    
+    
+    
     public void testPowerSet2() {
         int[] testArray = {1,2,3,4,5,6,7,8,9,10};
         
@@ -188,6 +191,32 @@ public class NumberArraysTest extends TestCase {
         System.out.println("There were "+listOfSets.size()+" sets in the powerset");
     }
 
+    public void testSetsOfSizeK() {
+        int[] testArray = {1,2,3};
+        
+        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray,2);             
+        NumberArrays.printPowerSet(listOfSets);
+        assertEquals(3,listOfSets.size());
+        System.out.println("There were "+listOfSets.size()+" sets of size K");
+    }
+    
+    
+    
+    public void testSetsOfSizeK2() {
+        int[] testArray = {1,2,3,4,5,6,7,8,9,10};
+        
+        //One set of size 10
+        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray,10);             
+        NumberArrays.printPowerSet(listOfSets);
+        assertEquals(1,listOfSets.size());
+        System.out.println("There were "+listOfSets.size()+" sets of size K");
+        
+        //10 sets of size 9
+        listOfSets = NumberArrays.setsOfSizeK(testArray,9);             
+        NumberArrays.printPowerSet(listOfSets);
+        assertEquals(10,listOfSets.size());
+        System.out.println("There were "+listOfSets.size()+" sets of size K");        
+    }
     
     public void testGetBinary() {
         String s = NumberArrays.getBinaryRepresentation(2);

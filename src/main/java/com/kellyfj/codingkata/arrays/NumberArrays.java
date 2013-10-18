@@ -224,6 +224,28 @@ public class NumberArrays {
         }
         return returnList;
     }
+ 
+    public static List<Set<Integer>> setsOfSizeK(int[] array, int k) {
+        List<Set<Integer>> returnList = new ArrayList<Set<Integer>>();
+        if (array.length == 0) {
+            returnList.add(new HashSet<Integer>());
+            return returnList;
+        }
+
+        int head = array[0];
+        int[] rest = new int[] {};
+        if (array.length >= 2)
+            rest = Arrays.copyOfRange(array, 1, array.length);
+
+        for (Set<Integer> s : powerSet(rest)) {
+            Set<Integer> newSet = new HashSet<Integer>();
+            newSet.add(head);
+            newSet.addAll(s);
+            if(newSet.size()==k) returnList.add(newSet);
+            if(s.size() ==k) returnList.add(s);
+        }
+        return returnList;
+    }
     
     public static void printPowerSet(List<Set<Integer>> listOfSets) {
         System.out.println("POWERSET");
