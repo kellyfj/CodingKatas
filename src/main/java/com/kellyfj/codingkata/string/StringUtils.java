@@ -318,8 +318,11 @@ public class StringUtils {
             l.add(prefix);
         }
         else {
-            for (int i = 0; i < n; i++)
-                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n),l);
+            for (int i = 0; i < n; i++) {
+                String p = prefix + str.charAt(i);
+                String s = str.substring(0, i) + str.substring(i + 1, n);
+                permutation(p,s,l);
+            }
         }
     }
     
@@ -336,6 +339,14 @@ public class StringUtils {
         return sb.toString();
     }
 
+    /**
+     * Implementation from 
+     * http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Java
+     * Order Complexity: http://en.wikipedia.org/wiki/Longest_common_substring_problem
+     * @param s1
+     * @param s2
+     * @return
+     */
     public static String longestCommonSubstring(String s1, String s2) {
         int start = 0;
         int max = 0;
@@ -344,7 +355,7 @@ public class StringUtils {
                 int x = 0;
                 while (s1.charAt(i + x) == s2.charAt(j + x)) {
                     x++;
-                    if (((i + x) >= s1.length()) || ((j + x) >= s2.length()))
+                    if ((i + x) >= s1.length() || (j + x) >= s2.length())
                         break;
                 }
                 if (x > max) {
