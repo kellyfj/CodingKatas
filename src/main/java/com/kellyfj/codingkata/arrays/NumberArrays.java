@@ -358,4 +358,40 @@ public class NumberArrays {
     public static void findCombinationsToReachTargetSum(List<Integer> numbers, int target) {
         findCombinationsToReachTargetSum(numbers, target, new ArrayList<Integer>());
     }
+    
+    public static int[] merge(int[] a, int[] b) {
+        int[] answer = new int[a.length + b.length];
+        int i = 0, j = 0, k = 0;
+
+        while (i < a.length && j < b.length)
+        {
+            if (a[i] < b[j])       
+                answer[k++] = a[i++];
+            else        
+                answer[k++] = b[j++];               
+        }
+
+        while (i < a.length)  
+            answer[k++] = a[i++];
+
+        while (j < b.length)    
+            answer[k++] = b[j++];
+
+        return answer;
+    }
+    
+    public static Integer[] mergeRemovingDupes(int[] a, int[] b) {
+        Set<Integer> s = new HashSet<Integer>();
+        
+        for(int i: a) {
+            if(!s.contains(i))
+                s.add(i);
+        }
+        for (int i : b) {
+            if(!s.contains(i))
+                s.add(i);
+        }
+
+        return s.toArray(new Integer[0]);
+    }
 }

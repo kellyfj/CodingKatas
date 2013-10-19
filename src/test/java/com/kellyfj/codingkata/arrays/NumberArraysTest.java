@@ -309,7 +309,36 @@ public class NumberArraysTest extends TestCase {
         assertEquals(3*MAX/2 - 2,ans.comparisons);
     }
     
+    public void testMerge() {
+        int[] a = new int[] {1,2,3,4,5,10};
+        int[] b = new int[] {6,7,8,9};
+        
+        int[] merge = NumberArrays.merge(a, b);
+        assertEquals(a.length+b.length,merge.length);
+        String s = Arrays.toString(merge);
+        System.out.println(s);
+        assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",s);     
+    }
     
+    public void testMerge2() {
+        int[] a = new int[] {1,2,3,4,5,10};
+        int[] b = new int[] {6,7,8,9,10};
+        
+        int[] merge = NumberArrays.merge(a, b);
+        assertEquals(a.length+b.length,merge.length);
+        String s = Arrays.toString(merge);
+        System.out.println(s);
+        assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10]",s);     
+    } 
     
-    
+    public void testMergeRemovingDupes() {
+        int[] a = new int[] {1,2,3,4,5,10};
+        int[] b = new int[] {6,7,8,9,10};
+        
+        Integer[] merge = NumberArrays.mergeRemovingDupes(a, b);
+        assertEquals((a.length+b.length)-1,merge.length);
+        String s = Arrays.toString(merge);
+        System.out.println(s);
+        assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",s);     
+    } 
 }
