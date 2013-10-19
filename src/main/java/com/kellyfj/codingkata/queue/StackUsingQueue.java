@@ -6,7 +6,7 @@ import java.util.Queue;
 public class StackUsingQueue {
 
     Queue<Integer> q1 = new LinkedList<Integer>();
-    Queue<Integer> q2 = new LinkedList<Integer>();
+    Queue<Integer> temp = new LinkedList<Integer>();
 
     public int pop() {
         if (q1.peek() == null) { // The stack is empty, nothing to return
@@ -22,12 +22,14 @@ public class StackUsingQueue {
         if (q1.peek() == null) {
             q1.add(data);
         } else {
-            for (int i = q1.size(); i > 0; i--) {
-                q2.add(q1.remove());
+            int q1Size = q1.size();
+            for (int i = 0; i < q1Size; i++) {
+                temp.add(q1.remove());
             }
             q1.add(data);
-            for (int j = q2.size(); j > 0; j--) {
-                q1.add(q2.remove());
+            int tmpSize = temp.size();
+            for (int j = 0; j < tmpSize; j++) {
+                q1.add(temp.remove());
             }
 
         }
