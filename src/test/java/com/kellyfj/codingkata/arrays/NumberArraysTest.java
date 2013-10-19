@@ -1,10 +1,13 @@
 package com.kellyfj.codingkata.arrays;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import junit.framework.TestCase;
+
+import com.kellyfj.codingkata.arrays.NumberArrays.MinMax;
 
 public class NumberArraysTest extends TestCase {
 
@@ -291,7 +294,20 @@ public class NumberArraysTest extends TestCase {
     }
     
     
-    
+    public void testFindMinMax() {
+        int MAX = 10000;
+        int[] test = new int[MAX];
+        for(int i=0; i< MAX; i++) {
+            test[i]=(int)(Math.random() * (MAX + 1));
+        }
+        
+        MinMax ans = NumberArrays.getMinMax(test);
+        Arrays.sort(test);
+        assertEquals(test[0],ans.min);
+        assertEquals(test[test.length-1],ans.max);
+        System.out.println(ans.comparisons +" comparisons performed");
+        assertEquals(3*MAX/2 - 2,ans.comparisons);
+    }
     
     
     

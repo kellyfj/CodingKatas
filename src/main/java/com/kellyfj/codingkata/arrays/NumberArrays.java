@@ -12,6 +12,67 @@ import java.util.Set;
 public class NumberArrays {
 
     /**
+     * If n is odd then initialize min and max as first element. If n is even
+     * then initialize min and max as minimum and maximum of the first two
+     * elements respectively. For rest of the elements, pick them in pairs and
+     * compare their maximum and minimum with max and min respectively.
+     * http://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
+     * 
+     * @param arr
+     * @return
+     */
+    public static MinMax getMinMax(int[] arr) {
+        MinMax minmax = new MinMax();
+        int n = arr.length;
+        int i = 0;
+        int numComparisons = 0;
+        if (n % 2 == 0) {
+            numComparisons++;
+            if (arr[0] > arr[1]) {
+                minmax.max = arr[0];
+                minmax.min = arr[1];
+            } else {
+                minmax.min = arr[0];
+                minmax.max = arr[1];
+            }
+            i = 2; /* set the starting index for loop */
+        } else {  // If array has odd number of elements then initialize the first
+                  // element as minimum and maximum
+            minmax.min = arr[0];
+            minmax.max = arr[0];
+            i = 1; /* set the starting index for loop */
+        }
+        
+        // In the while loop, pick elements in pair and compare the pair with current min/max
+        while (i < n - 1) {
+            numComparisons++;
+            if (arr[i] > arr[i + 1]) {
+                numComparisons++;
+                if (arr[i] > minmax.max) minmax.max = arr[i];
+                numComparisons++;
+                if (arr[i + 1] < minmax.min) minmax.min = arr[i + 1];
+            } else {
+                numComparisons++;
+                if (arr[i + 1] > minmax.max)  minmax.max = arr[i + 1];
+                numComparisons++;
+                if (arr[i] < minmax.min)  minmax.min = arr[i];
+            }
+            i += 2; //Increment the index by 2 as two elements are processed
+        }
+
+        minmax.comparisons = numComparisons;
+        return minmax;
+    }
+
+    public static class MinMax {
+
+        public int comparisons;
+        public int min;
+        public int max;
+
+    }
+
+    /**
      * http://codercareer.blogspot.com/2011/10/no-09-numbers-with-given-sum.html
      * Given an array, please determine whether it contains three numbers whose
      * sum equals to 0.
@@ -20,7 +81,7 @@ public class NumberArrays {
         if (array.length < 2)
             throw new IllegalArgumentException("Array length should be 2 or greater");
         Arrays.sort(array);
-        
+
         int startPointer = 0;
         int endPointer = array.length - 1;
         while (startPointer < endPointer) {
@@ -75,7 +136,7 @@ public class NumberArrays {
 
         return false;
     }
-    
+
     public static boolean doesSumOfThreeEqualN(int[] array, int target) {
         if (array.length < 3)
             throw new IllegalArgumentException("At least 3 elements expected in the array");
@@ -91,8 +152,6 @@ public class NumberArrays {
         }
         return false;
     }
-
-
 
     public static void shuffle(Object[] a) {
         Random rnd = new Random();
@@ -224,7 +283,7 @@ public class NumberArrays {
         }
         return returnList;
     }
- 
+
     public static List<Set<Integer>> setsOfSizeK(int[] array, int k) {
         List<Set<Integer>> returnList = new ArrayList<Set<Integer>>();
         if (array.length == 0) {
@@ -241,18 +300,20 @@ public class NumberArrays {
             Set<Integer> newSet = new HashSet<Integer>();
             newSet.add(head);
             newSet.addAll(s);
-            if(newSet.size()==k) returnList.add(newSet);
-            if(s.size() ==k) returnList.add(s);
+            if (newSet.size() == k)
+                returnList.add(newSet);
+            if (s.size() == k)
+                returnList.add(s);
         }
         return returnList;
     }
-    
+
     public static void printPowerSet(List<Set<Integer>> listOfSets) {
         System.out.println("POWERSET");
-        for(Set<Integer> set : listOfSets) {
+        for (Set<Integer> set : listOfSets) {
             System.out.print("{");
-            for(Integer i : set) {
-                System.out.print(i+ " ");
+            for (Integer i : set) {
+                System.out.print(i + " ");
             }
             System.out.println("}");
         }
@@ -268,25 +329,24 @@ public class NumberArrays {
         }
         return guess;
     }
-    
-    
+
     private static void findCombinationsToReachTargetSum(List<Integer> numbers, int target, List<Integer> intermed) {
         int intermedSum = 0;
         for (int i : intermed)
             intermedSum += i;
-        
+
         if (intermedSum == target)
             System.out.println("sum(" + Arrays.toString(intermed.toArray()) + ")=" + target);
-        
+
         if (intermedSum >= target)
             return;
-        
-        //Pick a number
+
+        // Pick a number
         for (int i = 0; i < numbers.size(); i++) {
             ArrayList<Integer> remaining = new ArrayList<Integer>();
             int n = numbers.get(i);
-            
-            //Start adding the other numbers until we reach conditions above
+
+            // Start adding the other numbers until we reach conditions above
             for (int j = i + 1; j < numbers.size(); j++)
                 remaining.add(numbers.get(j));
             ArrayList<Integer> intermedCopy = new ArrayList<Integer>(intermed);
