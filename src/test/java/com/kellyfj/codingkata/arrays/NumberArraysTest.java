@@ -98,6 +98,47 @@ public class NumberArraysTest extends TestCase {
         boolean res = NumberArrays.doesSumOfThreeEqualN(testArray, 4);
         assertFalse(res);
     }
+  
+    public void test_doesSumOfThreeEqualNFaster() {
+        int[] testArray = {5,4,3,2,1,9};
+        boolean res = NumberArrays.doesSumOfThreeEqualN_faster(testArray, 10);
+        assertTrue(res);
+    }
+    
+    public void test_doesSumOfThreeEqualN_falseFaster() {
+        int[] testArray = {1,2,3};
+        boolean res = NumberArrays.doesSumOfThreeEqualN_faster(testArray, 10);
+        assertFalse(res);
+    }
+    
+    public void test_doesSumOfThreeEqualN_edgeFaster() {
+        int[] testArray = {2,3,5};
+        boolean res = NumberArrays.doesSumOfThreeEqualN_faster(testArray, 4);
+        assertFalse(res);
+    }
+   
+    public void test_doesSumOfThreeEqualN_perf() {
+        int MAX = 5000;
+        int[] testArray = new int[MAX];
+        for(int i=0; i<MAX; i++) {
+            testArray[i] = i;
+        }
+        
+        long s1 = System.currentTimeMillis();
+        boolean res = NumberArrays.doesSumOfThreeEqualN(testArray, MAX*MAX);
+        long e1 = System.currentTimeMillis();   
+        boolean res2 = NumberArrays.doesSumOfThreeEqualN_faster(testArray, MAX*MAX);
+        long e2 = System.currentTimeMillis();
+        
+        
+        assertFalse(res);
+        assertEquals(res,res2);
+        long delta1 = e1-s1;
+        long delta2 = e2-e1;
+        System.out.println("First Method took "+(e1-s1)+"ms vs "+(e2-e1)+" ms");
+        
+        assertTrue(delta1 > delta2);
+    }
     
     public void test_doesSumOfThreeEqualN_error() {
         int[] testArray = {1,2};

@@ -153,6 +153,36 @@ public class NumberArrays {
         return false;
     }
 
+    /**
+     * http://stackoverflow.com/questions/2070359/finding-three-elements-in-an-array-whose-sum-is-closest-to-an-given-number
+     * @param A
+     * @param target
+     * @return
+     */
+    public static boolean doesSumOfThreeEqualN_faster(int[] A, int target) {
+        if (A.length < 3)
+            throw new IllegalArgumentException("At least 3 elements expected in the array");
+        Arrays.sort(A);
+        for (int i = 0; i < A.length - 2; i++) {
+            int j = i+1; // Start where i is.
+            int k = A.length-1; // Start at the end of the array.
+
+            while (k >= j) {
+                int sum = A[i] + A[j] + A[k];
+                if ( sum == target ) return true;
+
+                // We didn't match. Let's try to get a little closer:
+                if (sum > target)
+                    k--;
+                else
+                    j++;
+            }
+            // When the while-loop finishes, j and k have passed each other and
+            // there's no more useful combinations that we can try with this i.
+        }
+        return false;
+    }
+    
     public static void shuffle(Object[] a) {
         Random rnd = new Random();
         int mid = a.length / 2;
