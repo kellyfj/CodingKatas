@@ -31,7 +31,6 @@ public class StackUsingQueue {
             for (int j = 0; j < tmpSize; j++) {
                 q1.add(temp.remove());
             }
-
         }
     }
 }

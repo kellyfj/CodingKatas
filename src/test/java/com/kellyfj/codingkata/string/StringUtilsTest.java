@@ -203,4 +203,21 @@ public class StringUtilsTest {
             long fact = ArithmeticUtils.factorial(testString.length());
             assertEquals(fact,list.size());
         }
+        
+        
+        @Test
+        public void testRemoveDupeChars() {
+            
+            String ans = StringUtils.removeDupeChars("ABCDE");
+            assertEquals("ABCDE",ans);
+            
+            ans = StringUtils.removeDupeChars("AABCDE");
+            assertEquals("ABCDE",ans);
+
+            ans = StringUtils.removeDupeChars("AABCDEEE");
+            assertEquals("ABCDE",ans);
+
+            ans = StringUtils.removeDupeChars("AAAAA");
+            assertEquals("A",ans);
+        }
 }

@@ -322,4 +322,17 @@ public class StringUtils {
                 permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n),l);
         }
     }
+    
+    public static String removeDupeChars(String s) {
+        Set<Character> set = new HashSet<Character>();
+        StringBuilder sb = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            if (!set.contains(c)) {
+                set.add(c);
+                sb.append(c);
+            }
+        }
+
+        return sb.toString();
+    }
 }
