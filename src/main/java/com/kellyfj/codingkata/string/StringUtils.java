@@ -335,4 +335,24 @@ public class StringUtils {
 
         return sb.toString();
     }
+
+    public static String longestCommonSubstring(String s1, String s2) {
+        int start = 0;
+        int max = 0;
+        for (int i = 0; i < s1.length(); i++) {
+            for (int j = 0; j < s2.length(); j++) {
+                int x = 0;
+                while (s1.charAt(i + x) == s2.charAt(j + x)) {
+                    x++;
+                    if (((i + x) >= s1.length()) || ((j + x) >= s2.length()))
+                        break;
+                }
+                if (x > max) {
+                    max = x;
+                    start = i;
+                }
+            }
+        }
+        return s1.substring(start, (start + max));
+    }
 }

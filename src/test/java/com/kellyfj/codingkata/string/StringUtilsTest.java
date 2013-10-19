@@ -220,4 +220,24 @@ public class StringUtilsTest {
             ans = StringUtils.removeDupeChars("AAAAA");
             assertEquals("A",ans);
         }
+        
+        @Test
+        public void testLongestCommonSubstring() {
+            String s1 = "Hello this is Frank speaking";
+            String s2 = "Hi I am new here and my name is Frank Kelly";
+            
+            String ans = StringUtils.longestCommonSubstring(s1, s2);
+            assertEquals(" is Frank ",ans); //Note the spaces around it
+            
+        }
+        
+        @Test
+        public void testLongestCommonSubstringFail() {
+            String s1 = "Hello this is Frank speaking";
+            String s2 = "";
+            
+            String ans = StringUtils.longestCommonSubstring(s1, s2);
+            assertEquals("",ans);
+            
+        }
 }
