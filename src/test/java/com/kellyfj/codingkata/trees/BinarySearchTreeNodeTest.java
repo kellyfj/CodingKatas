@@ -33,7 +33,7 @@ public class BinarySearchTreeNodeTest extends TestCase {
     }
     
     public void testGetKthSmallest() {
-        BinarySearchTreeNode n = bst.getKthSmallestElement(1);
+        BinaryTreeNode n = bst.getKthSmallestElement(1);
         assertNotNull(n);
         assertEquals(1,n.getValue());
         
@@ -43,7 +43,7 @@ public class BinarySearchTreeNodeTest extends TestCase {
     }
     
     public void testGetKthLargest() {
-        BinarySearchTreeNode n = bst.getKthLargestElement(1);
+        BinaryTreeNode n = bst.getKthLargestElement(1);
         assertNotNull(n);
         assertEquals(100,n.getValue());
         
