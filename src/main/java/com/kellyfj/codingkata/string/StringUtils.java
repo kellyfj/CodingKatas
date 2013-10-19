@@ -303,4 +303,23 @@ public class StringUtils {
         newSB.append(res.charAt(res.length() - 1));
         return newSB;
     }
+    
+    public static  List<String> permutation(String str) {
+        List<String> ret = new ArrayList<String>();
+        permutation("", str,ret);
+        System.out.println("String ["+str+"] has ["+ret.size()+"] permutations");
+        return ret;
+    }
+
+    private static void permutation(String prefix, String str, List<String> l) {
+        int n = str.length();
+        if (n == 0) {
+            System.out.println(prefix);
+            l.add(prefix);
+        }
+        else {
+            for (int i = 0; i < n; i++)
+                permutation(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n),l);
+        }
+    }
 }

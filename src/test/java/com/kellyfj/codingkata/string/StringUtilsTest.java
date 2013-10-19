@@ -9,6 +9,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.math3.util.ArithmeticUtils;
 import org.junit.Test;
 
 public class StringUtilsTest {
@@ -192,5 +193,14 @@ public class StringUtilsTest {
         public void testCountAndSay() {
             StringUtils.countAndSay(10);
             //System.out.println(s);
+        }
+        
+        
+        @Test 
+        public void testPermutations() {
+            String testString = "ABCD";
+            List<String> list = StringUtils.permutation(testString);
+            long fact = ArithmeticUtils.factorial(testString.length());
+            assertEquals(fact,list.size());
         }
 }
