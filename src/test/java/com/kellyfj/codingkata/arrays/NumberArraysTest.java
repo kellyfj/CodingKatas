@@ -309,9 +309,12 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        List<Integer> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);       
+        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);       
         assertNotNull(ret);
-        assertEquals(3,ret.size());
+        assertEquals(2,ret.size());
+        
+        assertEquals(2,ret.get(0).size()); //4+2
+        assertEquals(3,ret.get(1).size()); //3+2+1
     }
     
     public void testFindCombinationsToReachTargetSum2() {
@@ -322,9 +325,10 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        List<Integer> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
         assertNotNull(ret);
-        assertEquals(4,ret.size());
+        assertEquals(1,ret.size());
+        assertEquals(4,ret.get(0).size()); //4+3+2+1
     }
    
     public void testFindCombinationsToReachTargetSum3() {
@@ -335,12 +339,13 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        List<Integer> ret =  NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
-        assertNull(ret);
+        List<List<Integer>> ret =  NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        assertNotNull(ret);
+        assertEquals(0,ret.size());
     }
     
     
-    public void testFindMinMax() {
+    public void testFindMinMaxEven() {
         int MAX = 10000;
         int[] test = new int[MAX];
         for(int i=0; i< MAX; i++) {
@@ -353,6 +358,21 @@ public class NumberArraysTest extends TestCase {
         assertEquals(test[test.length-1],ans.max);
         System.out.println(ans.comparisons +" comparisons performed");
         assertEquals(3*MAX/2 - 2,ans.comparisons);
+    }
+    
+    public void testFindMinMaxOdd() {
+        int MAX = 99;
+        int[] test = new int[MAX];
+        for(int i=0; i< MAX; i++) {
+            test[i]=(int)(Math.random() * (MAX + 1));
+        }
+        
+        MinMax ans = NumberArrays.getMinMax(test);
+        Arrays.sort(test);
+        assertEquals(test[0],ans.min);
+        assertEquals(test[test.length-1],ans.max);
+        System.out.println(ans.comparisons +" comparisons performed");
+        assertEquals(3*MAX/2 - 3,ans.comparisons);
     }
     
     public void testMerge() {

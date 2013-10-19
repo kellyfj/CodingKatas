@@ -12,8 +12,7 @@ import java.util.Set;
 public class NumberArrays {
 
     /**
-     * If n is odd then initialize min and max as first element. If n is even
-     * then initialize min and max as minimum and maximum of the first two
+     * Initialize min and max as minimum and maximum of the first two
      * elements respectively. For rest of the elements, pick them in pairs and
      * compare their maximum and minimum with max and min respectively.
      * http://www.geeksforgeeks.org/maximum-and-minimum-in-an-array/
@@ -26,22 +25,16 @@ public class NumberArrays {
         int n = arr.length;
         int i = 0;
         int numComparisons = 0;
-        if (n % 2 == 0) {
-            numComparisons++;
-            if (arr[0] > arr[1]) {
-                minmax.max = arr[0];
-                minmax.min = arr[1];
-            } else {
-                minmax.min = arr[0];
-                minmax.max = arr[1];
-            }
-            i = 2; /* set the starting index for loop */
-        } else {  // If array has odd number of elements then initialize the first
-                  // element as minimum and maximum
-            minmax.min = arr[0];
+
+        numComparisons++;
+        if (arr[0] > arr[1]) {
             minmax.max = arr[0];
-            i = 1; /* set the starting index for loop */
+            minmax.min = arr[1];
+        } else {
+            minmax.min = arr[0];
+            minmax.max = arr[1];
         }
+        i = 2;
         
         // In the while loop, pick elements in pair and compare the pair with current min/max
         while (i < n - 1) {
@@ -360,25 +353,27 @@ public class NumberArrays {
         return guess;
     }
 
-
-    public static List<Integer> findCombinationsToReachTargetSum(List<Integer> numbers, int target) {      
-        List<Integer> ret = findCombinationsToReachTargetSum(numbers, target, new ArrayList<Integer>());
+    public static List<List<Integer>> findCombinationsToReachTargetSum(List<Integer> numbers, int target) {
+        List<List<Integer>> ret = findCombinationsToReachTargetSum(numbers, target, new ArrayList<Integer>());
         return ret;
     }
-    
-    private static  List<Integer> findCombinationsToReachTargetSum(List<Integer> numbers, int target, List<Integer> intermed) {
+
+    private static List<List<Integer>> findCombinationsToReachTargetSum(List<Integer> numbers, int target,
+            List<Integer> intermed) {
         int intermedSum = 0;
         for (int i : intermed)
             intermedSum += i;
 
-        if (intermedSum == target)
-            return intermed;
+        List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        if (intermedSum == target) {
+            ret = new ArrayList<List<Integer>>();
+            ret.add(intermed);
+        }
 
         if (intermedSum > target)
             return null;
 
         // Pick a number
-        List<Integer> ret= null;
         for (int i = 0; i < numbers.size(); i++) {
             ArrayList<Integer> remaining = new ArrayList<Integer>();
             int n = numbers.get(i);
@@ -388,11 +383,12 @@ public class NumberArrays {
                 remaining.add(numbers.get(j));
             ArrayList<Integer> intermedCopy = new ArrayList<Integer>(intermed);
             intermedCopy.add(n);
-            List<Integer> temp = findCombinationsToReachTargetSum(remaining, target, intermedCopy);
-            if(temp!=null)
-                ret = temp;
+            List<List<Integer>> temp = findCombinationsToReachTargetSum(remaining, target, intermedCopy);
+            if (temp != null) {
+                ret.addAll(temp);
+            }
         }
-        
+
         return ret;
     }
     
