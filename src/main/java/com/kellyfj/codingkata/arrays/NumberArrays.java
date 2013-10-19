@@ -360,18 +360,25 @@ public class NumberArrays {
         return guess;
     }
 
-    private static void findCombinationsToReachTargetSum(List<Integer> numbers, int target, List<Integer> intermed) {
+
+    public static List<Integer> findCombinationsToReachTargetSum(List<Integer> numbers, int target) {      
+        List<Integer> ret = findCombinationsToReachTargetSum(numbers, target, new ArrayList<Integer>());
+        return ret;
+    }
+    
+    private static  List<Integer> findCombinationsToReachTargetSum(List<Integer> numbers, int target, List<Integer> intermed) {
         int intermedSum = 0;
         for (int i : intermed)
             intermedSum += i;
 
         if (intermedSum == target)
-            System.out.println("sum(" + Arrays.toString(intermed.toArray()) + ")=" + target);
+            return intermed;
 
-        if (intermedSum >= target)
-            return;
+        if (intermedSum > target)
+            return null;
 
         // Pick a number
+        List<Integer> ret= null;
         for (int i = 0; i < numbers.size(); i++) {
             ArrayList<Integer> remaining = new ArrayList<Integer>();
             int n = numbers.get(i);
@@ -381,12 +388,12 @@ public class NumberArrays {
                 remaining.add(numbers.get(j));
             ArrayList<Integer> intermedCopy = new ArrayList<Integer>(intermed);
             intermedCopy.add(n);
-            findCombinationsToReachTargetSum(remaining, target, intermedCopy);
+            List<Integer> temp = findCombinationsToReachTargetSum(remaining, target, intermedCopy);
+            if(temp!=null)
+                ret = temp;
         }
-    }
-
-    public static void findCombinationsToReachTargetSum(List<Integer> numbers, int target) {
-        findCombinationsToReachTargetSum(numbers, target, new ArrayList<Integer>());
+        
+        return ret;
     }
     
     public static int[] merge(int[] a, int[] b) {

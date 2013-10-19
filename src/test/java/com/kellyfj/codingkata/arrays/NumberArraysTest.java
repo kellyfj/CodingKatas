@@ -309,7 +309,9 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        NumberArrays.findCombinationsToReachTargetSum(numbers, target);            
+        List<Integer> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);       
+        assertNotNull(ret);
+        assertEquals(3,ret.size());
     }
     
     public void testFindCombinationsToReachTargetSum2() {
@@ -320,7 +322,9 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        NumberArrays.findCombinationsToReachTargetSum(numbers, target);            
+        List<Integer> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        assertNotNull(ret);
+        assertEquals(4,ret.size());
     }
    
     public void testFindCombinationsToReachTargetSum3() {
@@ -331,7 +335,8 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        NumberArrays.findCombinationsToReachTargetSum(numbers, target);            
+        List<Integer> ret =  NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        assertNull(ret);
     }
     
     
