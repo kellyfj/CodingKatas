@@ -1,8 +1,8 @@
 package com.kellyfj.codingkata.trees;
 
+import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class BinaryTreeNode {
     
@@ -53,7 +53,7 @@ public class BinaryTreeNode {
     
     public BinaryTreeNode getDeepestNode()
     {
-        Queue<BinaryTreeNode> queue = new LinkedBlockingQueue<BinaryTreeNode>();
+        Queue<BinaryTreeNode> queue = new LinkedList<BinaryTreeNode>();
         queue.add(this);
         BinaryTreeNode answer = null;
         while(!queue.isEmpty())
