@@ -35,10 +35,7 @@ public class BinaryTreeUtils {
     }
     
     public static List<Integer> findShortestPath(BinaryTreeNode n) {
-        if (n == null)
-            return null;
-
-        //System.out.println("Visiting Node:" + n.getValue());
+        if (n == null) return null;
         BinaryTreeNode left = n.getLeft();
         BinaryTreeNode right = n.getRight();
 
@@ -61,8 +58,6 @@ public class BinaryTreeUtils {
     public static List<Integer> findLongestPath(BinaryTreeNode n) {
         if (n == null)
             return null;
-
-        //System.out.println("Visiting Node:" + n.getValue());
         BinaryTreeNode left = n.getLeft();
         BinaryTreeNode right = n.getRight();
 
