@@ -330,6 +330,49 @@ public class NumberArraysTest extends TestCase {
         assertEquals(1,ret.size());
         assertEquals(4,ret.get(0).size()); //4+3+2+1
     }
+    
+    
+    public void testFindCombinationsToReachTargetEdge() {
+        int target=8;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(2);
+        numbers.add(2);
+        numbers.add(2);
+        numbers.add(2);
+        
+        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        assertNotNull(ret);
+        assertEquals(1,ret.size());
+        assertEquals(4,ret.get(0).size()); //2+2+2+2
+    }
+  
+    public void testFindCombinationsToReachTargetEdge3() {
+        int target=6;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(2);
+        numbers.add(4);
+        numbers.add(4);
+        numbers.add(2);
+        
+        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        assertNotNull(ret);
+        assertEquals(4,ret.size());
+        assertEquals(2,ret.get(0).size()); //4+2 (four times)
+    }
+    
+    public void testFindCombinationsToReachTargetEdge2() {
+        int target=6;
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(2);
+        numbers.add(2);
+        numbers.add(2);
+        numbers.add(2);
+        
+        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        assertNotNull(ret);
+        assertEquals(4,ret.size());
+        assertEquals(3,ret.get(0).size()); //2+2+2 in 4 combinations
+    }
    
     public void testFindCombinationsToReachTargetSum3() {
         int target=11;

@@ -375,14 +375,16 @@ public class NumberArrays {
 
         // Pick a number
         for (int i = 0; i < numbers.size(); i++) {
-            ArrayList<Integer> remaining = new ArrayList<Integer>();
             int n = numbers.get(i);
 
             // Start adding the other numbers until we reach conditions above
+            ArrayList<Integer> remaining = new ArrayList<Integer>();
             for (int j = i + 1; j < numbers.size(); j++)
                 remaining.add(numbers.get(j));
+
             ArrayList<Integer> intermedCopy = new ArrayList<Integer>(intermed);
             intermedCopy.add(n);
+            
             List<List<Integer>> temp = findCombinationsToReachTargetSum(remaining, target, intermedCopy);
             if (temp != null) {
                 ret.addAll(temp);
