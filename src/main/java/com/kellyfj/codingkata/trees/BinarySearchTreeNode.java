@@ -137,21 +137,20 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
      * @param b
      * @return
      */
-    public static BinarySearchTreeNode lowestCommonAncestor(BinarySearchTreeNode subTreeHead, BinarySearchTreeNode a,
+    public static BinarySearchTreeNode lowestCommonAncestor(BinarySearchTreeNode head, BinarySearchTreeNode a,
             BinarySearchTreeNode b) {
 
-        if (subTreeHead == null)
+        if (head == null)
             return null;
 
-        if (subTreeHead.equals(a) || subTreeHead.equals(b))
-            return subTreeHead;
-        BinarySearchTreeNode l = lowestCommonAncestor((BinarySearchTreeNode) subTreeHead.getLeft(), a, b);
-        BinarySearchTreeNode r = lowestCommonAncestor((BinarySearchTreeNode) subTreeHead.getRight(), a, b);
+        if (head.equals(a) || head.equals(b))
+            return head;
+        BinarySearchTreeNode l = lowestCommonAncestor((BinarySearchTreeNode) head.getLeft(), a, b);
+        BinarySearchTreeNode r = lowestCommonAncestor((BinarySearchTreeNode) head.getRight(), a, b);
 
         if (l != null && r != null)
-            return subTreeHead; // if a and b are on both sides of the subtree
+            return head; // if a and b are on both sides of the subtree
         return l != null ? l : r; // either one of a,b is on one side OR a,b is
                                   // not in L&R subtrees
-
     }
 }

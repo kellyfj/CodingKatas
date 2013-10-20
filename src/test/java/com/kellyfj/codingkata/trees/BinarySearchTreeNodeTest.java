@@ -52,7 +52,7 @@ public class BinarySearchTreeNodeTest extends TestCase {
         assertEquals(100,n.getValue());
     }
     
-    public void testLCA() {
+    public void testLowestCommonAncestor() {
         
         BinarySearchTreeNode a = new BinarySearchTreeNode(1);
         BinarySearchTreeNode b = new BinarySearchTreeNode(5);
