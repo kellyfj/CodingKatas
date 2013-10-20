@@ -179,11 +179,52 @@ public class StringUtilsTest {
            assertEquals(ls.size(),2);     
         }
 
+        
+        @Test
+        public void testAnagramsFinder_fail() {
+            
+           Set<List<String>> ret =  StringUtils.findAnagrams(new String[] { "able","momma","ELBAS"});
+           assertNotNull(ret);
+           assertEquals(0,ret.size());
+           printSet(ret);   
+        }
+        
+        @Test
+        public void testAnagramsFinderMultipleHits() {
+            
+           Set<List<String>> ret =  StringUtils.findAnagrams(new String[] { "able","aBlE","ELBA"});
+           assertNotNull(ret);
+           assertEquals(1,ret.size());
+           printSet(ret);
+           Object[] listOfStringsArray = ret.toArray();
+           
+           List<String> ls = (List<String>) listOfStringsArray[0];
+           assertEquals(ls.size(),3);     
+        }
+    
+        
+        @Test
+        public void testAnagramsFinderMultipleHits2() {
+            
+           Set<List<String>> ret =  StringUtils.findAnagrams(new String[] { "I saw", "able","aBlE","ELBA", "Saw I"});
+           assertNotNull(ret);
+           assertEquals(2,ret.size());
+           printSet(ret);
+           Object[] listOfStringsArray = ret.toArray();
+           
+           List<String> ls = (List<String>) listOfStringsArray[0];
+           assertEquals(2,ls.size()); //"I saw" and "Saw I"
+           ls = (List<String>) listOfStringsArray[1];
+           assertEquals(3,ls.size()); //"able" etc.
+           
+        }
+        
+        
         private void printSet(Set<List<String>> ret) {
             for(List<String> l : ret) {
                    System.out.print("{");
                    for(String s : l) {
-                       System.out.print(s+" ");
+                       System.out.print("'"+s+"' ");
                    }
                    System.out.println("}");
                }

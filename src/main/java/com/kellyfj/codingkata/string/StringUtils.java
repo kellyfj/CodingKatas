@@ -240,23 +240,22 @@ public class StringUtils {
         // Create lookup table
         for (int i = 0; i < sArray.length; i++) {
             String s = sArray[i];
-            String key = getSortedString(s);
+            String key = createKey(s);
+            List<String> l = null;
             if (map.containsKey(key)) {
-                List<String> l = map.get(key);
-                l.add(s);
-                map.put(key, l);
+                l = map.get(key);
             } else {
-                List<String> l = new ArrayList<String>();
-                l.add(s);
-                map.put(key, l);
+                l = new ArrayList<String>();
             }
+            l.add(s);
+            map.put(key, l);
         }
 
-        //Find anagrams using lookup table
+        // Find anagrams using lookup table
         Set<List<String>> retVal = new HashSet<List<String>>();
         for (int i = 0; i < sArray.length; i++) {
             String s = sArray[i];
-            String key = getSortedString(s);
+            String key = createKey(s);
             List<String> list = map.get(key);
             if (list.size() > 1 && !retVal.contains(list)) {
                 retVal.add(list);
@@ -267,7 +266,7 @@ public class StringUtils {
         return retVal;
     }
 
-    private static String getSortedString(String s) {
+    private static String createKey(String s) {
         char[] toBeSorted = s.toLowerCase().toCharArray();
         Arrays.sort(toBeSorted);
         String sNew = new String(toBeSorted);
@@ -312,15 +311,14 @@ public class StringUtils {
     }
 
     private static void permutation(String prefix, String str, List<String> l) {
-        int n = str.length();
-        if (n == 0) {
+        if (str.length() == 0) {
             System.out.println(prefix);
             l.add(prefix);
         }
         else {
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < str.length(); i++) {
                 String p = prefix + str.charAt(i);
-                String s = str.substring(0, i) + str.substring(i + 1, n);
+                String s = str.substring(0, i) + str.substring(i + 1, str.length());
                 permutation(p,s,l);
             }
         }
