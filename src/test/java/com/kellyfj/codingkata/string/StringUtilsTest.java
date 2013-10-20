@@ -238,6 +238,23 @@ public class StringUtilsTest {
             
             String ans = StringUtils.longestCommonSubstring(s1, s2);
             assertEquals("",ans);
+        }
+        
+        @Test
+        public void testLongestCommonSubstring2() {
+            String s1 = "A AB ABC ABCDE ABCDEF";
+            String s2 = "AB ABCDEF";
             
+            String ans = StringUtils.longestCommonSubstring(s1, s2);
+            assertEquals(" ABCDEF",ans); //Note the spaces around i          
+        }
+        
+        @Test
+        public void testLongestCommonSubstring_matchOnFirstLongest() {
+            String s1 = "ABCDEF XXX 123456";
+            String s2 = "ABCDEF YYY 123456";
+            
+            String ans = StringUtils.longestCommonSubstring(s1, s2);
+            assertEquals("ABCDEF ",ans); //Note the spaces around i          
         }
 }

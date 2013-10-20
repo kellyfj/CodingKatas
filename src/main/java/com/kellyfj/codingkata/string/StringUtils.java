@@ -339,31 +339,38 @@ public class StringUtils {
         return sb.toString();
     }
 
+    
     /**
-     * Implementation from 
-     * http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Java
-     * Order Complexity: http://en.wikipedia.org/wiki/Longest_common_substring_problem
+     * Implementation from
+     * http://en.wikibooks.org/wiki/Algorithm_Implementation/
+     * Strings/Longest_common_substring#Java Order Complexity:
+     * http://en.wikipedia.org/wiki/Longest_common_substring_problem
+     * 
      * @param s1
      * @param s2
      * @return
      */
     public static String longestCommonSubstring(String s1, String s2) {
-        int start = 0;
-        int max = 0;
+
+        String maxString="";
         for (int i = 0; i < s1.length(); i++) {
             for (int j = 0; j < s2.length(); j++) {
-                int x = 0;
-                while (s1.charAt(i + x) == s2.charAt(j + x)) {
-                    x++;
-                    if ((i + x) >= s1.length() || (j + x) >= s2.length())
-                        break;
-                }
-                if (x > max) {
-                    max = x;
-                    start = i;
+                String s = expandAround(s1, s2, i, j);
+                if (s.length() > maxString.length()) {
+                    maxString=s;
                 }
             }
         }
-        return s1.substring(start, (start + max));
+        return maxString;
+    }
+
+    private static String expandAround(String s1, String s2, int i, int j) {
+        int x = 0;
+        while (s1.charAt(i + x) == s2.charAt(j + x)) {
+            x++;
+            if ((i + x) >= s1.length() || (j + x) >= s2.length())
+                break;
+        }
+        return s1.substring(i,(i+x));
     }
 }
