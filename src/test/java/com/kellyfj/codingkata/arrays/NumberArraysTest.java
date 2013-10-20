@@ -396,6 +396,40 @@ public class NumberArraysTest extends TestCase {
         System.out.println(s);
         assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10]",s);     
     } 
+  
+    
+    public void testMerge3() {
+        int[] a = new int[] {1};
+        int[] b = new int[] {2,3,4,5,6,7,8,9,10};
+        
+        int[] merge = NumberArrays.merge(a, b);
+        assertEquals(a.length+b.length,merge.length);
+        String s = Arrays.toString(merge);
+        System.out.println(s);
+        assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",s);     
+    } 
+    
+    public void testMergeEdge1() {
+        int[] a = new int[] {};
+        int[] b = new int[] {1,2,3,4,5,6,7,8,9,10};
+        
+        int[] merge = NumberArrays.merge(a, b);
+        assertEquals(a.length+b.length,merge.length);
+        String s = Arrays.toString(merge);
+        System.out.println(s);
+        assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",s);     
+    }
+    
+    public void testMergeEdge2() {
+        int[] b = new int[] {};
+        int[] a = new int[] {1,2,3,4,5,6,7,8,9,10};
+        
+        int[] merge = NumberArrays.merge(a, b);
+        assertEquals(a.length+b.length,merge.length);
+        String s = Arrays.toString(merge);
+        System.out.println(s);
+        assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",s);     
+    }
     
     public void testMergeRemovingDupes() {
         int[] a = new int[] {1,2,3,4,5,10};

@@ -404,9 +404,11 @@ public class NumberArrays {
                 answer[k++] = b[j++];               
         }
 
+        //a[] longer than b[]
         while (i < a.length)  
             answer[k++] = a[i++];
 
+        //b[] longer than a[]
         while (j < b.length)    
             answer[k++] = b[j++];
 
