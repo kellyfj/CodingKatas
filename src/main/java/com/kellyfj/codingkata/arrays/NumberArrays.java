@@ -22,11 +22,8 @@ public class NumberArrays {
      */
     public static MinMax getMinMax(int[] arr) {
         MinMax minmax = new MinMax();
-        int n = arr.length;
-        int i = 0;
-        int numComparisons = 0;
 
-        numComparisons++;
+        minmax.comparisons=1;
         if (arr[0] > arr[1]) {
             minmax.max = arr[0];
             minmax.min = arr[1];
@@ -34,26 +31,25 @@ public class NumberArrays {
             minmax.min = arr[0];
             minmax.max = arr[1];
         }
-        i = 2;
-        
+        int i = 2;
+    
         // In the while loop, pick elements in pair and compare the pair with current min/max
-        while (i < n - 1) {
-            numComparisons++;
+        while (i < arr.length - 1) {
+            minmax.comparisons++;
             if (arr[i] > arr[i + 1]) {
-                numComparisons++;
+                minmax.comparisons++;
                 if (arr[i] > minmax.max) minmax.max = arr[i];
-                numComparisons++;
+                minmax.comparisons++;
                 if (arr[i + 1] < minmax.min) minmax.min = arr[i + 1];
             } else {
-                numComparisons++;
+                minmax.comparisons++;
                 if (arr[i + 1] > minmax.max)  minmax.max = arr[i + 1];
-                numComparisons++;
+                minmax.comparisons++;
                 if (arr[i] < minmax.min)  minmax.min = arr[i];
             }
             i += 2; //Increment the index by 2 as two elements are processed
         }
 
-        minmax.comparisons = numComparisons;
         return minmax;
     }
 
