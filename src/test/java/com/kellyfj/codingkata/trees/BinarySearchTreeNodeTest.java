@@ -26,10 +26,9 @@ public class BinarySearchTreeNodeTest extends TestCase {
         smallBst =  BinarySearchTreeNode.fromArray(testArray2);
     }
 
-    public void testSize()
-    {
-               
+    public void testSize() {
         assertEquals(100, bst.getSize());
+        assertEquals(5, smallBst.getSize());
     }
     
     public void testGetKthSmallest() {

@@ -84,6 +84,10 @@ public class BinaryTreeNodeTest extends TestCase {
         assertEquals(bt100Left,bt100Left);
         assertEquals(bt100Balanced,bt100Balanced);
         String s2 = bt100Left.serialize();
+        assertNotNull(s2);
+        assertFalse(s2.trim().equals(""));
         String s3 = bt100Balanced.serialize();
+        assertNotNull(s3);
+        assertFalse(s3.trim().equals(""));
     }
 }

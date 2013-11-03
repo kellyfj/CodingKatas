@@ -166,6 +166,7 @@ public class StringUtilsTest {
            assertEquals(j,i);          
         }
         
+        @SuppressWarnings("unchecked")
         @Test
         public void testAnagramsFinder() {
             
@@ -179,7 +180,6 @@ public class StringUtilsTest {
            assertEquals(ls.size(),2);     
         }
 
-        
         @Test
         public void testAnagramsFinder_fail() {
             
@@ -189,6 +189,7 @@ public class StringUtilsTest {
            printSet(ret);   
         }
         
+        @SuppressWarnings("unchecked")
         @Test
         public void testAnagramsFinderMultipleHits() {
             
@@ -203,6 +204,7 @@ public class StringUtilsTest {
         }
     
         
+        @SuppressWarnings("unchecked")
         @Test
         public void testAnagramsFinderMultipleHits2() {
             
