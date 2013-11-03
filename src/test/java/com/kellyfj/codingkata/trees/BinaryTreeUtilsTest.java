@@ -62,6 +62,21 @@ public class BinaryTreeUtilsTest extends TestCase {
     }
 
     @Test
+    public void testInOrderTraverse_Order1Space() {
+        String s = BinaryTreeUtils.inOrder_Order1Space(smallBst);
+        System.out.println("InOrder: "+s);
+        assertEquals("1,2,3,4,5,6,7,",s);
+    }
+    
+    @Test
+    public void testInOrderTraverse_Order1Space_large() {
+        String s = BinaryTreeUtils.inOrder_Order1Space(bst);
+        System.out.println("InOrder: "+s);
+        assertTrue(s.startsWith("1,2,3,4,5,6,7,8,9,10,11,12"));
+        assertTrue(s.endsWith("89,90,91,92,93,94,95,96,97,98,99,100,"));
+    }
+    
+    @Test
     public void testPreOrderTraverse() {
         String s = BinaryTreeUtils.preOrder(smallBst);
         System.out.println("PreOrder: "+s);

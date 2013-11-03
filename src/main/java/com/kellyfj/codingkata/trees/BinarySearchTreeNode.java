@@ -29,10 +29,16 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
 
         int mid = start + (end - start) / 2;
         BinarySearchTreeNode node = new BinarySearchTreeNode(arr[mid]);
-        node.setLeft(sortedArrayToBST(arr, start, mid - 1));
-        node.setRight(sortedArrayToBST(arr, mid + 1, end));
+        BinarySearchTreeNode left = sortedArrayToBST(arr, start, mid - 1);
+        if(left!=null) left.setParent(node);
+        node.setLeft(left);
+        BinarySearchTreeNode right = sortedArrayToBST(arr, mid + 1, end);
+        if(right!=null) right.setParent(node);
+        node.setRight(right);
         return node;
     }
+
+
 
     /**
      * Find a node with a particular value in the Tree

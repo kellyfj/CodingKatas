@@ -128,6 +128,41 @@ public class BinaryTreeUtils {
 
         return sb.toString();
     }
+    
+    public static String inOrder_Order1Space(BinaryTreeNode n) {
+        if (n == null)
+            return "";
+
+        BinaryTreeNode prev = null;
+        BinaryTreeNode curr = n;
+        BinaryTreeNode next = null;
+        StringBuilder sb = new StringBuilder();
+
+        while (curr != null) {
+            if (prev == null || (prev.getLeft() != null && prev.getLeft().equals(curr))
+                             || (prev.getRight() != null && prev.getRight().equals(curr))) {
+                
+                //Keep going down left first
+                if (curr.getLeft() != null) {
+                    next = curr.getLeft();
+                } else { //Go down right
+                    sb.append(curr.getValue() + ",");
+                    next = (curr.getRight() != null ? curr.getRight() : curr.getParent());
+                }
+            } else if (curr.getLeft()!=null && curr.getLeft().equals(prev)) { 
+                //Visited the left child already
+                sb.append(curr.getValue() + ",");
+                next = (curr.getRight() != null ? curr.getRight() : curr.getParent());
+            } else { // We visited the right child already curr.getRight() == prev
+                next = curr.getParent();
+            }
+
+            prev = curr;
+            curr = next;
+        }
+
+        return sb.toString();
+    }
 
     /**
      * Post Order Traversal of a Binary Tree

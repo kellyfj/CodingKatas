@@ -14,6 +14,7 @@ public class BinaryTreeNode {
     private int value;
     protected BinaryTreeNode left;
     protected BinaryTreeNode right;
+    private BinarySearchTreeNode parent;
 
     public BinaryTreeNode(int value) {
         this.value = value;
@@ -57,6 +58,15 @@ public class BinaryTreeNode {
             return leftDepth + 1;
         else
             return rightDepth + 1;
+    }
+    
+    public void setParent(BinarySearchTreeNode node) {
+        this.parent = node;
+     }
+    
+
+    public BinaryTreeNode getParent() {
+        return this.parent;
     }
 
     public BinaryTreeNode getDeepestNode() {
@@ -174,5 +184,6 @@ public class BinaryTreeNode {
         }
         return b1 && leftEquals && rightEquals;
     }
+
 
 }
