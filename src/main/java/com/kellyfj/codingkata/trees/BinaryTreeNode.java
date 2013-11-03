@@ -50,14 +50,14 @@ public class BinaryTreeNode {
         return 1 + leftSize + rightSize;
     }
 
-    public int getDepth() {
-        int leftDepth = left == null ? 0 : left.getDepth();
-        int rightDepth = right == null ? 0 : right.getDepth();
+    public int getHeightOfTree() {
+        int leftHeight = left == null ? 0 : left.getHeightOfTree();
+        int rightHeight = right == null ? 0 : right.getHeightOfTree();
 
-        if (leftDepth > rightDepth)
-            return leftDepth + 1;
+        if (leftHeight > rightHeight)
+            return leftHeight + 1;
         else
-            return rightDepth + 1;
+            return rightHeight + 1;
     }
     
     public void setParent(BinarySearchTreeNode node) {
@@ -183,6 +183,17 @@ public class BinaryTreeNode {
             rightEquals = this.getRight().equals(other.getRight());
         }
         return b1 && leftEquals && rightEquals;
+    }
+
+    public int getDepth() {
+       
+        int d = 0;
+        BinaryTreeNode temp = this;
+        while(temp.getParent()!=null) {
+            temp = temp.getParent();
+            d++;
+        }
+        return d;
     }
 
 

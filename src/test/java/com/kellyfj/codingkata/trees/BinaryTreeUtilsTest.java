@@ -153,6 +153,7 @@ public class BinaryTreeUtilsTest extends TestCase {
         BinarySearchTreeNode a = new BinarySearchTreeNode(1);
         BinarySearchTreeNode b = new BinarySearchTreeNode(5);
         System.out.println(smallBst.toString());
+       
         BinaryTreeNode n = BinaryTreeUtils.lowestCommonAncestor(smallBst, a, b);
         
         assertNotNull(n);
@@ -163,6 +164,26 @@ public class BinaryTreeUtilsTest extends TestCase {
         b = new BinarySearchTreeNode(100);
         System.out.println(bst.toString());
         n = BinaryTreeUtils.lowestCommonAncestor(bst, a, b);
+        assertNotNull(n);
+        assertEquals(50,n.getValue());        
+        
+    }
+    
+    public void testLowestCommonAncestor_Order1Space() {
+        
+        BinaryTreeNode a =  smallBst.search(1);
+        BinaryTreeNode b =  smallBst.search(5);
+        System.out.println(smallBst.toString());
+        BinaryTreeNode n = BinaryTreeUtils.lowestCommonAncestor_Order1Space_OrderHTime(smallBst, a, b);
+        
+        assertNotNull(n);
+        assertEquals(4,n.getValue());
+        
+        
+        a = bst.search(1);
+        b = bst.search(100);
+        System.out.println(bst.toString());
+        n = BinaryTreeUtils.lowestCommonAncestor_Order1Space_OrderHTime(bst, a, b);
         assertNotNull(n);
         assertEquals(50,n.getValue());        
         

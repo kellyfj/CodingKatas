@@ -187,6 +187,9 @@ public class BinaryTreeUtils {
      * unwinding the stack upwards until both left and right branches are not
      * null and that node is your answer
      * 
+     * Time Complexity: O(n) where n is the number of nodes (source: EPI pp. 257)
+     * Space Complexity: ??? O(log n) or O(h) where h is the height of the tree??
+     * 
      * @param subTreeHead
      * @param a
      * @param b
@@ -208,5 +211,46 @@ public class BinaryTreeUtils {
         return l != null ? l : r; // either one of a,b is on one side OR a,b is
                                   // not in L&R subtrees
     }
+    
+    public static BinaryTreeNode lowestCommonAncestor_Order1Space_OrderHTime(BinaryTreeNode head, BinaryTreeNode a,
+            BinaryTreeNode b) {
+        if (head == null)
+            throw new IllegalArgumentException("head cannot be null");
+        if (a == null)
+            throw new IllegalArgumentException("a cannot be null");
+        if (b == null)
+            throw new IllegalArgumentException("b cannot be null");
+
+        int depth_a = a.getDepth();
+        int depth_b = b.getDepth();
+        int depthDiff = depth_a - depth_b;
+
+        BinaryTreeNode deepestNode = null;
+        BinaryTreeNode otherNode = null;
+        if (depthDiff < 0) { // b is deeper than a
+            deepestNode = b;
+            otherNode = a;
+
+            while (depthDiff++ < 0) {
+                deepestNode = deepestNode.getParent();
+            }
+        } else { // a is deeper than b
+            deepestNode = a;
+            otherNode = b;
+            while (depthDiff-- > 0) {
+                deepestNode = deepestNode.getParent();
+            }
+        }
+
+        //Now advance both pointers until they find a common ancestor
+        while (deepestNode != otherNode) {
+            deepestNode = deepestNode.getParent();
+            otherNode = otherNode.getParent();
+        }
+
+        return deepestNode;
+
+    }
+    
 }
 
