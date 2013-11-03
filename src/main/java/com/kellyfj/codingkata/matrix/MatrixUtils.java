@@ -1,5 +1,9 @@
 package com.kellyfj.codingkata.matrix;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MatrixUtils {
 
     public static int[][] rotateMatrix90(int[][] matrix) {
@@ -79,18 +83,18 @@ public class MatrixUtils {
         int xsize = matrix.length;
         int ysize = matrix[0].length;
 
-        //Print Top line
+        // Print Top line
         for (int j = 0; j < ysize; j++) {
             System.out.print("___");
         }
-        System.out.println("_"); 
-            
-        //Print Matrix Values
+        System.out.println("_");
+
+        // Print Matrix Values
         for (int i = 0; i < xsize; i++) {
             for (int j = 0; j < ysize; j++) {
 
-                    System.out.print("| ");
-                
+                System.out.print("| ");
+
                 if (matrix[i][j])
                     System.out.print(" ");
                 else
@@ -98,24 +102,73 @@ public class MatrixUtils {
             }
             System.out.println("|");
         }
-        
-        //Print bottom line
+
+        // Print bottom line
         for (int j = 0; j < ysize; j++) {
             System.out.print("---");
         }
-        System.out.println("-");  
+        System.out.println("-");
     }
 
-    public boolean isThereAPath(boolean[][] matrix, int x1, int y1, int x2, int y2) {
-        if(x1<0 || x1 > matrix.length)
+    public static boolean isThereAPath(boolean[][] matrix, Coordinate start, Coordinate end) {
+        if(start.x<0 || start.x >= matrix.length)
             throw new IllegalArgumentException("x1 is out of bounds");
-        if(y1<0 || y1 > matrix[0].length)
+        if(start.y<0 || start.y >= matrix[0].length)
             throw new IllegalArgumentException("y1 is out of bounds");
-        if(x2<0 || x2 > matrix.length)
+        if(end.x<0 || end.x >= matrix.length)
             throw new IllegalArgumentException("x2 is out of bounds");
-        if(y2<0 || y2 > matrix[0].length)
-            throw new IllegalArgumentException("y2 is out of bounds");   
+        if(end.y<0 || end.y >= matrix[0].length)
+            throw new IllegalArgumentException("y2 is out of bounds");  
         
-        return true;
+        if(matrix[start.x][start.y]==false)
+            throw new IllegalArgumentException("Start position is not a legal position");
+        if(matrix[end.x][end.y]==false)
+            throw new IllegalArgumentException("Start position is not a legal position");
+        
+        
+        List<Coordinate> path = new ArrayList<Coordinate>();
+        path.add(start);
+        boolean retVal = isThereAPath(matrix, start, end, path);
+        if(retVal==true) {
+            String s = Arrays.toString(path.toArray());
+            System.out.println("Path = "+s);
+        }
+        
+        return retVal;
+    }
+    
+    private final static int[] X_SHIFT = new int[] {0, 0, 1, -1};
+    private final static int[] Y_SHIFT = new int[] {1, -1, 0, 0 };
+    
+    private static boolean isThereAPath(boolean[][] matrix, Coordinate start, Coordinate end, List<Coordinate> path) {
+        if(start.equals(end))
+            return true;
+        
+        //Four move choices
+        for(int i=0; i<4; i++) {
+            Coordinate next = new Coordinate(start.x+X_SHIFT[i],start.y+Y_SHIFT[i]);
+            //System.out.print("Trying ("+next.x+","+next.y+")");
+            if(!path.contains(next) && isLegalMove(matrix,next)) {
+                path.add(next);
+                //System.out.println(" . . . OK");
+                if(isThereAPath(matrix,next,end,path)) {
+                    return true;
+                }
+                path.remove(next);
+            }
+            //System.out.println(" . . . NO GOOD");
+        }
+        
+        return false;
+    }
+
+    private static boolean isLegalMove(boolean[][] matrix, Coordinate next) {
+        boolean xOK = next.x >= 0 && next.x < matrix.length;
+        boolean yOK = next.y >= 0 && next.y < matrix[0].length;
+
+        if (xOK && yOK && matrix[next.x][next.y] == true)
+            return true;
+        else
+            return false;
     }
 }
