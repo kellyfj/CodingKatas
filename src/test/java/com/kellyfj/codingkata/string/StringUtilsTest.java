@@ -239,7 +239,7 @@ public class StringUtilsTest {
         
         @Test 
         public void testPermutations() {
-            String testString = "ABCD";
+            String testString = "ABC";
             List<String> list = StringUtils.permutation(testString);
             long fact = ArithmeticUtils.factorial(testString.length());
             assertEquals(fact,list.size());

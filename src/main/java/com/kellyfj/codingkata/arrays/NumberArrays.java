@@ -172,6 +172,10 @@ public class NumberArrays {
         return false;
     }
     
+    /**
+     * Randomly shuffle object in an array
+     * @param a
+     */
     public static void shuffle(Object[] a) {
         Random rnd = new Random();
         int mid = a.length / 2;
@@ -197,21 +201,21 @@ public class NumberArrays {
         System.out.println();
     }
 
+    
     public static int lengthOfLongestMonotonicSeries(int[] input) {
-
-        int max = 1;
-        int num = 1;
+        int maxLength = 1;
+        int currLength = 1;
         for (int i = 0; i < input.length - 1; i++) {
 
             if (input[i] == input[i + 1] - 1) {
-                num++;
-                max = num > max ? num : max;
+                currLength++;
+                maxLength = currLength > maxLength ? currLength : maxLength;
             } else {
-                num = 0;
+                currLength = 0;
             }
         }
 
-        return max;
+        return maxLength;
     }
 
     public static void dutchNationalFlagBasic(int[] input) {
@@ -237,7 +241,7 @@ public class NumberArrays {
 
     }
 
-    public static void dutchNationalFlagOnePass(int[] a, int mid) {
+    public static void dutchNationalFlagOnePass_Order1AdditionalSpace(int[] a, int mid) {
         int startIndex = 0;
         int endIndex = a.length - 1;
         int temp;

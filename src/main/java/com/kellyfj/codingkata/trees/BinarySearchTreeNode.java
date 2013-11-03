@@ -3,12 +3,21 @@ package com.kellyfj.codingkata.trees;
 import java.util.Arrays;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * Binary Search Tree ADT
+ * @author kellyfj
+ */
 public class BinarySearchTreeNode extends BinaryTreeNode {
 
     public BinarySearchTreeNode(int value) {
         super(value);
     }
     
+    /**
+     * Convert an Array of Integers into a Binary Search Tree
+     * @param arr
+     * @return
+     */
     public static BinarySearchTreeNode fromArray(int[] arr) {
         Arrays.sort(arr);
         return sortedArrayToBST(arr, 0, arr.length - 1);
@@ -25,6 +34,11 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
         return node;
     }
 
+    /**
+     * Find a node with a particular value in the Tree
+     * @param data
+     * @return
+     */
     public BinarySearchTreeNode search(int data) {
         if (data < this.getValue() && left != null)
             return ((BinarySearchTreeNode) this.getLeft()).search(data);
@@ -95,7 +109,6 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
             return false;
         BinaryTreeNode b = (BinaryTreeNode) a;
         return b.getValue() == this.getValue();
-
     }
 
     @Override
@@ -127,30 +140,4 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
         return sb.toString();
     }
     
-    /**
-     * Recurse down the tree until you find a,b Then return a non-null and start
-     * unwinding the stack upwards until both left and right branches are not
-     * null and that node is your answer
-     * 
-     * @param subTreeHead
-     * @param a
-     * @param b
-     * @return
-     */
-    public static BinarySearchTreeNode lowestCommonAncestor(BinarySearchTreeNode head, BinarySearchTreeNode a,
-            BinarySearchTreeNode b) {
-
-        if (head == null)
-            return null;
-
-        if (head.equals(a) || head.equals(b))
-            return head;
-        BinarySearchTreeNode l = lowestCommonAncestor((BinarySearchTreeNode) head.getLeft(), a, b);
-        BinarySearchTreeNode r = lowestCommonAncestor((BinarySearchTreeNode) head.getRight(), a, b);
-
-        if (l != null && r != null)
-            return head; // if a and b are on both sides of the subtree
-        return l != null ? l : r; // either one of a,b is on one side OR a,b is
-                                  // not in L&R subtrees
-    }
 }

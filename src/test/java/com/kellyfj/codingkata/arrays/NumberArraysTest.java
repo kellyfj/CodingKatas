@@ -202,8 +202,10 @@ public class NumberArraysTest extends TestCase {
 
     public void testDutchNationalFlagOnePass() {       
         int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};     
-        NumberArrays.dutchNationalFlagOnePass(testArray,1);      
-        NumberArrays.printArray(testArray);   
+        int originalLength = testArray.length;
+        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray,1);      
+        NumberArrays.printArray(testArray);
+        assertTrue(originalLength==testArray.length);
         assertTrue(inOrder(testArray));
     }  
     

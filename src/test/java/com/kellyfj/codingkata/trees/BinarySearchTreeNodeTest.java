@@ -52,23 +52,5 @@ public class BinarySearchTreeNodeTest extends TestCase {
         assertEquals(100,n.getValue());
     }
     
-    public void testLowestCommonAncestor() {
-        
-        BinarySearchTreeNode a = new BinarySearchTreeNode(1);
-        BinarySearchTreeNode b = new BinarySearchTreeNode(5);
-        System.out.println(smallBst.toString());
-        BinarySearchTreeNode n = BinarySearchTreeNode.lowestCommonAncestor(smallBst, a, b);
-        
-        assertNotNull(n);
-        assertEquals(3,n.getValue());
-        
-        
-        a = new BinarySearchTreeNode(1);
-        b = new BinarySearchTreeNode(100);
-        System.out.println(bst.toString());
-        n = BinarySearchTreeNode.lowestCommonAncestor(bst, a, b);
-        assertNotNull(n);
-        assertEquals(50,n.getValue());        
-        
-    }
+
 }

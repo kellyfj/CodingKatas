@@ -222,18 +222,14 @@ public class StringUtils {
             map.put(key, l);
         }
 
-        // Find anagrams using lookup table
+        // Find anagrams from lookup table
         Set<List<String>> retVal = new HashSet<List<String>>();
-        for (int i = 0; i < sArray.length; i++) {
-            String s = sArray[i];
-            String key = createKey(s);
-            List<String> list = map.get(key);
-            if (list.size() > 1 && !retVal.contains(list)) {
+        for(Map.Entry<String, List<String>> entry : map.entrySet()) {
+            List<String> list = entry.getValue();
+            if(list.size() >=2)
                 retVal.add(list);
-            }
-
         }
-
+            
         return retVal;
     }
 

@@ -132,4 +132,24 @@ public class BinaryTreeUtilsTest extends TestCase {
         }
         System.out.println("");
     }
+    
+    public void testLowestCommonAncestor() {
+        
+        BinarySearchTreeNode a = new BinarySearchTreeNode(1);
+        BinarySearchTreeNode b = new BinarySearchTreeNode(5);
+        System.out.println(smallBst.toString());
+        BinaryTreeNode n = BinaryTreeUtils.lowestCommonAncestor(smallBst, a, b);
+        
+        assertNotNull(n);
+        assertEquals(4,n.getValue());
+        
+        
+        a = new BinarySearchTreeNode(1);
+        b = new BinarySearchTreeNode(100);
+        System.out.println(bst.toString());
+        n = BinaryTreeUtils.lowestCommonAncestor(bst, a, b);
+        assertNotNull(n);
+        assertEquals(50,n.getValue());        
+        
+    }
 }

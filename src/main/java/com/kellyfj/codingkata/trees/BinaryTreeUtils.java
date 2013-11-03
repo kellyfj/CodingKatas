@@ -5,6 +5,10 @@ import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+/**
+ * A Set of Utilities for Binary Trees
+ * @author kellyfj
+ */
 public class BinaryTreeUtils {
 
     public static void bfsTraverse(BinarySearchTreeNode n) {
@@ -34,6 +38,11 @@ public class BinaryTreeUtils {
         }
     }
     
+    /**
+     * Find the Shortest Path through a binary tree
+     * @param n
+     * @return
+     */
     public static List<Integer> findShortestPath(BinaryTreeNode n) {
         if (n == null) return null;
         BinaryTreeNode left = n.getLeft();
@@ -55,6 +64,12 @@ public class BinaryTreeUtils {
         } 
         return ret;
     }
+    
+    /**
+     * Find the Longest Path through a Binary Tree
+     * @param n
+     * @return
+     */
     public static List<Integer> findLongestPath(BinaryTreeNode n) {
         if (n == null)
             return null;
@@ -78,6 +93,11 @@ public class BinaryTreeUtils {
         return ret;
     }
     
+    /**
+     * PreOrder Traversal of a Binary Tree
+     * @param root the head binary tree node
+     * @return String containing the traversal order
+     */
     public static String preOrder(BinaryTreeNode root) {
 
         if (root == null)
@@ -92,6 +112,11 @@ public class BinaryTreeUtils {
         return sb.toString();
     }
 
+    /**
+     * In order traversal of a binary tree
+     * @param n the head binary tree node
+     * @return String containing the traversal order
+     */
     public static String inOrder(BinaryTreeNode n) {
         if (n == null)
             return "";
@@ -104,6 +129,11 @@ public class BinaryTreeUtils {
         return sb.toString();
     }
 
+    /**
+     * Post Order Traversal of a Binary Tree
+     * @param n the head binary tree node
+     * @return String containing the traversal order
+     */
     public static String postOrder(BinaryTreeNode n) {
         if (n == null)
             return "";
@@ -115,4 +145,33 @@ public class BinaryTreeUtils {
         return sb.toString();
     }
 
+    /**
+     * Find the Lowest Common Ancestor of two nodes in a Binary Tree.
+     * 
+     * Recurse down the tree until you find a,b Then return a non-null and start
+     * unwinding the stack upwards until both left and right branches are not
+     * null and that node is your answer
+     * 
+     * @param subTreeHead
+     * @param a
+     * @param b
+     * @return
+     */
+    public static BinaryTreeNode lowestCommonAncestor(BinaryTreeNode head, BinaryTreeNode a,
+            BinaryTreeNode b) {
+
+        if (head == null)
+            return null;
+
+        if (head.equals(a) || head.equals(b))
+            return head;
+        BinaryTreeNode l = lowestCommonAncestor(head.getLeft(), a, b);
+        BinaryTreeNode r = lowestCommonAncestor(head.getRight(), a, b);
+
+        if (l != null && r != null)
+            return head; // if a and b are on both sides of the subtree
+        return l != null ? l : r; // either one of a,b is on one side OR a,b is
+                                  // not in L&R subtrees
+    }
 }
+
