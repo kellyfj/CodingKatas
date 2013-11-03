@@ -36,4 +36,10 @@ public class MatrixUtilsTest extends TestCase {
        assertEquals(testMatrix[0].length, resultMatrix.length);
        
       }
+    
+    
+    public void testCreateMatrix() {
+        boolean[][] matrix = MatrixUtils.createRandomMatrix(10);
+        MatrixUtils.printMatrix(matrix);
+    }
 }

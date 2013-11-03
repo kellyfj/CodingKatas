@@ -63,4 +63,59 @@ public class MatrixUtils {
         // TODO Auto-generated method stub
         return 0;
     }
+    
+    public static boolean[][] createRandomMatrix(int size) {
+        boolean[][] matrix = new boolean[size][size];
+        for(int i=0; i< size; i++) {
+            for(int j=0; j< size; j++) {
+                matrix[i][j] =  Math.random() < 0.5;
+            }
+        }
+        
+        return matrix;
+    }
+    
+    public static void printMatrix(boolean[][] matrix) {
+        int xsize = matrix.length;
+        int ysize = matrix[0].length;
+
+        //Print Top line
+        for (int j = 0; j < ysize; j++) {
+            System.out.print("___");
+        }
+        System.out.println("_"); 
+            
+        //Print Matrix Values
+        for (int i = 0; i < xsize; i++) {
+            for (int j = 0; j < ysize; j++) {
+
+                    System.out.print("| ");
+                
+                if (matrix[i][j])
+                    System.out.print(" ");
+                else
+                    System.out.print("X");
+            }
+            System.out.println("|");
+        }
+        
+        //Print bottom line
+        for (int j = 0; j < ysize; j++) {
+            System.out.print("---");
+        }
+        System.out.println("-");  
+    }
+
+    public boolean isThereAPath(boolean[][] matrix, int x1, int y1, int x2, int y2) {
+        if(x1<0 || x1 > matrix.length)
+            throw new IllegalArgumentException("x1 is out of bounds");
+        if(y1<0 || y1 > matrix[0].length)
+            throw new IllegalArgumentException("y1 is out of bounds");
+        if(x2<0 || x2 > matrix.length)
+            throw new IllegalArgumentException("x2 is out of bounds");
+        if(y2<0 || y2 > matrix[0].length)
+            throw new IllegalArgumentException("y2 is out of bounds");   
+        
+        return true;
+    }
 }
