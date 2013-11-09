@@ -486,4 +486,12 @@ public class NumberArraysTest extends TestCase {
         System.out.println(s);
         assertEquals("[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]",s);     
     } 
+    
+    
+    public void testFindIndexOfItemInSortedArray() {
+        int[] a = new int[] {-14,-10,2,108,108,243,285,285,285,401 };
+        
+        assertEquals(3,NumberArrays.findIndexOfItemInSortedArray(a, 108));
+        assertEquals(6,NumberArrays.findIndexOfItemInSortedArray(a, 285));
+    }
 }

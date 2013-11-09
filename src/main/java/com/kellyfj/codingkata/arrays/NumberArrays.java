@@ -257,9 +257,31 @@ public class NumberArrays {
             } else {
                 i++;
             }
-        }
+        }  
+
     }
 
+    public static int findIndexOfItemInSortedArray(int[] a, int lookFor) {
+        int leftPointer=0;
+        int rightPointer=a.length-1;
+        int result=-1;
+        
+        while(leftPointer <= rightPointer) {
+            int midpoint = leftPointer+((rightPointer-leftPointer) / 2);
+            int curr = a[midpoint];
+            if(curr > lookFor) {
+                rightPointer = midpoint-1; //Reduce search space 
+            } else if (curr == lookFor) {
+                result=midpoint; //Record solution and keep searching to the left
+                rightPointer = midpoint -1;
+            } else {  //a[m] < lookfor
+                leftPointer = midpoint+1;
+            }
+        }
+        
+        return result;
+    }
+    
     private static void swap(int[] a, int startIndex, int i) {
         int temp;
         temp = a[i];
