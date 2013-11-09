@@ -244,25 +244,27 @@ public class NumberArrays {
     public static void dutchNationalFlagOnePass_Order1AdditionalSpace(int[] a, int mid) {
         int startIndex = 0;
         int endIndex = a.length - 1;
-        int temp;
 
         for (int i = 0; i <= endIndex;) {
             if (a[i] < mid) {
-                temp = a[i];
-                a[i] = a[startIndex];
-                a[startIndex] = temp;
+                swap(a, startIndex, i);
                 i++;
                 startIndex++;
             } else if (a[i] > mid) {
-                temp = a[i];
-                a[i] = a[endIndex];
-                a[endIndex] = temp;
+                swap(a, endIndex, i);
                 endIndex--;
                 // do not increment i. We have to revisit this again
             } else {
                 i++;
             }
         }
+    }
+
+    private static void swap(int[] a, int startIndex, int i) {
+        int temp;
+        temp = a[i];
+        a[i] = a[startIndex];
+        a[startIndex] = temp;
     }
 
     public static int countBinaryOnes(int number) {
