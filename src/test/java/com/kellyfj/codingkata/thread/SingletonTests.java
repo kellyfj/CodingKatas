@@ -17,10 +17,9 @@ public class SingletonTests {
     
     @Test
     public void testClassloaderSingleton() {
-        SingletonInstantiatedByClassloader singleton = SingletonInstantiatedByClassloader.getInstance();
         ExecutorService executor = Executors.newFixedThreadPool(20);
         for (int i = 0; i < NUM_THREADS; i++) {
-            Runnable worker = new IncrementerThread(singleton);
+            Runnable worker = new IncrementerThread();
             executor.execute(worker);
         }
 
@@ -29,15 +28,15 @@ public class SingletonTests {
         while (!executor.isTerminated()) {
         }
 
-        assertEquals(NUM_THREADS * NUM_INCREMENTS, singleton.getValue());
+        assertEquals(NUM_THREADS * NUM_INCREMENTS, SingletonInstantiatedByClassloader.getInstance().getValue());
     }
     
     @Test
     public void testSingletonEnum() {
-        SingletonEnum singleton = SingletonEnum.INSTANCE;
+       
         ExecutorService executor = Executors.newFixedThreadPool(20);
         for (int i = 0; i < NUM_THREADS; i++) {
-            Runnable worker = new IncrementerThread2(singleton);
+            Runnable worker = new IncrementerThread2();
             executor.execute(worker);
         }
 
@@ -46,16 +45,15 @@ public class SingletonTests {
         while (!executor.isTerminated()) {
         }
 
-        assertEquals(NUM_THREADS * NUM_INCREMENTS, singleton.getValue());
+        assertEquals(NUM_THREADS * NUM_INCREMENTS, SingletonEnum.INSTANCE.getValue());
     }
     
     
     @Test
     public void testClassic() {
-        SingletonClassic singleton = SingletonClassic.getInstance();
         ExecutorService executor = Executors.newFixedThreadPool(20);
         for (int i = 0; i < NUM_THREADS; i++) {
-            Runnable worker = new IncrementerThread3(singleton);
+            Runnable worker = new IncrementerThread3();
             executor.execute(worker);
         }
 
@@ -64,23 +62,20 @@ public class SingletonTests {
         while (!executor.isTerminated()) {
         }
 
-        assertEquals(NUM_THREADS * NUM_INCREMENTS, singleton.getValue());
+        assertEquals(NUM_THREADS * NUM_INCREMENTS, SingletonClassic.getInstance().getValue());
     }
     
     public class IncrementerThread implements Runnable {
-       
-        private final SingletonInstantiatedByClassloader c;
-        
-        public IncrementerThread(SingletonInstantiatedByClassloader c) {
-            this.c=c;
+
+        public IncrementerThread() {
         }
         
         @Override
         public void run() {
             
             for(int i=0; i< NUM_INCREMENTS; i++) {
-                int saw = c.getValue();
-                int after = c.increment();
+                int saw = SingletonInstantiatedByClassloader.getInstance().getValue();
+                int after = SingletonInstantiatedByClassloader.getInstance().increment();
                 if(after != saw+1)
                     System.out.println("Saw ("+saw+") Incremented to ("+after+")");
                 try {
@@ -93,18 +88,15 @@ public class SingletonTests {
     
     public class IncrementerThread2 implements Runnable {
         
-        private final SingletonEnum c;
-        
-        public IncrementerThread2(SingletonEnum c) {
-            this.c=c;
+        public IncrementerThread2() {
         }
         
         @Override
         public void run() {
             
             for(int i=0; i< NUM_INCREMENTS; i++) {
-                int saw = c.getValue();
-                int after = c.increment();
+                int saw = SingletonEnum.INSTANCE.getValue();
+                int after = SingletonEnum.INSTANCE.increment();
                 if(after != saw+1)
                     System.out.println("Saw ("+saw+") Incremented to ("+after+")");
                 try {
@@ -119,8 +111,8 @@ public class SingletonTests {
         
         private final SingletonClassic c;
         
-        public IncrementerThread3(SingletonClassic c) {
-            this.c=c;
+        public IncrementerThread3() {
+            this.c=SingletonClassic.getInstance();
         }
         
         @Override
