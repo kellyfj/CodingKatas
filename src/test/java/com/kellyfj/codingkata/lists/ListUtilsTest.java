@@ -73,5 +73,17 @@ public class ListUtilsTest {
         assertFalse(head.containsCycle());
         assertTrue(headWithCycle.containsCycle());
     }
+    
+    @Test
+    public void testRemoveKthElement() {
+        int startSize = ListUtils.getSize(head);
+        assertEquals(100,startSize);
+        ListUtils.printList(head);
+        ListElement removed = ListUtils.removeKthLastElement(head, 5);
+        assertEquals(startSize-5, removed.getValue());
+        int endSize = ListUtils.getSize(head);
+        ListUtils.printList(head);
+        assertEquals(99,endSize);      
+    }
 
 }

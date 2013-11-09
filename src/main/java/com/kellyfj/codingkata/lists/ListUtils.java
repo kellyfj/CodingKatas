@@ -51,7 +51,43 @@ public class ListUtils {
         return newHead;
     }
     
+    
+    public static ListElement removeKthLastElement(ListElement head, int k) {
+        
+        ListElement kthAheadPointer = head;
+        for(int i=1; i<=k; i++) {
+            kthAheadPointer = kthAheadPointer.getNext();
+            if(kthAheadPointer==null)
+                throw new IllegalArgumentException("List not long enough");
+        }
+        
+        ListElement currPtr = head;
+        ListElement prevPtr = null;
+        do {
+            kthAheadPointer = kthAheadPointer.getNext();
+            prevPtr = currPtr;
+            currPtr = currPtr.getNext();
+        } while (kthAheadPointer !=null);
+        
+        //CurrPtr is now the kth element
+        //PrevPtr to point to (k+1)th element
+        prevPtr.setNext(currPtr.getNext());
+        
+        return currPtr;
+    }
 
+    public static int getSize(ListElement head) {
+        if (head == null) {
+            throw new IllegalArgumentException("Null arg");
+        }
+        int ret = 0;
+        while (head != null) {
+            ret++;
+
+            head = head.getNext();
+        }
+        return ret;
+    }
     
     public static void printList(ListElement l) {
         if (l == null) {
