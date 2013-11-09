@@ -33,13 +33,19 @@ public class StringUtilsTest {
     }
 
     
-    @Test 
-    public void testReverseWords() {
+    @Test
+    public void testReverseWords_String() {
         String test = "The quick brown fox jumped over the lazy dog";
-        
         String ret = StringUtils.reverseAllWords(test);
-        
-        assertEquals("dog lazy the over jumped fox brown quick The",ret);
+        assertEquals("dog lazy the over jumped fox brown quick The", ret);
+    }
+    
+    @Test
+    public void testReverseWords_char() {
+        String test = "The quick brown fox jumped over the lazy dog";
+        char[] ch = test.toCharArray();
+        StringUtils.reverseAllWords_Order1Space(ch);
+        assertEquals("dog lazy the over jumped fox brown quick The", new String(ch));
     }
     
     @Test 

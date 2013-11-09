@@ -81,7 +81,7 @@ public class StringUtils {
         }
     }
     
-    public static String reverseAllWords(String s) {
+    public static String reverseAllWords_OrderNExtraSpace(String s) {
         if (s == null)
             throw new IllegalArgumentException("S cannot be null");
         String[] words = s.split(" ");
@@ -93,8 +93,7 @@ public class StringUtils {
 
         return sb.toString().trim();
     }
-    
-    
+       
  
     public static String reverseAllWordsWithoutSplit(String s) {
         if (s == null)
@@ -109,24 +108,54 @@ public class StringUtils {
            //if we see a space
            if(chars[currPointer]== ' ') {
                //reverse bytes between startPointer and currPointer
-               reversePartOfCharArray(chars, startPointer, currPointer);
+               reverse(chars, startPointer, currPointer);
                startPointer=currPointer+1;
            }
        }
        
        //reverse last word
-       reversePartOfCharArray(chars, startPointer, chars.length);
+       reverse(chars, startPointer, chars.length);
        
        return new String(chars);
     }
 
-    private static void reversePartOfCharArray(char[] ch, int from, int to) {
-        int diff= to-from;
-           for(int i=0; i<diff/2; i++) {
-               char temp = ch[from+i];
-               ch[from+i] = ch[(to-i)-1];
-               ch[(to-i)-1] = temp;
-           }
+
+    public static String reverseAllWords(String s) {
+        char[] ch = s.toCharArray();
+        reverseAllWords_Order1Space(ch);
+        
+        return new String (ch);        
+    }
+    public static void reverseAllWords_Order1Space(char[] c) {
+        reverse(c);
+
+        int currPointer=0;
+        int startPointer=0;
+        while(currPointer < c.length-1) {
+            currPointer++;
+            //if we see a space
+            if(c[currPointer]== ' ') {
+                //reverse bytes between startPointer and currPointer
+                reverse(c, startPointer, currPointer);
+                startPointer=currPointer+1;
+            }
+        }
+        
+        //reverse last word
+        reverse(c, startPointer, c.length);
+    }
+
+    private static void reverse(char[] c) {
+        reverse(c,0,c.length);
+    }  
+
+    private static void reverse(char[] ch, int from, int to) {
+        int diff = to - from;
+        for (int i = 0; i < diff / 2; i++) {
+            char temp = ch[from + i];
+            ch[from + i] = ch[(to - i) - 1];
+            ch[(to - i) - 1] = temp;
+        }
     }
     
     public static boolean isMatch(String regex, String s) {
