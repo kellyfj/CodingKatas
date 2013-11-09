@@ -241,12 +241,20 @@ public class StringUtilsTest {
         
         @Test 
         public void testPermutations() {
-            String testString = "ABC";
+            String testString = "ABCD";
             List<String> list = StringUtils.permutation(testString);
             long fact = ArithmeticUtils.factorial(testString.length());
             assertEquals(fact,list.size());
         }
+
         
+        @Test 
+        public void testPermPowerSet() {
+            String testString = "ABCD";
+            List<String> list = StringUtils.powerSetOfCharacters(testString);
+            double toN = Math.pow(2,testString.length());
+            assertEquals(list.size(),(int)toN);
+        }
         
         @Test
         public void testRemoveDupeChars() {

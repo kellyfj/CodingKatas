@@ -212,8 +212,8 @@ public class BinaryTreeUtils {
                                   // not in L&R subtrees
     }
     
-    public static BinaryTreeNode lowestCommonAncestor_Order1Space_OrderHTime(BinaryTreeNode head, BinaryTreeNode a,
-            BinaryTreeNode b) {
+    public static BinaryTreeNode lowestCommonAncestor_Order1Space_OrderHTime(BinaryTreeNode head, 
+            BinaryTreeNode a, BinaryTreeNode b) {
         if (head == null)
             throw new IllegalArgumentException("head cannot be null");
         if (a == null)
@@ -249,7 +249,6 @@ public class BinaryTreeUtils {
         }
 
         return deepestNode;
-
     }
     
 }

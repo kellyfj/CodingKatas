@@ -290,6 +290,35 @@ public class StringUtils {
             }
         }
     }
+   
+    public static  List<String> powerSetOfCharacters(String str) {      
+        List<String> ret = powerSetOfCharacters(str.toCharArray());
+        System.out.println("String ["+str+"] has ["+ret.size()+"] permutations");
+        return ret;
+    }
+    
+    private static List<String> powerSetOfCharacters(char[] array) {
+        List<String> returnList = new ArrayList<String>();
+        if (array.length == 0) {
+            returnList.add(new String());
+            return returnList;
+        }
+
+        char head = array[0];
+        char[] rest = new char[] {};
+        if (array.length >= 2)
+            rest = Arrays.copyOfRange(array, 1, array.length);
+
+        for (String s : powerSetOfCharacters(rest)) {
+            StringBuilder newSet = new StringBuilder();
+            newSet.append(head);
+            newSet.append(s);
+            returnList.add(newSet.toString());
+            returnList.add(s);
+        }
+        return returnList;
+    }
+    
     
     public static String removeDupeChars(String s) {
         Set<Character> set = new HashSet<Character>();
