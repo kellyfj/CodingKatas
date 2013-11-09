@@ -57,4 +57,15 @@ public class RomanNumeralUtils {
         }
         return sb.toString();
     }
+    
+    public static int getSSColumnID(String colName) {
+        char[] cArray = colName.toCharArray();
+        int ans = 0;
+        
+        for(char c : cArray) {
+            ans = ans * 26 + c - 'A' +1;
+        }
+        
+        return ans;        
+    }
 }

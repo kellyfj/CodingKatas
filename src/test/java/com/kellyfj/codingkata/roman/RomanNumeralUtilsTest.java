@@ -14,4 +14,18 @@ public class RomanNumeralUtilsTest extends TestCase {
         assertEquals(1978,i);
     }
 
+    public void testSSEncoding() {
+        int i = RomanNumeralUtils.getSSColumnID("A");       
+        assertEquals(1,i);
+
+        i = RomanNumeralUtils.getSSColumnID("Z");       
+        assertEquals(26,i);
+
+        
+        i = RomanNumeralUtils.getSSColumnID("AA");       
+        assertEquals(26*1+1,i);
+        
+        i = RomanNumeralUtils.getSSColumnID("ZZ");       
+        assertEquals(26*26+26,i);
+    }
 }
