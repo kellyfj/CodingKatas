@@ -267,15 +267,15 @@ public class NumberArrays {
         int result=-1;
         
         while(leftPointer <= rightPointer) {
-            int midpoint = leftPointer+((rightPointer-leftPointer) / 2);
-            int curr = a[midpoint];
+            int pivot = leftPointer+((rightPointer-leftPointer) / 2);
+            int curr = a[pivot];
             if(curr > lookFor) {
-                rightPointer = midpoint-1; //Reduce search space 
+                rightPointer = pivot-1; //Reduce search space 
             } else if (curr == lookFor) {
-                result=midpoint; //Record solution and keep searching to the left
-                rightPointer = midpoint -1;
-            } else {  //a[m] < lookfor
-                leftPointer = midpoint+1;
+                result=pivot; //Record solution and keep searching to the left
+                rightPointer = pivot -1;
+            } else {  //pivot < lookfor
+                leftPointer = pivot+1;
             }
         }
         
