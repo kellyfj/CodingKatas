@@ -2,15 +2,15 @@ package com.kellyfj.codingkata.sort;
 
 
 /**
- *  |-----------|----------|----------|----------|---------|
- *  | SORT      | BEST     | AVERAGE  | WORST    | SPACE   | 
- *  |-----------|----------|----------|----------|---------|
- *  | Bubble    | O(n)     | O(n^2)   | O(n^2)   | O(1)    |
- *  | Selection | O(n^2)   | O(n^2)   | O(n^2)   | O(1)    |
- *  | Quick     | O(nlogn) | O(nlogn) | O(n^2)   | O(logn) |
- *  | Merge     | O(nlogn) | O(nlogn) | O(nlogn) | Depends | 
- *  | Heap      | O(nlogn) | O(nlogn) | O(nlogn) | O(1)    | 
- *  |-----------|----------|----------|----------|---------|
+ *  |-----------|----------|----------|----------|---------|----------|
+ *  | SORT      | BEST     | AVERAGE  | WORST    | SPACE   | IN PLACE | 
+ *  |-----------|----------|----------|----------|---------|----------|
+ *  | Bubble    | O(n)     | O(n^2)   | O(n^2)   | O(1)    |   YES    |
+ *  | Selection | O(n^2)   | O(n^2)   | O(n^2)   | O(1)    |   YES    | 
+ *  | Quick     | O(nlogn) | O(nlogn) | O(n^2)   | O(logn) |   YES    | 
+ *  | Merge     | O(nlogn) | O(nlogn) | O(nlogn) | Depends |   NO     |
+ *  | Heap      | O(nlogn) | O(nlogn) | O(nlogn) | O(1)    |   YES    |
+ *  |-----------|----------|----------|----------|---------|----------|
  * 
  * @author kellyfj
  */
