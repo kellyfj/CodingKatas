@@ -101,28 +101,28 @@ public class StringUtilsTest {
         @Test
         public void testPalindrome(){
             String s = "able was I ere I saw elba";
-            boolean b = StringUtils.isPalindromeEasy(s, s);
+            boolean b = StringUtils.isPalindromeEasy_OrderNSpace(s, s);
             
             assertTrue(b);
         }
         @Test
         public void testPalindromeFalse(){
             String s = "able was I ere I saw elba";
-            boolean b = StringUtils.isPalindromeEasy(s, s+" ");
+            boolean b = StringUtils.isPalindromeEasy_OrderNSpace(s, s+" ");
             
             assertFalse(b);
         }
         @Test
         public void testPalindromeHard(){
             String s = "able was I ere I saw elba";
-            boolean b = StringUtils.isPalindromeHard(s, s);
+            boolean b = StringUtils.isPalindromeHard_Order1Space(s, s);
             
             assertTrue(b);
         }
         @Test
         public void testPalindromeHardFalse(){
             String s = "able was I ere I saw elba";
-            boolean b = StringUtils.isPalindromeHard(s, s+" ");
+            boolean b = StringUtils.isPalindromeHard_Order1Space(s, s+" ");
             
             assertFalse(b);
         }      

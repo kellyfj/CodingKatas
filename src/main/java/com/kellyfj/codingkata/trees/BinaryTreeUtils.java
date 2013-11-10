@@ -221,10 +221,10 @@ public class BinaryTreeUtils {
         if (b == null)
             throw new IllegalArgumentException("b cannot be null");
 
-        int depth_a = a.getDepth();
-        int depth_b = b.getDepth();
-        int depthDiff = depth_a - depth_b;
+        // Get depth from root of each node
+        int depthDiff = a.getDepth() - b.getDepth();
 
+        // Bring deepest pointer to same level as other pointer
         BinaryTreeNode deepestNode = null;
         BinaryTreeNode otherNode = null;
         if (depthDiff < 0) { // b is deeper than a
@@ -242,7 +242,7 @@ public class BinaryTreeUtils {
             }
         }
 
-        //Now advance both pointers until they find a common ancestor
+        // Now advance both pointers until they find a common ancestor
         while (deepestNode != otherNode) {
             deepestNode = deepestNode.getParent();
             otherNode = otherNode.getParent();

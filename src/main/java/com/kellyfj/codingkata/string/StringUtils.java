@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
 
-    public static boolean isPalindromeEasy(String s1, String s2) {
+    public static boolean isPalindromeEasy_OrderNSpace(String s1, String s2) {
         if(s1 == null || s2== null)
             throw new IllegalArgumentException("Say something cool!");
         if(s1.length() != s2.length())
@@ -22,20 +22,16 @@ public class StringUtils {
         return s2.equals(s1reversed);  
     }
 
-    public static boolean isPalindromeHard(String s1, String s2) {
+    public static boolean isPalindromeHard_Order1Space(String s1, String s2) {
         if(s1 == null || s2== null)
             throw new IllegalArgumentException("Say something cool!");
         if(s1.length() != s2.length())
             return false;
         
-        char[] s1array = s1.toCharArray();
-        char[] s2array = s2.toCharArray();
-        
-        for(int i=0; i<s1array.length; i++) {
-            char ch1 = s1array[i];
-            char ch2 = s2array[(s2array.length-1)-i];
-            if(ch1!=ch2)
+        for(int i=0; i<s1.length(); i++) {
+            if(s1.charAt(i)!=s2.charAt((s2.length()-1)-i)) {
                 return false;
+            }               
             //else continue;
         }
         
