@@ -311,7 +311,7 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);       
+        List<List<Integer>> ret = NumberArrays.findCombosToReachTargetSum(numbers, target);       
         assertNotNull(ret);
         assertEquals(2,ret.size());
         
@@ -327,7 +327,7 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        List<List<Integer>> ret = NumberArrays.findCombosToReachTargetSum(numbers, target);  
         assertNotNull(ret);
         assertEquals(1,ret.size());
         assertEquals(4,ret.get(0).size()); //4+3+2+1
@@ -342,7 +342,7 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(2);
         
-        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        List<List<Integer>> ret = NumberArrays.findCombosToReachTargetSum(numbers, target);  
         assertNotNull(ret);
         assertEquals(1,ret.size());
         assertEquals(4,ret.get(0).size()); //2+2+2+2
@@ -356,7 +356,7 @@ public class NumberArraysTest extends TestCase {
         numbers.add(4);
         numbers.add(2);
         
-        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        List<List<Integer>> ret = NumberArrays.findCombosToReachTargetSum(numbers, target);  
         assertNotNull(ret);
         assertEquals(4,ret.size());
         assertEquals(2,ret.get(0).size()); //4+2 (four times)
@@ -370,7 +370,7 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(2);
         
-        List<List<Integer>> ret = NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        List<List<Integer>> ret = NumberArrays.findCombosToReachTargetSum(numbers, target);  
         assertNotNull(ret);
         assertEquals(4,ret.size());
         assertEquals(3,ret.get(0).size()); //2+2+2 in 4 combinations
@@ -384,7 +384,7 @@ public class NumberArraysTest extends TestCase {
         numbers.add(2);
         numbers.add(1);
         
-        List<List<Integer>> ret =  NumberArrays.findCombinationsToReachTargetSum(numbers, target);  
+        List<List<Integer>> ret =  NumberArrays.findCombosToReachTargetSum(numbers, target);  
         assertNotNull(ret);
         assertEquals(0,ret.size());
     }

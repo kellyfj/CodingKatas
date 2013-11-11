@@ -247,10 +247,11 @@ public class StringUtilsTest {
         
         @Test 
         public void testPermutations() {
-            String testString = "ABCD";
+            String testString = "ABCDEFG";
             List<String> list = StringUtils.permutation(testString);
             long fact = ArithmeticUtils.factorial(testString.length());
             assertEquals(fact,list.size());
+            System.out.println("Permutation Helper was called : "+StringUtils.numHelperCalls +" times");
         }
 
         

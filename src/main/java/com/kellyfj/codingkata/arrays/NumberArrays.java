@@ -268,10 +268,10 @@ public class NumberArrays {
         
         while(leftPointer <= rightPointer) {
             int pivot = leftPointer+((rightPointer-leftPointer) / 2);
-            int curr = a[pivot];
-            if(curr > lookFor) {
+            int pivotValue = a[pivot];
+            if(pivotValue > lookFor) {
                 rightPointer = pivot-1; //Reduce search space 
-            } else if (curr == lookFor) {
+            } else if (pivotValue == lookFor) {
                 result=pivot; //Record solution and keep searching to the left
                 rightPointer = pivot -1;
             } else {  //pivot < lookfor
@@ -321,12 +321,12 @@ public class NumberArrays {
         if (array.length >= 2)
             rest = Arrays.copyOfRange(array, 1, array.length);
 
-        for (Set<Integer> powerSets : powerSet(rest)) {
+        for (Set<Integer> aSet : powerSet(rest)) {
             Set<Integer> newSet = new HashSet<Integer>();
             newSet.add(head);
-            newSet.addAll(powerSets);
+            newSet.addAll(aSet);
             returnList.add(newSet);
-            returnList.add(powerSets);
+            returnList.add(aSet);
         }
         return returnList;
     }
@@ -355,6 +355,7 @@ public class NumberArrays {
         return returnList;
     }
 
+
     public static void printPowerSet(List<Set<Integer>> listOfSets) {
         System.out.println("POWERSET");
         for (Set<Integer> set : listOfSets) {
@@ -377,13 +378,13 @@ public class NumberArrays {
         return guess;
     }
 
-    public static List<List<Integer>> findCombinationsToReachTargetSum(List<Integer> numbers, int target) {
-        List<List<Integer>> ret = findCombinationsToReachTargetSum(numbers, target, new ArrayList<Integer>());
+    public static List<List<Integer>> findCombosToReachTargetSum(List<Integer> numbers, int target) {
+        List<List<Integer>> ret = findCombosToReachTargetSum(numbers, target, new ArrayList<Integer>());
         return ret;
     }
 
-    private static List<List<Integer>> findCombinationsToReachTargetSum(List<Integer> numbers, int target,
-            List<Integer> intermed) {
+    private static List<List<Integer>> findCombosToReachTargetSum(List<Integer> numbers, 
+            int target, List<Integer> intermed) {
         int intermedSum = 0;
         for (int i : intermed)
             intermedSum += i;
@@ -409,7 +410,8 @@ public class NumberArrays {
             ArrayList<Integer> intermedCopy = new ArrayList<Integer>(intermed);
             intermedCopy.add(n);
             
-            List<List<Integer>> temp = findCombinationsToReachTargetSum(remaining, target, intermedCopy);
+            List<List<Integer>> temp = findCombosToReachTargetSum(remaining, 
+                    target, intermedCopy);
             if (temp != null) {
                 ret.addAll(temp);
             }

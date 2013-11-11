@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 
 public class StringUtils {
 
+    public static int numHelperCalls;
+
     public static boolean isPalindromeEasy_OrderNSpace(String s1, String s2) {
         if(s1 == null || s2== null)
             throw new IllegalArgumentException("Say something cool!");
@@ -296,22 +298,24 @@ public class StringUtils {
     }
     
     public static  List<String> permutation(String str) {
+        numHelperCalls=0;
         List<String> ret = new ArrayList<String>();
         permutation("", str,ret);
         System.out.println("String ["+str+"] has ["+ret.size()+"] permutations");
         return ret;
     }
 
-    private static void permutation(String prefix, String str, List<String> l) {
+    private static void permutation(String temp, String str, List<String> result) {
+        numHelperCalls++;
         if (str.length() == 0) {
-            System.out.println(prefix);
-            l.add(prefix);
+            System.out.println(temp);
+            result.add(temp);
         }
         else {
             for (int i = 0; i < str.length(); i++) {
-                String p = prefix + str.charAt(i);
-                String s = str.substring(0, i) + str.substring(i + 1, str.length());
-                permutation(p,s,l);
+                String temp2 = temp + str.charAt(i);
+                String remainder = str.substring(0, i) + str.substring(i + 1, str.length());
+                permutation(temp2,remainder,result);
             }
         }
     }

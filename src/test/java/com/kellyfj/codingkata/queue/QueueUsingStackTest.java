@@ -17,6 +17,13 @@ public class QueueUsingStackTest {
         assertEquals("1",q.remove());
         assertEquals("2",q.remove());
         assertEquals("3",q.remove());
+        q.add("4");
+        q.add("5");
+        assertEquals("4",q.remove());
+        q.add("6");
+        assertEquals("5",q.remove());
+        assertEquals("6",q.remove());
+        
     }
 
 }
