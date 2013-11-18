@@ -417,7 +417,31 @@ public class NumberArraysTest extends TestCase {
         assertEquals(test[0],ans.min);
         assertEquals(test[test.length-1],ans.max);
         System.out.println(ans.comparisons +" comparisons performed");
-        assertEquals(3*MAX/2 - 3,ans.comparisons);
+        assertEquals(3*MAX/2,ans.comparisons);
+    }
+  
+    public void testFindMinMaxEdge() {
+        int[] test = new int[] {2,1,0};
+
+        
+        MinMax ans = NumberArrays.getMinMax(test);
+        Arrays.sort(test);
+        assertEquals(test[0],ans.min);
+        assertEquals(test[test.length-1],ans.max);
+        System.out.println(ans.comparisons +" comparisons performed");
+        assertEquals(4,ans.comparisons);
+    }
+    
+    public void testFindMinMaxEdge2() {
+        int[] test = new int[] {2,1};
+
+        
+        MinMax ans = NumberArrays.getMinMax(test);
+        Arrays.sort(test);
+        assertEquals(test[0],ans.min);
+        assertEquals(test[test.length-1],ans.max);
+        System.out.println(ans.comparisons +" comparisons performed");
+        assertEquals(1,ans.comparisons);
     }
     
     public void testMerge() {

@@ -31,7 +31,7 @@ public class NumberArrays {
             minmax.min = arr[0];
             minmax.max = arr[1];
         }
-        int i = 2;
+        int i = 1;
     
         // In the while loop, pick elements in pair and compare the pair with current min/max
         while (i < arr.length - 1) {
