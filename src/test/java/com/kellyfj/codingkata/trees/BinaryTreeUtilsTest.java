@@ -37,21 +37,35 @@ public class BinaryTreeUtilsTest extends TestCase {
         }
         smallBst2 =  BinarySearchTreeNode.fromArray(testArray3);
     }
-    
+
     @Test
     public void testBreadthFirstTraverse() {
-        BinaryTreeUtils.bfsTraverse(smallBst);
+        String str = BinaryTreeUtils.bfsTraverse(smallBst);
+        System.out.println(str);
+        assertEquals(str, "4, \n" + "2, 6, \n" + "1, 3, 5, 7, \n");
     }
 
     @Test
     public void testBreadthFirstTraverse2() {
-        BinaryTreeUtils.bfsTraverse(smallBst2);
+        String str = BinaryTreeUtils.bfsTraverse(smallBst2);
+        System.out.println(str);
+        assertEquals(str, "5, \n" + "2, 8, \n" + "1, 3, 6, 9, \n" + "4, 7, 10, \n");
     }
     
     
     @Test
     public void testBreadthFirstTraverseLarge() {
-        BinaryTreeUtils.bfsTraverse(bst);
+        String str = BinaryTreeUtils.bfsTraverse(bst);
+        System.out.println(str);
+        assertEquals(
+                str,
+                "50, \n"
+                        + "25, 75, \n"
+                        + "12, 37, 62, 88, \n"
+                        + "6, 18, 31, 43, 56, 68, 81, 94, \n"
+                        + "3, 9, 15, 21, 28, 34, 40, 46, 53, 59, 65, 71, 78, 84, 91, 97, \n"
+                        + "1, 4, 7, 10, 13, 16, 19, 23, 26, 29, 32, 35, 38, 41, 44, 48, 51, 54, 57, 60, 63, 66, 69, 73, 76, 79, 82, 86, 89, 92, 95, 99, \n"
+                        + "2, 5, 8, 11, 14, 17, 20, 22, 24, 27, 30, 33, 36, 39, 42, 45, 47, 49, 52, 55, 58, 61, 64, 67, 70, 72, 74, 77, 80, 83, 85, 87, 90, 93, 96, 98, 100, \n");
     }
    
     @Test
@@ -187,5 +201,11 @@ public class BinaryTreeUtilsTest extends TestCase {
         assertNotNull(n);
         assertEquals(50,n.getValue());        
         
+    }
+    
+    public void testDFS() {
+        assertTrue(BinaryTreeUtils.dfsTraverse(smallBst, 5));
+        
+        assertTrue(BinaryTreeUtils.dfsTraverse(bst, 100));
     }
 }

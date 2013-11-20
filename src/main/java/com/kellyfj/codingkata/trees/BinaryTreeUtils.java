@@ -11,22 +11,22 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class BinaryTreeUtils {
 
-    public static void bfsTraverse(BinarySearchTreeNode n) {
+    public static String bfsTraverse(BinaryTreeNode n) {
         final Queue<BinaryTreeNode> tempQueue = new LinkedBlockingQueue<BinaryTreeNode>();
         final BinaryTreeNode DUMMY = new BinaryTreeNode(Integer.MAX_VALUE);
-
+        StringBuilder sb = new StringBuilder();
         tempQueue.add(n);
         tempQueue.add(DUMMY);
 
         while (!tempQueue.isEmpty()) {
             BinaryTreeNode nextNode = tempQueue.poll();
             if (nextNode.equals(DUMMY)) {
-                System.out.println("");
+                sb.append("\n");
                 if (!tempQueue.isEmpty()) {
                     tempQueue.add(DUMMY);
                 }
             } else {
-                System.out.print(nextNode.getValue() + ", ");
+                sb.append(nextNode.getValue() + ", ");
                 BinaryTreeNode left = nextNode.getLeft();
                 BinaryTreeNode right = nextNode.getRight();
 
@@ -36,7 +36,26 @@ public class BinaryTreeUtils {
                     tempQueue.add(right);
             }
         }
+        
+        return sb.toString();
     }
+    
+    public static boolean dfsTraverse(BinaryTreeNode head, int k) {
+
+        if (head == null)
+            return false;
+
+        System.out.println("Visiting node (" + head.getValue() + ") comparing to " + k);
+
+        if (head.getValue() == k)
+            return true;
+
+        boolean left = dfsTraverse(head.getLeft(), k);
+        boolean right = dfsTraverse(head.getRight(), k);
+
+        return left || right;
+    }
+
     
     /**
      * Find the Shortest Path through a binary tree
