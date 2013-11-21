@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public enum SingletonEnum {  
         INSTANCE;
         
-        private static final AtomicInteger count = new AtomicInteger(0);
+        private static volatile AtomicInteger count = new AtomicInteger(0);
         
         public int getValue() {
             return count.get(); 

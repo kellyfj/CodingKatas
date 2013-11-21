@@ -3,7 +3,7 @@ package com.kellyfj.codingkata.threads;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class SingletonInstantiatedByClassloader {
-    private final AtomicInteger counter;
+    private static volatile AtomicInteger counter;
     private static SingletonInstantiatedByClassloader instance = new SingletonInstantiatedByClassloader();
     
     private SingletonInstantiatedByClassloader() {

@@ -2,6 +2,7 @@ package com.kellyfj.codingkata.threads;
 
 public class SingletonClassic {
     private int count;
+    //volatile did not really work pre Java 5
     private static SingletonClassic instance;
     
     private SingletonClassic() {
