@@ -4,21 +4,32 @@ import java.util.Stack;
 
 public class QueueUsingStack  {
 
-    Stack<Object> A = new Stack<Object>();
-    Stack<Object> B = new Stack<Object>();
+    Stack<Object> s1 = new Stack<Object>();
+    Stack<Object> tmp = new Stack<Object>();
     
     public void add(Object o) {
-        A.push(o);
+        s1.push(o);
     }
     
     public Object remove() {
-        if(B.isEmpty()) {
-            while(!A.isEmpty()) {
-                B.push(A.pop());
+        while(!s1.isEmpty()) {
+            tmp.push(s1.pop());
+        }
+        Object o = tmp.pop();
+        while(!tmp.isEmpty()){
+            s1.push(tmp.pop());
+        }
+        return o;
+    }
+    
+    public Object remove2() {
+        if(tmp.isEmpty()) {
+            while(!s1.isEmpty()) {
+                tmp.push(s1.pop());
             }
         }
-        if(!B.isEmpty()) {
-            Object ret = B.pop();
+        if(!tmp.isEmpty()) {
+            Object ret = tmp.pop();
             return ret;
         }
         throw new IllegalStateException("Something bad happened");
