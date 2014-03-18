@@ -1,6 +1,7 @@
 package com.kellyfj.codingkata.trees;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -84,6 +85,39 @@ public class BinaryTreeUtils {
         return ret;
     }
     
+    
+    public static List<BinaryTreeNode> findShortestPathBFS(BinaryTreeNode head) {
+        if(head==null) return null;
+        
+        Queue<BinaryTreeNode> q = new LinkedList<BinaryTreeNode>();
+        q.add(head);
+        BinaryTreeNode b=null;
+        //Find first leaf
+        while(!q.isEmpty()) {
+             b = q.poll();
+            if(isLeaf(b))
+               break;
+            if(b.getLeft() !=null)
+                q.add(b.getLeft());
+            if(b.getRight() !=null)
+                q.add(b.getRight());
+            
+        }
+        
+        //GO back up tree constructing path
+        List<BinaryTreeNode> list = new ArrayList<BinaryTreeNode>();
+        while(b!=head) {
+            list.add(b);
+            b = b.getParent();
+        }
+        list.add(head);
+        
+         return list;
+    }
+    private static boolean isLeaf(BinaryTreeNode b) {
+        return b.getLeft()==null && b.getRight()==null;
+    }
+
     /**
      * Find the Longest Path through a Binary Tree
      * @param n

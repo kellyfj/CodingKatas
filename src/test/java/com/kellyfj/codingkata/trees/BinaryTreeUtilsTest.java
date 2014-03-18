@@ -109,7 +109,11 @@ public class BinaryTreeUtilsTest extends TestCase {
         List<Integer> l = BinaryTreeUtils.findShortestPath(smallBst);
         assertNotNull(l);
         printIntList(l);
-        assertEquals(3,l.size());        
+        assertEquals(3,l.size()); 
+        
+        List<BinaryTreeNode> t = BinaryTreeUtils.findShortestPathBFS(smallBst);
+        assertNotNull(t);
+        printList(t);
     }
     
     @Test
@@ -126,6 +130,10 @@ public class BinaryTreeUtilsTest extends TestCase {
         assertNotNull(l);
         assertEquals(3,l.size()); 
         printIntList(l);
+        
+        List<BinaryTreeNode> t = BinaryTreeUtils.findShortestPathBFS(smallBst2);
+        assertNotNull(t);
+        printList(t);
     }
     
     @Test
@@ -143,6 +151,10 @@ public class BinaryTreeUtilsTest extends TestCase {
         assertNotNull(l);
         printIntList(l);
         assertEquals(6,l.size()); //floor (log2(N)) 
+        
+        List<BinaryTreeNode> t = BinaryTreeUtils.findShortestPathBFS(bst);
+        assertNotNull(t);
+        printList(t);
     }
 
 
@@ -161,7 +173,12 @@ public class BinaryTreeUtilsTest extends TestCase {
         }
         System.out.println("");
     }
-    
+    private void printList(List<BinaryTreeNode> l) {
+        for(BinaryTreeNode i : l) {
+            System.out.print(i.getValue() + "-->");
+        }
+        System.out.println("");
+    }
     public void testLowestCommonAncestor() {
         
         BinarySearchTreeNode a = new BinarySearchTreeNode(1);
