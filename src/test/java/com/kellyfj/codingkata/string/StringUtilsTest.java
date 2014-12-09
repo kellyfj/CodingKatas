@@ -82,7 +82,6 @@ public class StringUtilsTest {
             | a*             | abcdef           | accept |
             | *abc*          | abc              | accept |
             | *****          | abc              | accept |
-            | É              | abc              | accept |
             | .*             | abc              | accept |
             | .bc*           | abc              | accept |
             | .b*c*a         | abca             | accept |
