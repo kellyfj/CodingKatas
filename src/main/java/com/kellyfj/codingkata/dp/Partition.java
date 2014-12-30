@@ -25,7 +25,11 @@ public class Partition {
     }
     
     /**
+     * GOAL: Given a set of positive integers, partition the set into two such that 
+     * the difference between the sum of the two sets is minimized.
+     * 
      * Code inspired by <link>http://www.ugrad.cs.ubc.ca/~cs490/sec202/notes/dp/sample.html</link>
+     * See also http://www.geeksforgeeks.org/dynamic-programming-set-18-partition-problem/
      * 
      * @param input
      * @param startIndex

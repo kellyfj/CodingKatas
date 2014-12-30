@@ -9,26 +9,27 @@ public class Node implements Comparable<Node>{
 
     private final String name;
     
-    public Node(String name){
-        this.name = name;
-    }
-    
-    public String getName(){
-        return name;
-    }
+	public Node(String name) {
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
     
     public Edge[] adjacencies;
     public double minDistance = Double.POSITIVE_INFINITY;
     public Node previous;
     
-    @Override
-    public String toString() { return name; }
+	@Override
+	public String toString() {
+		return name;
+	}
     
-    @Override
-    public int compareTo(Node other)
-    {
-        return Double.compare(minDistance, other.minDistance);
-    }
+	@Override
+	public int compareTo(Node other) {
+		return Double.compare(minDistance, other.minDistance);
+	}
     
     @Override
     public boolean equals(Object o) {

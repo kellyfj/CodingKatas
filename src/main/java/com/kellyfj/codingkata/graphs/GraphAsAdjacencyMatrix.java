@@ -29,13 +29,11 @@ public class GraphAsAdjacencyMatrix implements Graph {
         
         List<Node> retVal = new ArrayList<Node>();
         int i = nodeToIndexMap.get(n1);
-        for(int j=0; j<adjacencyMatrix.length;j++)
-        {
-            if(adjacencyMatrix[i][j])
-            {
-                retVal.add(nodes.get(j));
-            }
-        }
+		for (int j = 0; j < adjacencyMatrix.length; j++) {
+			if (adjacencyMatrix[i][j]) {
+				retVal.add(nodes.get(j));
+			}
+		}
         return retVal;
     }
 

@@ -1,6 +1,3 @@
-/**
- * Code heavily borrowing from http://www.algolist.com/code/java/Dijkstra's_algorithm
- */
 package com.kellyfj.codingkata.graphs;
 
 import java.util.ArrayList;
@@ -8,7 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/**
+ * Code is heavily borrowing from <a href="http://www.algolist.com/code/java/Dijkstra's_algorithm">
+ * http://www.algolist.com/code/java/Dijkstra's_algorithm</a>
+ */
 public class DijkstrasShortestPath {
+	
     public static void computePaths(Node source) {
         source.minDistance = 0.;
         PriorityQueue<Node> vertexQueue = new PriorityQueue<Node>();

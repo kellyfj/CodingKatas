@@ -6,8 +6,6 @@ import java.util.Queue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class BreadthFirstSearch {
-    private static final List<Node> traversalOrder = new ArrayList<Node>();
-    private static final Queue<Node> tempQueue = new LinkedBlockingQueue<Node>();
     private static final Node DUMMY = new Node("\n");
 
     public static String traverse(Graph g) {
@@ -15,16 +13,15 @@ public class BreadthFirstSearch {
 
         // Start with the first node
         Node n = nodeList.get(0);
-        BreadthFirstTraverse(g, n);
+        String ret = BreadthFirstTraverse(g, n);
 
-        // Print Traversal order
-        String str = getTraversalOrder();
-        System.out.println(str);
-        return str;
+        return ret;
     }
 
-    private static void BreadthFirstTraverse(Graph g, Node n) {
-
+    private static String BreadthFirstTraverse(Graph g, Node n) {
+    	Queue<Node> tempQueue = new LinkedBlockingQueue<Node>();
+    	List<Node> traversalOrder = new ArrayList<Node>();
+    	 
         if (tempQueue.isEmpty()) {
             tempQueue.add(n);
             tempQueue.add(DUMMY);
@@ -42,17 +39,25 @@ public class BreadthFirstSearch {
                 }
             } else {
                 traversalOrder.add(nextNode);
-                System.out.println(getTraversalOrder());
+                printTraversalOrder(traversalOrder);
                 List<Node> nodeList = g.getAdjacentNodes(nextNode);
                 tempQueue.addAll(nodeList);
             }
         }
+        
+        String str = getPrintableTraversalOrder(traversalOrder);
+        System.out.println(str);
+        return str;
     }
 
-    private static String getTraversalOrder() {
+    private static void printTraversalOrder(List<Node> order) {
+        System.out.println(getPrintableTraversalOrder(order));
+    }
+    
+    private static String getPrintableTraversalOrder(List<Node> order) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < traversalOrder.size(); i++) {
-            String name = traversalOrder.get(i).getName();
+        for (int i = 0; i < order.size(); i++) {
+            String name = order.get(i).getName();
             sb.append(name + " ");
         }
         return sb.toString();
