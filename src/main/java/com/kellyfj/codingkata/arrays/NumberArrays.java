@@ -12,6 +12,8 @@ import java.util.Set;
 public class NumberArrays {
 
     /**
+     * GOAL: Get the min and max using 3N/2 comparisons (as opposed to 2N)
+     * 
      * Initialize min and max as minimum and maximum of the first two
      * elements respectively. For rest of the elements, pick them in pairs and
      * compare their maximum and minimum with max and min respectively.
@@ -65,14 +67,17 @@ public class NumberArrays {
      * http://codercareer.blogspot.com/2011/10/no-09-numbers-with-given-sum.html
      * Given an array, please determine whether it contains three numbers whose
      * sum equals to 0.
+     * TIME COMPLEXITY: O(nlogn) due to soirt
      */
     public static boolean doesSumOfTwoEqualN_orderNlogN(int[] array, int target) {
         if (array.length < 2)
             throw new IllegalArgumentException("Array length should be 2 or greater");
+        //This is O(n log n)
         Arrays.sort(array);
 
         int startPointer = 0;
         int endPointer = array.length - 1;
+        //This is O(n)
         while (startPointer < endPointer) {
             int sum = array[startPointer] + array[endPointer];
             if (sum == target) {
@@ -90,6 +95,11 @@ public class NumberArrays {
         return false;
     }
 
+    /**
+     * Different variant of Sum-of-Two-equals-N
+     * 
+     * TIME COMPLEXITY: O(N) due to two sequential loops
+     */
     public static boolean doesSumOfTwoEqualN_orderN(int[] array, int sumOfTwoTarget) {
         if (array.length < 2)
             throw new IllegalArgumentException("Array length should be 2 or greater");
@@ -126,6 +136,10 @@ public class NumberArrays {
         return false;
     }
 
+    /**
+     * Sum-of-three Algorithm
+     * TIME COMPLEXITY: O(n)*O(n log n) = O(n^2)
+     */
     public static boolean doesSumOfThreeEqualN(int[] array, int target) {
         if (array.length < 3)
             throw new IllegalArgumentException("At least 3 elements expected in the array");
@@ -144,9 +158,8 @@ public class NumberArrays {
 
     /**
      * http://stackoverflow.com/questions/2070359/finding-three-elements-in-an-array-whose-sum-is-closest-to-an-given-number
-     * @param A
-     * @param target
-     * @return
+     *
+     * TIME COMPLEXITY: Still O(n^2) but less comparisons
      */
     public static boolean doesSumOfThreeEqualN_faster(int[] A, int target) {
         if (A.length < 3)
@@ -201,7 +214,9 @@ public class NumberArrays {
         System.out.println();
     }
 
-    
+    /**
+     * TIME COMPLEXITY: O(n)
+     */
     public static int lengthOfLongestMonotonicSeries(int[] input) {
         int maxLength = 1;
         int currLength = 1;
@@ -218,6 +233,11 @@ public class NumberArrays {
         return maxLength;
     }
 
+    /**
+     * http://en.wikipedia.org/wiki/Dutch_national_flag_problem
+     * TIME COMPLEXITY: O(n)
+     * SPACE COMPLEXITY: O(n) for the new array
+     */
     public static void dutchNationalFlagBasic(int[] input) {
         int numZeroes = 0;
         int numOnes = 0;
@@ -241,6 +261,10 @@ public class NumberArrays {
 
     }
 
+    /**
+     * TIME COMPLEXITY: O(n)
+     * SPACE COMPLEXITY: O(1) since we are swapping in place
+     */
     public static void dutchNationalFlagOnePass_Order1AdditionalSpace(int[] a, int mid) {
         int startIndex = 0;
         int endIndex = a.length - 1;
@@ -261,6 +285,11 @@ public class NumberArrays {
 
     }
 
+    /**
+     * Binary search in array that is sorted
+     * 
+     * TIME COMPLEXITY: O(log n)
+     */
     public static int findIndexOfItemInSortedArray(int[] a, int lookFor) {
         int leftPointer=0;
         int rightPointer=a.length-1;
