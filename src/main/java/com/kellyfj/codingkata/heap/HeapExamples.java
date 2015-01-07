@@ -37,4 +37,32 @@ public class HeapExamples {
 		
 		return ret;
 	}
+	
+	public static Long[] findNSmallestFixedSizeHeap(Long[] s, int n) {
+		Long[] ret = new Long[n];
+		FixedSizeHeap<Long> min_heap = new  FixedSizeHeap<Long>(n,true);
+		for(int i=0; i< s.length; i++) {
+			min_heap.add(s[i]);
+		}
+		
+		for(int j=0; j< n; j++) {
+			ret[j] = min_heap.pollFirst();
+		}
+		
+		return ret;
+	}
+	
+	public static Long[] findNLargestFixedSizeHeap(Long[] s, int n) {
+		Long[] ret = new Long[n];
+		FixedSizeHeap<Long> max_heap = new  FixedSizeHeap<Long>(n,false);
+		for(int i=0; i< s.length; i++) {
+			max_heap.add(s[i]);
+		}
+		
+		for(int j=0; j< n; j++) {
+			ret[j] = max_heap.pollLast();
+		}
+		
+		return ret;
+	}
 }
