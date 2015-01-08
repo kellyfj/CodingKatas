@@ -324,16 +324,16 @@ public class NumberArrays {
     }
 
     public static String getBinaryRepresentation(int number) {
-        int b[] = new int[32];
-        int i = 0;
+        int bits[] = new int[32];
+        int numbits = 0;
         while (number != 0) {
-            i++;
-            b[i] = number % 2;
+        	numbits++;
+        	bits[numbits] = number % 2;
             number = number / 2;
         }
         StringBuilder sb = new StringBuilder();
-        for (int j = i; j > 0; j--) {
-            sb.append(b[j]);
+        for (int j = numbits; j > 0; j--) {
+            sb.append(bits[j]);
         }
         return sb.toString();
     }
