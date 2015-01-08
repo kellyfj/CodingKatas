@@ -2,7 +2,7 @@ package com.kellyfj.codingkata.heap;
 
 import java.util.TreeSet;
 
-public class FixedSizeHeap<E> {
+public class FixedSizeHeap {
     private final int capacity;
     private final TreeSet<Long> ts = new TreeSet<Long>();
     private final boolean isMinHeap;
