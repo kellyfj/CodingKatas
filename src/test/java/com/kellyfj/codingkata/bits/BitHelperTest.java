@@ -30,4 +30,16 @@ public class BitHelperTest extends TestCase {
 		i = BitHelper.chkEnabledBitsTwosComplement(-1);
 		assertEquals(32,i);
 	}
+	
+	
+	public void testBinaryMultiple() {
+		
+		String s = BitHelper.binaryMultiply("0111", "0110");
+		
+		int answer = Integer.parseInt(s,2);
+		System.out.println("Binary "+s+" is "+answer);
+		
+		assertEquals("101010",s);
+		assertEquals(42,answer);
+	}
 }
