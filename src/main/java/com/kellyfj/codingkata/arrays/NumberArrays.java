@@ -486,4 +486,35 @@ public class NumberArrays {
 
         return s.toArray(new Integer[0]);
     }
+    
+	public static int getKthSmallestElementInTwoSortedArrays(int[] array1,
+			int[] array2, int k) {
+		if(k > array1.length + array2.length) {
+			throw new IllegalArgumentException("k is too large");
+		}
+		int index1 = 0, index2 = 0;
+		
+		//Advance pointers until 'k' exhausted or we reach end of an array
+		while (k != 1 && index1 < array1.length && index2 < array2.length) {
+			if (array1[index1] < array2[index2])
+				index1++;
+			else
+				index2++;
+			k--;
+		}
+
+		//Choose
+		if (index1 < array1.length && index2 < array2.length) {
+			if (array1[index1] > array2[index2])
+				return array2[index2];
+			else
+				return array1[index1];
+		} else {
+			if (index1 >= array1.length)
+				return array2[index2 + (k-1)];
+			else
+				return array1[index1 + (k-1)];
+
+		}
+	}
 }

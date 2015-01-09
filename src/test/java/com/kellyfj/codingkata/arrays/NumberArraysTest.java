@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
 import com.kellyfj.codingkata.arrays.NumberArrays.MinMax;
@@ -518,4 +520,33 @@ public class NumberArraysTest extends TestCase {
         assertEquals(3,NumberArrays.findIndexOfItemInSortedArray(a, 108));
         assertEquals(6,NumberArrays.findIndexOfItemInSortedArray(a, 285));
     }
+    
+    public void testFindKthSmallestInTwoArrays() {
+    	int[] a = new int[] { 1,2,3,4,5 };
+    	int[] b = new int[] { 6,7,8,9,10 };
+    	int i=0;
+   
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 1);
+    	assertEquals(1,i);
+    	
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 2);
+    	 assertEquals(2,i);
+
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 6);
+    	 assertEquals(6,i);
+    	 
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 10);
+    	 assertEquals(10,i);
+    }
+    
+	public void testFindKthSmallestInTwoArraysErrors() {
+		int[] a = new int[] { 1, 2, 3, 4, 5 };
+		int[] b = new int[] { 6, 7, 8, 9, 10 };
+		try {
+			int i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 11);
+			this.fail("Exception expected");
+		}catch(IllegalArgumentException iae) {
+			this.assertTrue(true);
+		}
+	}
 }
