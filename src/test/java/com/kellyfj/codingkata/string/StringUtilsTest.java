@@ -347,5 +347,17 @@ public class StringUtilsTest {
         	assertEquals(new Integer(1801), i_answer);
         }
         
+        @Test
+        public void testAddTwoHUGEStrings() {
+        	String s1 = new String(Long.MAX_VALUE + "" + Long.MAX_VALUE);       	
+        	String s2 = new String(Long.MAX_VALUE + "" + Long.MAX_VALUE);
+        	
+        	System.out.println("Adding "+ s1 + " and " + s2);
+        			
+        	String answer = StringUtils.addNumbers(s1, s2);
+        	System.out.println(answer);
+        	assertEquals("184467440737095516158446744073709551614",answer);
+        }
+        
         
 }

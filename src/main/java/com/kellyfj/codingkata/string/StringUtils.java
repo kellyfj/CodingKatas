@@ -487,6 +487,10 @@ public class StringUtils {
     		answer.append(toAppend);
     		idx++; 
     	}   	
+    	
+    	if(carry > 0)
+    		answer.append(carry);
+    	
     	return answer.reverse().toString();
     }
     
