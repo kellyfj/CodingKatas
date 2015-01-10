@@ -425,4 +425,69 @@ public class StringUtils {
         }
         return s1.substring(i,(i+x));
     }
+    
+    /**
+     * Inspired by Dan Blumenthal 
+     * http://dandreamsofcoding.com/2015/01/09/dissecting-an-interview-question-math-is-hard/
+     */
+    public static String addNumbers(String a, String b) {
+    	//Null Checks
+    	if(a==null && b ==null) 
+    		throw new IllegalArgumentException("You can't add two nulls!");
+    	else if (a==null)
+    		return b;
+    	else if (b==null)
+    		return a;
+    	
+    	//Empty String checks
+    	String aTrim = a.trim();
+    	String bTrim = b.trim();
+    	if(aTrim.isEmpty()) 
+    		return bTrim;
+    	if(bTrim.isEmpty())
+    		return aTrim;
+
+    	int carry = 0;
+    	//Note we will build the String answer in reverse - fixing that at the end
+    	StringBuilder answer = new StringBuilder();
+    	
+    	int bLength = bTrim.length();
+    	int aLength = aTrim.length();
+    	int idx = 0;
+    	
+    	//Start at the end of each string and move to the 'left'
+    	while(idx < aLength && idx < bLength) {
+    		char ch_b = bTrim.charAt((bLength-1) - idx);
+    		char ch_a = aTrim.charAt((aLength-1)- idx);
+    		int result = (ch_b - '0') + (ch_a - '0') + carry;
+    		
+    		carry = result / 10;
+    		int toAppend = result % 10;
+    		answer.append(toAppend);
+    		idx++;
+    	}
+    	
+    	//Now handle cases where strings are not the same length
+    	while(idx < aTrim.length()) {
+    		char ch_a = aTrim.charAt((aLength-1)- idx);
+    		int result = (ch_a - '0') + carry;
+    		
+    		carry = result / 10;
+    		int toAppend = result % 10;
+    		answer.append(toAppend);
+    		idx++; 
+    	}
+    	
+    	while(idx < bTrim.length()) {
+    		char ch_b = bTrim.charAt((bLength-1)- idx);
+    		int result = (ch_b - '0') + carry;
+    		
+    		carry = result / 10;
+    		int toAppend = result % 10;
+    		answer.append(toAppend);
+    		idx++; 
+    	}   	
+    	return answer.reverse().toString();
+    }
+    
 }

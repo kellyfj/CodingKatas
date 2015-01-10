@@ -314,4 +314,38 @@ public class StringUtilsTest {
             String ans = StringUtils.longestCommonSubstring(s1, s2);
             assertEquals("ABCDEF ",ans); //Note the spaces around i          
         }
+        
+        
+        @Test
+        public void testAddTwoStrings() {
+        	String s1 = "1234";
+        	String s2 = "567";
+        			
+        	String answer = StringUtils.addNumbers(s1, s2);
+        	System.out.println(answer);
+        	assertEquals("1801", answer);
+        }
+        
+        @Test
+        public void testAddTwoStringsWithSpaces() {
+        	String s1 = "    1234";
+        	String s2 = "567    ";
+        			
+        	String answer = StringUtils.addNumbers(s1, s2);
+        	System.out.println(answer);
+        	assertEquals("1801", answer);
+        }
+        
+        @Test
+        public void testAddTwoStringsWithZeros() {
+        	String s1 = "000001234";
+        	String s2 = "000567";
+        			
+        	String answer = StringUtils.addNumbers(s1, s2);
+        	System.out.println(answer);
+        	Integer i_answer = new Integer(answer);
+        	assertEquals(new Integer(1801), i_answer);
+        }
+        
+        
 }
