@@ -359,5 +359,46 @@ public class StringUtilsTest {
         	assertEquals("184467440737095516158446744073709551614",answer);
         }
         
+        @Test
+        public void testAddTwoStringsByDan() {
+        	String s1 = "1234";
+        	String s2 = "567";
+        			
+        	String answer = StringUtils.addStringsByDan(s1, s2);
+        	System.out.println(answer);
+        	assertEquals("1801", answer);
+        }
         
+        @Test
+        public void testAddTwoStringsWithSpacesByDan() {
+        	String s1 = "    1234";
+        	String s2 = "567    ";
+        			
+        	String answer = StringUtils.addStringsByDan(s1, s2);
+        	System.out.println(answer);
+        	assertEquals("1801", answer);
+        }
+        
+        @Test
+        public void testAddTwoStringsWithZerosByDan() {
+        	String s1 = "000001234";
+        	String s2 = "000567";
+        			
+        	String answer = StringUtils.addStringsByDan(s1, s2);
+        	System.out.println(answer);
+        	Integer i_answer = new Integer(answer);
+        	assertEquals(new Integer(1801), i_answer);
+        }
+        
+        @Test
+        public void testAddTwoHUGEStringsByDan() {
+        	String s1 = new String(Long.MAX_VALUE + "" + Long.MAX_VALUE);       	
+        	String s2 = new String(Long.MAX_VALUE + "" + Long.MAX_VALUE);
+        	
+        	System.out.println("Adding "+ s1 + " and " + s2);
+        			
+        	String answer = StringUtils.addStringsByDan(s1, s2);
+        	System.out.println(answer);
+        	assertEquals("184467440737095516158446744073709551614",answer);
+        }
 }

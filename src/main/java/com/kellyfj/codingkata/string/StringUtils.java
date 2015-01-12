@@ -430,68 +430,70 @@ public class StringUtils {
      * Inspired by Dan Blumenthal 
      * http://dandreamsofcoding.com/2015/01/09/dissecting-an-interview-question-math-is-hard/
      */
-    public static String addNumbers(String a, String b) {
-    	//Null Checks
-    	if(a==null && b ==null) 
-    		throw new IllegalArgumentException("You can't add two nulls!");
-    	else if (a==null)
-    		return b;
-    	else if (b==null)
-    		return a;
-    	
-    	//Empty String checks
-    	String aTrim = a.trim();
-    	String bTrim = b.trim();
-    	if(aTrim.isEmpty()) 
-    		return bTrim;
-    	if(bTrim.isEmpty())
-    		return aTrim;
+	public static String addNumbers(String a, String b) {
+		//Null Checks
+		if (a == null && b == null)
+			throw new IllegalArgumentException("You can't add two nulls!");
+		else if (a == null)
+			return b;
+		else if (b == null)
+			return a;
+		
+		// Empty String checks
+		String aTrim = a.trim();
+		String bTrim = b.trim();
+		if (aTrim.isEmpty()) return bTrim;
+		if (bTrim.isEmpty()) return aTrim;
+		int bLength = bTrim.length();
+		int aLength = aTrim.length();
+		
+		// Note we will build the String answer in reverse - fixing that at the end
+		int max_answer_len = (aLength > bLength ? aLength : bLength) + 1;
+		StringBuilder answer = new StringBuilder(max_answer_len);
+		int idx = 0, carry = 0;
+		// Start at the end of each string and move to the 'left'
+		while (idx < aLength || idx < bLength) {
+			char ch_b = idx >= bLength ? '0' : bTrim
+					.charAt((bLength - 1) - idx);
+			char ch_a = idx >= aLength ? '0' : aTrim
+					.charAt((aLength - 1) - idx);
+			int result = (ch_b - '0') + (ch_a - '0') + carry;
+			carry = result / 10;
+			answer.append(result % 10);
+			idx++;
+		}
 
-    	int carry = 0;
-    	//Note we will build the String answer in reverse - fixing that at the end
-    	StringBuilder answer = new StringBuilder();
-    	
-    	int bLength = bTrim.length();
-    	int aLength = aTrim.length();
-    	int idx = 0;
-    	
-    	//Start at the end of each string and move to the 'left'
-    	while(idx < aLength && idx < bLength) {
-    		char ch_b = bTrim.charAt((bLength-1) - idx);
-    		char ch_a = aTrim.charAt((aLength-1)- idx);
-    		int result = (ch_b - '0') + (ch_a - '0') + carry;
-    		
-    		carry = result / 10;
-    		int toAppend = result % 10;
-    		answer.append(toAppend);
-    		idx++;
-    	}
-    	
-    	//Now handle cases where strings are not the same length
-    	while(idx < aTrim.length()) {
-    		char ch_a = aTrim.charAt((aLength-1)- idx);
-    		int result = (ch_a - '0') + carry;
-    		
-    		carry = result / 10;
-    		int toAppend = result % 10;
-    		answer.append(toAppend);
-    		idx++; 
-    	}
-    	
-    	while(idx < bTrim.length()) {
-    		char ch_b = bTrim.charAt((bLength-1)- idx);
-    		int result = (ch_b - '0') + carry;
-    		
-    		carry = result / 10;
-    		int toAppend = result % 10;
-    		answer.append(toAppend);
-    		idx++; 
-    	}   	
-    	
-    	if(carry > 0)
-    		answer.append(carry);
-    	
-    	return answer.reverse().toString();
-    }
+		if (carry > 0)
+			answer.append(carry);
+
+		return answer.reverse().toString();
+	}
     
+    /**
+     * Solution from Dan Blumental (with String trim added by me)
+     * http://dandreamsofcoding.com/2015/01/09/dissecting-an-interview-question-math-is-hard-part-2/
+     * 
+     * @param a
+     * @param b
+     * @return
+     */
+    public static String addStringsByDan(String a, String b) {
+    	//TODO Null Checks
+    	  int carry = 0; // we start without a carry
+    	  a = a.trim();
+    	  b = b.trim();
+      	//TODO Empty Checks
+    	  int alen = a.length();
+    	  int blen = b.length();
+    	  int max_answer_len = (alen > blen ? alen : blen) + 1;
+    	  StringBuilder answer = new StringBuilder(max_answer_len);
+    	  for (int i = 0; i < alen || i < blen || carry > 0; i++) {
+    	    int a_value = i >= alen ? 0 : (a.charAt(alen - i - 1) - '0');
+    	    int b_value = i >= blen ? 0 : (b.charAt(blen - i - 1) - '0');
+    	    int temp = a_value + b_value + carry;
+    	    answer.append(temp % 10);
+    	    carry = temp / 10;
+    	  }
+    	  return answer.reverse().toString();
+    	}
 }
