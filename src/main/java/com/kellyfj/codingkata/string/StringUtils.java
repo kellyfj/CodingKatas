@@ -453,10 +453,8 @@ public class StringUtils {
 		int idx = 0, carry = 0;
 		// Start at the end of each string and move to the 'left'
 		while (idx < aLength || idx < bLength) {
-			char ch_b = idx >= bLength ? '0' : bTrim
-					.charAt((bLength - 1) - idx);
-			char ch_a = idx >= aLength ? '0' : aTrim
-					.charAt((aLength - 1) - idx);
+			char ch_b = idx >= bLength ? '0' : bTrim.charAt((bLength - 1) - idx);
+			char ch_a = idx >= aLength ? '0' : aTrim.charAt((aLength - 1) - idx);
 			int result = (ch_b - '0') + (ch_a - '0') + carry;
 			carry = result / 10;
 			answer.append(result % 10);
