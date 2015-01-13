@@ -129,10 +129,8 @@ public class NumberArrays {
                 } else {
                     return true;
                 }
-
             }
         }
-
         return false;
     }
 
