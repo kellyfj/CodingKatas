@@ -1,11 +1,7 @@
 package com.kellyfj.codingkata.trees;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
-
 import junit.framework.TestCase;
-
 import org.junit.Test;
 
 public class TrieTest extends TestCase {

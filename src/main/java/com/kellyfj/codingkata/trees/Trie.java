@@ -7,8 +7,7 @@ public class Trie {
 
 	private TrieNode root  = new TrieNode(' ');
 	
-	public void addWord(String s) {
-		
+	public void addWord(String s) {	
 		TrieNode curr = root;
 		for(Character ch : s.toCharArray()) {
 			if( !curr.hasChild(ch) ) {
@@ -21,8 +20,7 @@ public class Trie {
 		}
 	}
 
-	public List<String> search(String prefix) {
-		
+	public List<String> search(String prefix) {	
 		if(prefix == null || prefix.isEmpty())
 			return null;
 		
