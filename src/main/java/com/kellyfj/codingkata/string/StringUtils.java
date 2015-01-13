@@ -429,8 +429,9 @@ public class StringUtils {
     /**
      * Inspired by Dan Blumenthal 
      * http://dandreamsofcoding.com/2015/01/09/dissecting-an-interview-question-math-is-hard/
+     * TIME COMPLEXITY: O(n)  SPACE COMPLEXITY: O(n)
      */
-	public static String addNumbers(String a, String b) {
+	public static String addNumberStrings(String a, String b) {
 		//Null Checks
 		if (a == null && b == null)
 			throw new IllegalArgumentException("You can't add two nulls!");
@@ -460,7 +461,7 @@ public class StringUtils {
 			answer.append(result % 10);
 			idx++;
 		}
-
+		
 		if (carry > 0)
 			answer.append(carry);
 

@@ -321,7 +321,7 @@ public class StringUtilsTest {
         	String s1 = "1234";
         	String s2 = "567";
         			
-        	String answer = StringUtils.addNumbers(s1, s2);
+        	String answer = StringUtils.addNumberStrings(s1, s2);
         	System.out.println(answer);
         	assertEquals("1801", answer);
         }
@@ -331,7 +331,7 @@ public class StringUtilsTest {
         	String s1 = "    1234";
         	String s2 = "567    ";
         			
-        	String answer = StringUtils.addNumbers(s1, s2);
+        	String answer = StringUtils.addNumberStrings(s1, s2);
         	System.out.println(answer);
         	assertEquals("1801", answer);
         }
@@ -341,7 +341,7 @@ public class StringUtilsTest {
         	String s1 = "000001234";
         	String s2 = "000567";
         			
-        	String answer = StringUtils.addNumbers(s1, s2);
+        	String answer = StringUtils.addNumberStrings(s1, s2);
         	System.out.println(answer);
         	Integer i_answer = new Integer(answer);
         	assertEquals(new Integer(1801), i_answer);
@@ -354,7 +354,7 @@ public class StringUtilsTest {
         	
         	System.out.println("Adding "+ s1 + " and " + s2);
         			
-        	String answer = StringUtils.addNumbers(s1, s2);
+        	String answer = StringUtils.addNumberStrings(s1, s2);
         	System.out.println(answer);
         	assertEquals("184467440737095516158446744073709551614",answer);
         }
