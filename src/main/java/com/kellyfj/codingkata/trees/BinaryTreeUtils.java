@@ -85,7 +85,11 @@ public class BinaryTreeUtils {
         return ret;
     }
     
-    
+    /**
+     * BFS using an iterative solution
+     * TIME COMPLEXITY: O(n) since considering each node twice on-queue, off-queue
+     * SPACE COMPLEXITY: O(n/2) width of tree at bottom on the queue = O(n)
+     */
     public static List<BinaryTreeNode> findShortestPathBFS(BinaryTreeNode head) {
         if(head==null) return null;
         
@@ -95,16 +99,12 @@ public class BinaryTreeUtils {
         //Find first leaf
         while(!q.isEmpty()) {
              b = q.poll();
-            if(isLeaf(b))
-               break;
-            if(b.getLeft() !=null)
-                q.add(b.getLeft());
-            if(b.getRight() !=null)
-                q.add(b.getRight());
-            
+            if(isLeaf(b)) break;
+            if(b.getLeft() !=null) q.add(b.getLeft());
+            if(b.getRight() !=null) q.add(b.getRight());
         }
         
-        //GO back up tree constructing path
+        //Now go back up tree constructing path
         List<BinaryTreeNode> list = new ArrayList<BinaryTreeNode>();
         while(b!=head) {
             list.add(b);
@@ -112,8 +112,9 @@ public class BinaryTreeUtils {
         }
         list.add(head);
         
-         return list;
+        return list;
     }
+    
     private static boolean isLeaf(BinaryTreeNode b) {
         return b.getLeft()==null && b.getRight()==null;
     }
@@ -299,5 +300,20 @@ public class BinaryTreeUtils {
         return deepestNode;
     }
 
+    
+    public static boolean isSymmetric_aka_isMirror(BinaryTreeNode root) {	
+    	return symmetric_aka_mirror(root.getLeft(), root.getRight());
+    }
+    
+	private static boolean symmetric_aka_mirror(BinaryTreeNode left,
+			BinaryTreeNode right) {
+		
+		if (left == null || right == null)
+			return left == null && right == null;
+		
+		return left.getValue() == right.getValue()
+				&& symmetric_aka_mirror(left.getLeft(), right.right)
+				&& symmetric_aka_mirror(left.getRight(), right.getLeft());
+	}
 }
 

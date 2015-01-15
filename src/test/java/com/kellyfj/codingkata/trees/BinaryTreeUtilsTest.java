@@ -12,6 +12,13 @@ public class BinaryTreeUtilsTest extends TestCase {
     private BinarySearchTreeNode smallBst=null;
     private BinarySearchTreeNode smallBst2=null;
     
+    //For symmetric tests
+    private BinaryTreeNode small_122 = null;
+    private BinaryTreeNode small_1_22_3 = null;
+    private BinaryTreeNode small_1_22_4334 = null;
+    private BinaryTreeNode small_1_22_3434 = null;
+    private BinaryTreeNode small_1_22_33 = null;
+    		
     @Override
     protected void setUp() throws Exception {
         
@@ -36,8 +43,67 @@ public class BinaryTreeUtilsTest extends TestCase {
             testArray3[i-1]=i;
         }
         smallBst2 =  BinarySearchTreeNode.fromArray(testArray3);
+        
+        setupSymmetricTrees();
     }
 
+    private void setupSymmetricTrees() {
+    	/*   1
+ 			/ \
+		   2   2 	 */
+    	small_122 = new BinaryTreeNode(1);
+    	small_122.setLeft(new BinaryTreeNode(2));
+    	small_122.setRight(new BinaryTreeNode(2));    
+    	
+    	/*   1
+ 			/ \
+		   2   2
+		    \ 	
+		     3 */
+    	small_1_22_3 = new BinaryTreeNode(1);
+    	small_1_22_3.setLeft(new BinaryTreeNode(2));
+    	small_1_22_3.setRight(new BinaryTreeNode(2)); 
+    	small_1_22_3.getRight().setRight(new BinaryTreeNode(3));
+    	
+    	/*   1
+   		   /   \
+          2     2
+         / \   / \
+        4   3 3   4 */
+    	small_1_22_4334 = new BinaryTreeNode(1);
+    	small_1_22_4334.setLeft(new BinaryTreeNode(2));
+    	small_1_22_4334.setRight(new BinaryTreeNode(2)); 
+    	small_1_22_4334.getLeft().setLeft(new BinaryTreeNode(4));
+    	small_1_22_4334.getLeft().setRight(new BinaryTreeNode(3));
+    	small_1_22_4334.getRight().setLeft(new BinaryTreeNode(3));
+    	small_1_22_4334.getRight().setRight(new BinaryTreeNode(4)); 
+    	
+    	/*   	 1
+     		   /   \
+    		  2     2 
+   		     / \   / \
+  			3   4 3   4
+    	 */
+    	small_1_22_3434 = new BinaryTreeNode(1);
+    	small_1_22_3434.setLeft(new BinaryTreeNode(2));
+    	small_1_22_3434.setRight(new BinaryTreeNode(2)); 
+    	small_1_22_3434.getLeft().setLeft(new BinaryTreeNode(3));
+    	small_1_22_3434.getLeft().setRight(new BinaryTreeNode(4));
+    	small_1_22_3434.getRight().setLeft(new BinaryTreeNode(3));
+    	small_1_22_3434.getRight().setRight(new BinaryTreeNode(4));
+    	
+    	/*    1
+     		/   \
+    	   2     2
+   		  /       \
+  		 3         3 */
+    	small_1_22_33 = new BinaryTreeNode(1);
+    	small_1_22_33.setLeft(new BinaryTreeNode(2));
+    	small_1_22_33.setRight(new BinaryTreeNode(2)); 
+    	small_1_22_33.getLeft().setLeft(new BinaryTreeNode(3));
+    	small_1_22_33.getRight().setRight(new BinaryTreeNode(3));
+    	
+    }
     @Test
     public void testBreadthFirstTraverse() {
         String str = BinaryTreeUtils.bfsTraverse(smallBst);
@@ -224,5 +290,13 @@ public class BinaryTreeUtilsTest extends TestCase {
         assertTrue(BinaryTreeUtils.dfsTraverse(smallBst, 5));
         
         assertTrue(BinaryTreeUtils.dfsTraverse(bst, 100));
+    }
+    
+    public void testSymmetric() {
+    	assertTrue(BinaryTreeUtils.isSymmetric_aka_isMirror(small_122));
+    	assertFalse(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_3));
+    	assertTrue(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_4334));
+    	assertFalse(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_3434));
+    	assertTrue(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_33));
     }
 }
