@@ -107,12 +107,30 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
         return 1 + leftSize + rightSize;
     }
 
+    /**
+     * Validate a Binary Search Tree
+     * TIME COMPLEXITY: O(n) for traversal + O(n) to validate = O(n)
+     * SPACE COMPLEXITY: O(n) stack + O(n) addl space = O(n)
+     */
+    public boolean validate() { 	
+    	List<BinarySearchTreeNode> list = this.inOrder();
+    	
+    	for(int i=0; i< list.size()-1; i++) {
+    		BinarySearchTreeNode n = list.get(i);
+    		BinarySearchTreeNode next = list.get(i+1);
+    		
+    		if(n.getValue() > next.getValue()) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
     
     /**
      * In order traversal of a binary tree.
      * Useful for things like validating a BST
-     * @param n the head binary tree node
-     * @return String containing the traversal order
+     * TIME COMPLEXITY: O(n) visiting all nodes
+     * SPACE COMPLEXITY: O(n) since we will be N methods deep
      */
     public List<BinarySearchTreeNode> inOrder() {
         List<BinarySearchTreeNode> list = new ArrayList<BinarySearchTreeNode>();
@@ -125,22 +143,7 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
         if(r != null) list.addAll(r.inOrder());
         return list;
     }
-    
-    public boolean validate() { 	
-    	List<BinarySearchTreeNode> list = this.inOrder();
-    	
-    	boolean retval = true;
-    	for(int i=0; i< list.size()-1; i++) {
-    		BinarySearchTreeNode n = list.get(i);
-    		BinarySearchTreeNode next = list.get(i+1);
-    		
-    		if(n.getValue() > next.getValue()) {
-    			retval = false;
-    			break;
-    		}
-    	}
-    	return retval;
-    }
+
     
     @Override
     public boolean equals(Object a) {

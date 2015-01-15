@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Trie {
-
 	private TrieNode root  = new TrieNode(' ');
 	
 	public void addWord(String s) {	
@@ -26,7 +25,6 @@ public class Trie {
 		
 		TrieNode curr = root;
 		List<String> answer = new ArrayList<String>();
-
 		for(Character ch : prefix.toCharArray()) {
 			if( !curr.hasChild(ch) ) {
 				return answer;
