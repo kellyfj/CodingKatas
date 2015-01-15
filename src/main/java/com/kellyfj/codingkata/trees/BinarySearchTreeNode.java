@@ -145,6 +145,12 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
     }
 
     
+    /**
+     * Provide a deep copy duplicate of this BST.
+     * TIME COMPLEXITY: O(n) visiting all nodes
+     * SPACE COMPLEXITY: O(n) due to copy + O(n) on stack = O(2n) = O(n)
+     * @return
+     */
 	public BinarySearchTreeNode duplicate() {
 		BinarySearchTreeNode n = new BinarySearchTreeNode(this.getValue());
 
