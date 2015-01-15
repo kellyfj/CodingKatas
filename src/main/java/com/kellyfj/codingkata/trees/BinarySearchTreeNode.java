@@ -145,6 +145,20 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
     }
 
     
+	public BinarySearchTreeNode duplicate() {
+		BinarySearchTreeNode n = new BinarySearchTreeNode(this.getValue());
+
+		BinarySearchTreeNode l = (BinarySearchTreeNode) this.getLeft();
+		BinarySearchTreeNode r = (BinarySearchTreeNode) this.getRight();
+
+		if (l != null)
+			n.setLeft(l.duplicate());
+		if (r != null)
+			n.setRight(r.duplicate());
+
+		return n;
+	}
+    
     @Override
     public boolean equals(Object a) {
         if (a == null)

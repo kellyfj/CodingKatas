@@ -65,4 +65,26 @@ public class BinarySearchTreeNodeTest extends TestCase {
         assertFalse(bst.validate());        
     }
 
+	public void testDuplicate() {
+		BinarySearchTreeNode noob = bst.duplicate();
+		assertNotNull(noob);
+		
+		assertEquals(100, noob.getSize());
+		
+		BinaryTreeNode n = noob.getKthLargestElement(1);
+		assertNotNull(n);
+		assertEquals(100, n.getValue());
+
+		n = noob.getKthLargestElement(1);
+		assertNotNull(n);
+		assertEquals(100, n.getValue());
+		
+		assertTrue(noob.validate());
+		
+		//Now check that noob is really a copy - not just reusing pointers
+		n.setValue(-1);
+		assertFalse(noob.validate());
+		assertTrue(bst.validate());
+	}
+
 }
