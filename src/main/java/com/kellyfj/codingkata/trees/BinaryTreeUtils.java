@@ -152,35 +152,46 @@ public class BinaryTreeUtils {
      * @return String containing the traversal order
      */
     public static String preOrder(BinaryTreeNode root) {
-
-        if (root == null)
-            return "";
-
+        if (root == null) return "";
+        
         StringBuilder sb = new StringBuilder();
         sb.append(root.getValue() + ",");
-
         sb.append(preOrder(root.getLeft()));
         sb.append(preOrder(root.getRight()));
-
         return sb.toString();
     }
 
     /**
-     * In order traversal of a binary tree
+     * In order traversal of a binary tree.
+     * Useful for things like validating a BST
      * @param n the head binary tree node
      * @return String containing the traversal order
      */
     public static String inOrder(BinaryTreeNode n) {
-        if (n == null)
-            return "";
+        if (n == null) return "";
 
         StringBuilder sb = new StringBuilder();
         sb.append(inOrder(n.getLeft()));
         sb.append(n.getValue() + ",");
         sb.append(inOrder(n.getRight()));
-
         return sb.toString();
     }
+    
+    /**
+     * Post Order Traversal of a Binary Tree
+     * @param n the head binary tree node
+     * @return String containing the traversal order
+     */
+    public static String postOrder(BinaryTreeNode n) {
+        if (n == null) return "";
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(postOrder(n.getLeft()));
+        sb.append(postOrder(n.getRight()));
+        sb.append(n.getValue() + ",");
+        return sb.toString();
+    }
+    
     
     public static String inOrder_Order1Space(BinaryTreeNode n) {
         if (n == null)
@@ -214,22 +225,6 @@ public class BinaryTreeUtils {
             curr = next;
         }
 
-        return sb.toString();
-    }
-
-    /**
-     * Post Order Traversal of a Binary Tree
-     * @param n the head binary tree node
-     * @return String containing the traversal order
-     */
-    public static String postOrder(BinaryTreeNode n) {
-        if (n == null)
-            return "";
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(postOrder(n.getLeft()));
-        sb.append(postOrder(n.getRight()));
-        sb.append(n.getValue() + ",");
         return sb.toString();
     }
 
@@ -303,6 +298,6 @@ public class BinaryTreeUtils {
 
         return deepestNode;
     }
-    
+
 }
 

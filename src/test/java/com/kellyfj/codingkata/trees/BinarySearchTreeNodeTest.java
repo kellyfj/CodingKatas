@@ -51,5 +51,18 @@ public class BinarySearchTreeNodeTest extends TestCase {
         assertEquals(100,n.getValue());
     }
     
+    public void testValidate() {    	
+    	assertTrue(bst.validate());
+    	assertTrue(smallBst.validate());
+    }
+    
+    public void testValidateNegative() {
+    	BinaryTreeNode n = bst.getKthLargestElement(10);
+        assertNotNull(n);
+        assertEquals(91,n.getValue());
+        
+        n.setValue(1);
+        assertFalse(bst.validate());        
+    }
 
 }

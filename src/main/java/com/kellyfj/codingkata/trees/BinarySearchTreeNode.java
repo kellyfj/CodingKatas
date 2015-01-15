@@ -1,6 +1,8 @@
 package com.kellyfj.codingkata.trees;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -37,8 +39,6 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
         node.setRight(right);
         return node;
     }
-
-
 
     /**
      * Find a node with a particular value in the Tree
@@ -107,6 +107,41 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
         return 1 + leftSize + rightSize;
     }
 
+    
+    /**
+     * In order traversal of a binary tree.
+     * Useful for things like validating a BST
+     * @param n the head binary tree node
+     * @return String containing the traversal order
+     */
+    public List<BinarySearchTreeNode> inOrder() {
+        List<BinarySearchTreeNode> list = new ArrayList<BinarySearchTreeNode>();
+       
+        BinarySearchTreeNode l = (BinarySearchTreeNode) this.getLeft();
+        BinarySearchTreeNode r = (BinarySearchTreeNode) this.getRight();
+        
+        if(l != null) list.addAll(l.inOrder());
+        list.add(this);
+        if(r != null) list.addAll(r.inOrder());
+        return list;
+    }
+    
+    public boolean validate() { 	
+    	List<BinarySearchTreeNode> list = this.inOrder();
+    	
+    	boolean retval = true;
+    	for(int i=0; i< list.size()-1; i++) {
+    		BinarySearchTreeNode n = list.get(i);
+    		BinarySearchTreeNode next = list.get(i+1);
+    		
+    		if(n.getValue() > next.getValue()) {
+    			retval = false;
+    			break;
+    		}
+    	}
+    	return retval;
+    }
+    
     @Override
     public boolean equals(Object a) {
         if (a == null)
