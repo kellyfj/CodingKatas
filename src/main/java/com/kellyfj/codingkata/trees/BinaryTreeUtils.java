@@ -149,8 +149,8 @@ public class BinaryTreeUtils {
     
     /**
      * PreOrder Traversal of a Binary Tree
-     * @param root the head binary tree node
-     * @return String containing the traversal order
+     * TIME COMPLEXITY: O(n)
+     * SPACE COMPLEXITY: O(h) == O(log n)
      */
     public static String preOrder(BinaryTreeNode root) {
         if (root == null) return "";
@@ -301,6 +301,12 @@ public class BinaryTreeUtils {
     }
 
     
+    /**
+     * Check if a Binary Tree is Symmetric 
+     * 
+     *  TIME COMPLEXITY: O(n) have to iterate over all nodes
+     *  SPACE COMPLEXITY: O(n) on stack
+     */
     public static boolean isSymmetric_aka_isMirror(BinaryTreeNode root) {	
     	return symmetric_aka_mirror(root.getLeft(), root.getRight());
     }
@@ -312,7 +318,7 @@ public class BinaryTreeUtils {
 			return left == null && right == null;
 		
 		return left.getValue() == right.getValue()
-				&& symmetric_aka_mirror(left.getLeft(), right.right)
+				&& symmetric_aka_mirror(left.getLeft(), right.getRight())
 				&& symmetric_aka_mirror(left.getRight(), right.getLeft());
 	}
 }
