@@ -566,4 +566,71 @@ public class NumberArraysTest extends TestCase {
 			this.assertTrue(true);
 		}
 	}
+	
+	public void testContainsDuplicates1() {
+        int[] a = new int[] {-14,-10,2,108,108,243,285,285,285,401 };
+        
+        assertTrue(NumberArrays.containsDuplicates_orderNspace(a));
+    }
+	
+	public void testContainsDuplicates2() {
+        int[] a = new int[] {-14,-10,2,108,109,243,285,286,108,401 };
+        
+        assertTrue(NumberArrays.containsDuplicates_orderNspace(a));
+    }
+	
+	
+	public void testContainsDuplicates2False() {
+        int[] a = new int[] {-14,-10,2,108,109,243,285,286,287,401 };
+        
+        assertFalse(NumberArrays.containsDuplicates_orderNspace(a));
+    }
+	
+	public void testContainsDuplicates_order1space_1() {
+        int[] a = new int[] { 1,2,2,3,4,5,6,7,8,9 };
+        
+        assertTrue(NumberArrays.containsDuplicates_order1space(a));
+    }
+	
+	public void testContainsDuplicates_order1space_2() {
+        int[] a = new int[] { 1,2,3,4,5,6,7,8,9, 9};
+        
+        assertTrue(NumberArrays.containsDuplicates_order1space(a));
+    }
+	
+	public void testContainsDuplicates_order1space_fail() {
+        int[] a = new int[] { 0, 1,2,3,4,5,6,7,8,9};
+        
+        assertFalse(NumberArrays.containsDuplicates_order1space(a));
+    }
+	
+	public void testFindMostFrequentElem() {
+		int[] a = new int[] { 0, 1,2,3,4,5,6,7,8,9};
+		int i = NumberArrays.findMostFrequentlyOccurringElement(a);
+		assertEquals(0,i);
+	}
+	
+	public void testFindMostFrequentElem1() {
+		int[] a = new int[] { 0, 1,2,3,4,5,6,7,8,0};
+		int i = NumberArrays.findMostFrequentlyOccurringElement(a);
+		assertEquals(0,i);
+	}
+	
+	public void testFindMostFrequentElem2() {
+		int[] a = new int[] { 0, 1,2,3,4,5,7,7,7,0};
+		int i = NumberArrays.findMostFrequentlyOccurringElement(a);
+		assertEquals(7,i);
+	}
+	
+	public void testFindMostFrequentElem3() {
+		int[] a = new int[] { 0, 1,2,3,4,5,-7,-7,-7,0};
+		int i = NumberArrays.findMostFrequentlyOccurringElement(a);
+		assertEquals(-7,i);
+	}
+	
+	public void testFindMissingNumber() {
+		int[] a = new int[] { 1,2,4,6,3,7,8};
+		int i = NumberArrays.findMissingNumber(a);
+		assertEquals(5,i);
+	}
 }

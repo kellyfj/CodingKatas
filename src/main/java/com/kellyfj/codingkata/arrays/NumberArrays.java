@@ -287,6 +287,7 @@ public class NumberArrays {
      * Binary search in array that is sorted
      * 
      * TIME COMPLEXITY: O(log n)
+     * SPACE COMPLEXITY: O(1)
      */
     public static int findFirstOccurrenceOfItemInSortedArray(int[] a, int lookFor) {
         int leftPointer=0;
@@ -514,5 +515,83 @@ public class NumberArrays {
 				return array1[index1 + (k-1)];
 
 		}
+	}
+	
+	/**
+	 * TIME COMPLEXITY: O(n)
+	 * SPACE COMPLEXITY: O(n)
+	 */
+	public static boolean containsDuplicates_orderNspace(int[] array) {
+		Set<Integer> s = new HashSet<Integer>(array.length);
+		for(int i: array) {
+			if(s.contains(i))
+				return true;
+			else
+				s.add(i);
+		}
+		return false;
+	}
+	
+	/**
+	 * Only works for positive numbers when numbers are in the range 0 to n-1
+	 * TIME COMPLEXITY: O(n)
+	 * SPACE COMPLEXITY: O(1)
+	 */
+	public static boolean containsDuplicates_order1space(int[] array) {
+		for(int i=0; i< array.length; i++) {
+			int tmpIndex = Math.abs(array[i]);
+			if(array[tmpIndex] < 0) {
+				return true;
+			} else { //tmpIndex > 0
+				array[tmpIndex] = -1 * array[tmpIndex];
+			}
+			
+		}
+		return false;
+	}
+	
+	/**
+	 * TIME COMPLEXITY: O(2n) = O(n)
+	 * SPACE COMPLEXITY: O(n)
+	 */
+	public static int findMostFrequentlyOccurringElement(int[] array) {
+		Map<Integer,Integer> map = new HashMap<Integer,Integer>(array.length);
+		for(int i: array) {
+			if(map.containsKey(i)) {
+				Integer a = map.get(i);
+				map.put(i, a+1);
+			} else {
+				map.put(i, 1);
+			}
+		}
+		
+		int maxCount = 0;
+		int mostFrequentlyOccurElement = array[0];
+		for(int i: array) {
+			Integer a = map.get(i);
+			if(a > maxCount) {
+				maxCount = a;
+				mostFrequentlyOccurElement = i;
+			}
+		}
+		
+		return mostFrequentlyOccurElement;
+	}
+	
+	/**
+	 * We are given a list of n-1 integers in the range 1 to n with no duplicates.
+	 * Find the missing integers.
+	 * 
+	 * TIME COMPLEXITY: O(n)
+	 * SPACE COMPLEXITY: O(1)
+	 */
+	public static int findMissingNumber(int[] array) {
+		int n = array.length+1;
+		int targetsum = n*(n+1)/2;
+		for(int i=0; i<array.length; i++) {
+			targetsum -= array[i];
+		}
+		
+		return targetsum;
 	}
 }
