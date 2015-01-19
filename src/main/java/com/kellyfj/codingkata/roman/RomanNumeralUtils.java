@@ -8,19 +8,19 @@ public class RomanNumeralUtils {
     public static int getInt(String number) {
         if (number.equals("")) return 0;
         if (number.startsWith("M")) return 1000 + getInt(number.substring(1));
-        if (number.startsWith("CM")) return 900 + getInt(number.substring(2));
-        if (number.startsWith("D")) return 500 + getInt(number.substring(1));
-        if (number.startsWith("CD")) return 400 + getInt(number.substring(2));
-        if (number.startsWith("C")) return 100 + getInt(number.substring(1));
-        if (number.startsWith("XC")) return 90 + getInt(number.substring(2));
-        if (number.startsWith("L")) return 50 + getInt(number.substring(1));
-        if (number.startsWith("XL")) return 40 + getInt(number.substring(2));
-        if (number.startsWith("X")) return 10 + getInt(number.substring(1));
-        if (number.startsWith("IX")) return 9 + getInt(number.substring(2));
-        if (number.startsWith("V")) return 5 + getInt(number.substring(1));
-        if (number.startsWith("IV")) return 4 + getInt(number.substring(2));
-        if (number.startsWith("I")) return 1 + getInt(number.substring(1));
-        throw new RuntimeException("String Argument ("+number+") is not a valid Roman Numeral");
+        else if (number.startsWith("CM")) return 900 + getInt(number.substring(2));
+        else if (number.startsWith("D")) return 500 + getInt(number.substring(1));
+        else if (number.startsWith("CD")) return 400 + getInt(number.substring(2));
+        else if (number.startsWith("C")) return 100 + getInt(number.substring(1));
+        else if (number.startsWith("XC")) return 90 + getInt(number.substring(2));
+        else if (number.startsWith("L")) return 50 + getInt(number.substring(1));
+        else if (number.startsWith("XL")) return 40 + getInt(number.substring(2));
+        else if (number.startsWith("X")) return 10 + getInt(number.substring(1));
+        else if (number.startsWith("IX")) return 9 + getInt(number.substring(2));
+        else if (number.startsWith("V")) return 5 + getInt(number.substring(1));
+        else if (number.startsWith("IV")) return 4 + getInt(number.substring(2));
+        else if (number.startsWith("I")) return 1 + getInt(number.substring(1));
+        else throw new RuntimeException("String Argument ("+number+") is not a valid Roman Numeral");
     }
    
     
