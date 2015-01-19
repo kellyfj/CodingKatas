@@ -52,6 +52,10 @@ public class ListUtils {
     }
     
     
+    /**
+     * TIME COMPLEXITY: O(n) length of the list
+     * SPACE COMPLEXITY: O(1)
+     */
     public static ListElement removeKthLastElement(ListElement head, int k) {
         
         ListElement kthAheadPointer = head;
