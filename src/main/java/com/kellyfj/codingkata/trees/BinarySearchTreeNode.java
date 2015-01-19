@@ -17,8 +17,8 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
     
     /**
      * Convert an Array of Integers into a Binary Search Tree
-     * @param arr
-     * @return
+     * TIME COMPLEXITY: O(nlogn) + O(n) = O(nlogn)
+     * SPACE COMPLEXITY: O(n)
      */
     public static BinarySearchTreeNode fromArray(int[] arr) {
         Arrays.sort(arr);
