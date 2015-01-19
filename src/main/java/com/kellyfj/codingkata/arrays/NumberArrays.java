@@ -288,7 +288,7 @@ public class NumberArrays {
      * 
      * TIME COMPLEXITY: O(log n)
      */
-    public static int findIndexOfItemInSortedArray(int[] a, int lookFor) {
+    public static int findFirstOccurrenceOfItemInSortedArray(int[] a, int lookFor) {
         int leftPointer=0;
         int rightPointer=a.length-1;
         int result=-1;
