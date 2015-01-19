@@ -398,9 +398,8 @@ public class StringUtils {
      * Strings/Longest_common_substring#Java Order Complexity:
      * http://en.wikipedia.org/wiki/Longest_common_substring_problem
      * 
-     * @param s1
-     * @param s2
-     * @return
+     * TIME COMPLEXITY: O(nm) ??Not 100% 
+     * SPACE COMPLEXITY: O(nm) due to String creation
      */
     public static String longestCommonSubstring(String s1, String s2) {
 
