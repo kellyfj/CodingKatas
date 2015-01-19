@@ -275,6 +275,15 @@ public class NumberArraysTest extends TestCase {
         assertEquals(1,listOfSets.size());
         System.out.println("There were "+listOfSets.size()+" sets of size K");
     }
+    
+    public void testSetsOfSizeK0Fail() {
+        int[] testArray = {1};
+        
+        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray,2);             
+        NumberArrays.printPowerSet(listOfSets);
+        assertEquals(0,listOfSets.size());
+        System.out.println("There were "+listOfSets.size()+" sets of size K");
+    }
     public void testGetBinary() {
         String s = NumberArrays.getBinaryRepresentation(2);
         assertEquals("10", s);
