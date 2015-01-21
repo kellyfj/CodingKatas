@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Test;
-
 import junit.framework.TestCase;
 
 import com.kellyfj.codingkata.arrays.NumberArrays.MinMax;
@@ -211,6 +209,15 @@ public class NumberArraysTest extends TestCase {
         assertTrue(inOrder(testArray));
     }  
     
+    public void testCountingSort() {
+    	 int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};
+    	 int[] answer = NumberArrays.countingSort(testArray, 2);
+    	 
+    	 assertTrue(answer.length==testArray.length);
+         assertTrue(inOrder(answer));
+         assertTrue(Arrays.equals(answer, new int[] {0,0,0,0,1,1,1,1,2,2,2}));
+    	 
+    }
     
     public void testCountBinaryOnes() {
         assertEquals(1, NumberArrays.countBinaryOnes(2));
@@ -560,10 +567,10 @@ public class NumberArraysTest extends TestCase {
 		int[] a = new int[] { 1, 2, 3, 4, 5 };
 		int[] b = new int[] { 6, 7, 8, 9, 10 };
 		try {
-			int i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 11);
-			this.fail("Exception expected");
+			NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 11);
+			fail("Exception expected");
 		}catch(IllegalArgumentException iae) {
-			this.assertTrue(true);
+			assertTrue(true);
 		}
 	}
 	

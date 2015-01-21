@@ -282,6 +282,31 @@ public class NumberArrays {
         }  
 
     }
+    
+    /**
+     * COunting sort for integers in the range 0 to max_range
+     * @param a
+     * @param max_range
+     * @return
+     */
+    public static int[] countingSort(int[] a, int max_range) {
+    	int[] tmparray = new int[max_range+1];
+    	
+    	for(int i=0; i< a.length; i++) {
+    		int value = a[i];
+    		tmparray[value] += 1;
+    	}
+    	
+    	int[] answer = new int[a.length];
+    	int k=0;
+    	for(int i=0; i< tmparray.length; i++) {
+    		for(int j=0; j< tmparray[i]; j++) {
+    			answer[k++] = i;
+    		}
+    	}
+    	
+    	return answer;
+    }
 
     /**
      * Binary search in array that is sorted
