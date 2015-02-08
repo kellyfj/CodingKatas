@@ -208,6 +208,23 @@ public class NumberArraysTest extends TestCase {
         assertTrue(originalLength==testArray.length);
         assertTrue(inOrder(testArray));
     }  
+  
+    public void testDutchNationalFlagOnePass_worstcase() {       
+        int[] testArray = {2,2,2,2,1,1,1,1,1,0,0,0,0};     
+        int originalLength = testArray.length;
+        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray,1);      
+        NumberArrays.printArray(testArray);
+        assertTrue(originalLength==testArray.length);
+        assertTrue(inOrder(testArray));
+    } 
+    public void testDutchNationalFlagOnePass_worstcase2() {       
+        int[] testArray = {2,2,2,2,1,1,1,1,1,0};     
+        int originalLength = testArray.length;
+        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray,1);      
+        NumberArrays.printArray(testArray);
+        assertTrue(originalLength==testArray.length);
+        assertTrue(inOrder(testArray));
+    } 
     
     public void testCountingSort() {
     	 int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};
@@ -428,7 +445,7 @@ public class NumberArraysTest extends TestCase {
         assertEquals(test[0],ans.min);
         assertEquals(test[test.length-1],ans.max);
         System.out.println(ans.comparisons +" comparisons performed");
-        assertEquals(3*MAX/2 - 2,ans.comparisons);
+        assertEquals(3*MAX/2 +1,ans.comparisons);
     }
     
     public void testFindMinMaxOdd() {
@@ -468,6 +485,27 @@ public class NumberArraysTest extends TestCase {
         assertEquals(test[test.length-1],ans.max);
         System.out.println(ans.comparisons +" comparisons performed");
         assertEquals(1,ans.comparisons);
+    }
+    
+    
+    public void testFindMinMaxEdge3() {
+        int[] test = new int[] {1,2,3,4,5,6,7,0,8}; //Odd number of elements
+        
+        MinMax ans = NumberArrays.getMinMax(test);
+        assertEquals(test[test.length-2],ans.min);
+        assertEquals(test[test.length-1],ans.max);
+        System.out.println(ans.comparisons +" comparisons performed");
+        assertEquals(13,ans.comparisons);
+    }
+    
+    public void testFindMinMaxEdge4() {
+        int[] test = new int[] {2,3,4,5,6,7,0,8}; //Even number
+         
+        MinMax ans = NumberArrays.getMinMax(test);
+        assertEquals(test[test.length-2],ans.min);
+        assertEquals(test[test.length-1],ans.max);
+        System.out.println(ans.comparisons +" comparisons performed");
+        assertEquals(13,ans.comparisons);
     }
     
     public void testMerge() {

@@ -49,7 +49,10 @@ public class NumberArrays {
                 minmax.comparisons++;
                 if (arr[i] < minmax.min)  minmax.min = arr[i];
             }
+            
             i += 2; //Increment the index by 2 as two elements are processed
+            //If we are near the end - ensure we compare the last two numbers
+            if(i == arr.length - 1) i -= 1;
         }
 
         return minmax;
@@ -284,10 +287,9 @@ public class NumberArrays {
     }
     
     /**
-     * COunting sort for integers in the range 0 to max_range
-     * @param a
-     * @param max_range
-     * @return
+     * Counting sort for integers in the range 0 to max_range
+     * TIME COMPLEXITY: O(n)
+     * SPACE COMPLEXITY: O(n) + O(k) = O(n)
      */
     public static int[] countingSort(int[] a, int max_range) {
     	int[] tmparray = new int[max_range+1];
