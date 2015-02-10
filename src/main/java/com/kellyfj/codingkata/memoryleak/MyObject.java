@@ -7,10 +7,4 @@ public class MyObject {
 		
 		return (int) System.nanoTime();
 	}
-	/*
-	@Override
-	public boolean equals(Object o) {
-		
-		return false;
-	}*/
 }

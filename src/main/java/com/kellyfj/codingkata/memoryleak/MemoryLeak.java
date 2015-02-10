@@ -7,10 +7,9 @@ public class MemoryLeak {
 
 	public static void main(String[] args) {
 		Set<MyObject> s = new HashSet<MyObject>();
-		MyObject m = new MyObject();
+		final MyObject m = new MyObject();
 		long i = 0;
-		while (true) {
-			
+		while (true) {			
 			i++;
 
 			if(!s.contains(m)) {
@@ -20,6 +19,5 @@ public class MemoryLeak {
 				System.out.println("Size : " + s.size());
 			}
 		}
-
 	}
 }
