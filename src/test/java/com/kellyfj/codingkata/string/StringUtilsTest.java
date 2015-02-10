@@ -401,4 +401,10 @@ public class StringUtilsTest {
         	System.out.println(answer);
         	assertEquals("184467440737095516158446744073709551614",answer);
         }
+        
+        @Test
+        public void testprintStarPos() {
+        	StringUtils.printDiamond(5);
+        	StringUtils.printDiamond(17);
+        }
 }

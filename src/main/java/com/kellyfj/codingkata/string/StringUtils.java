@@ -494,4 +494,30 @@ public class StringUtils {
     	  }
     	  return answer.reverse().toString();
     	}
+    
+    public static void printDiamond(int numLines) {
+    	int WIDTH=80;
+    	int MIDDLE_WIDTH = WIDTH/2;
+    	int starPos1 = MIDDLE_WIDTH; 
+    	int starPos2 = MIDDLE_WIDTH;
+    	int MIDDLE_HEIGHT= numLines/2;
+    	for(int i=0; i< numLines; i++) {
+    		
+    		for(int j=0; j<80; j++) {
+    			if(j==starPos1 || j==starPos2)
+    				System.out.print("*");
+    			else
+    				System.out.print(" ");
+    		}
+    		System.out.println("");
+    		if(i < MIDDLE_HEIGHT) {
+    			starPos1--;
+    			starPos2++;
+    		} else {
+    			starPos1++;
+    			starPos2--;
+    		}
+    	}
+    	
+    }
 }
