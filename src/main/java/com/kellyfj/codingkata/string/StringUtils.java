@@ -504,7 +504,7 @@ public class StringUtils {
     	for(int i=0; i< numLines; i++) {
     		
     		for(int j=0; j<80; j++) {
-    			if(j==starPos1 || j==starPos2)
+    			if(j>=starPos1 && j <=starPos2)
     				System.out.print("*");
     			else
     				System.out.print(" ");
