@@ -406,5 +406,6 @@ public class StringUtilsTest {
         public void testprintStarPos() {
         	StringUtils.printDiamond(5);
         	StringUtils.printDiamond(17);
+        	StringUtils.printDiamond(81);
         }
 }
