@@ -180,6 +180,7 @@ public class BinaryTreeUtilsTest extends TestCase {
         List<BinaryTreeNode> t = BinaryTreeUtils.findShortestPathBFS(smallBst);
         assertNotNull(t);
         printList(t);
+        assertEquals(3,l.size()); 
     }
     
     @Test
@@ -200,6 +201,7 @@ public class BinaryTreeUtilsTest extends TestCase {
         List<BinaryTreeNode> t = BinaryTreeUtils.findShortestPathBFS(smallBst2);
         assertNotNull(t);
         printList(t);
+        assertEquals(3,l.size()); 
     }
     
     @Test
@@ -221,6 +223,7 @@ public class BinaryTreeUtilsTest extends TestCase {
         List<BinaryTreeNode> t = BinaryTreeUtils.findShortestPathBFS(bst);
         assertNotNull(t);
         printList(t);
+        assertEquals(6,l.size());
     }
 
 

@@ -1,6 +1,7 @@
 package com.kellyfj.codingkata.trees;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -106,12 +107,12 @@ public class BinaryTreeUtils {
         
         //Now go back up tree constructing path
         List<BinaryTreeNode> list = new ArrayList<BinaryTreeNode>();
-        while(b!=head) {
-            list.add(b);
+        while(b.getParent() != null) {
+            list.add(b.getParent());
             b = b.getParent();
         }
-        list.add(head);
         
+        Collections.reverse(list);
         return list;
     }
     
