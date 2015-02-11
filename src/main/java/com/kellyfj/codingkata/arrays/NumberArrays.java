@@ -9,8 +9,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import junit.framework.Assert;
-
 public class NumberArrays {
 
     /**
@@ -281,6 +279,7 @@ public class NumberArrays {
                 swap(a, endIndex, i);
                 endIndex--;
                 // do not increment i. We have to revisit this again
+                //in case a[endIndex] < mid
             } else {
                 i++;
             }
@@ -533,7 +532,7 @@ public class NumberArrays {
 
 		//If you haven't reached end of either array - pick smallest of remaining pointers
 		if (index1 < array1.length && index2 < array2.length) {
-			Assert.assertTrue(k==1);
+			//Assert.assertTrue(k==1);
 			if (array1[index1] > array2[index2])
 				return array2[index2];
 			else
