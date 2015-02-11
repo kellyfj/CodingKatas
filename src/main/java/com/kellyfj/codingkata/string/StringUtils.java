@@ -496,14 +496,16 @@ public class StringUtils {
     	}
     
     public static void printDiamond(int numLines) {
-    	int WIDTH=80;
+    	int WIDTH=81; //Should be an odd number	
     	int MIDDLE_WIDTH = WIDTH/2;
+    	if(numLines > WIDTH+1)
+    		throw new IllegalArgumentException("Number of lines to draw cannot be greater than "+ MIDDLE_WIDTH);
     	int starPos1 = MIDDLE_WIDTH; 
     	int starPos2 = MIDDLE_WIDTH;
     	int MIDDLE_HEIGHT= numLines/2;
     	for(int i=0; i< numLines; i++) {
     		
-    		for(int j=0; j<80; j++) {
+    		for(int j=0; j<WIDTH; j++) {
     			if(j>=starPos1 && j <=starPos2)
     				System.out.print("*");
     			else
