@@ -601,6 +601,24 @@ public class NumberArraysTest extends TestCase {
     	 assertEquals(10,i);
     }
     
+    public void testFindKthSmallestInTwoArraysOverlapping() {
+    	int[] a = new int[] { 1,3,5,7,9 };
+    	int[] b = new int[] { 2,4,6,8,10 };
+    	int i=0;
+   
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 1);
+    	assertEquals(1,i);
+    	
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 2);
+    	 assertEquals(2,i);
+
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 6);
+    	 assertEquals(6,i);
+    	 
+    	 i = NumberArrays.getKthSmallestElementInTwoSortedArrays(a, b, 10);
+    	 assertEquals(10,i);
+    }
+    
 	public void testFindKthSmallestInTwoArraysErrors() {
 		int[] a = new int[] { 1, 2, 3, 4, 5 };
 		int[] b = new int[] { 6, 7, 8, 9, 10 };

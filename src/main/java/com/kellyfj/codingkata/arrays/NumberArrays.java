@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
+import junit.framework.Assert;
+
 public class NumberArrays {
 
     /**
@@ -529,13 +531,14 @@ public class NumberArrays {
 			k--;
 		}
 
-		//Choose
+		//If you haven't reached end of either array - pick smallest of remaining pointers
 		if (index1 < array1.length && index2 < array2.length) {
+			Assert.assertTrue(k==1);
 			if (array1[index1] > array2[index2])
 				return array2[index2];
 			else
 				return array1[index1];
-		} else {
+		} else { //Else reached end of one array
 			if (index1 >= array1.length)
 				return array2[index2 + (k-1)];
 			else
