@@ -110,7 +110,7 @@ public class BinarySearchTreeNode extends BinaryTreeNode {
     /**
      * Validate a Binary Search Tree
      * TIME COMPLEXITY: O(n) for traversal + O(n) to validate = O(n)
-     * SPACE COMPLEXITY: O(n) stack + O(n) addl space = O(n)
+     * SPACE COMPLEXITY: O(n) stack for the inorder traversal + O(n) addl space = O(n)
      */
     public boolean validate() { 	
     	List<BinarySearchTreeNode> list = this.inOrder();
