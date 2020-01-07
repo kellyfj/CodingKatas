@@ -1,0 +1,23 @@
+plugins {
+        id 'java'
+        id 'eclipse'
+}
+
+repositories {
+        mavenCentral()
+}
+
+dependencies {
+	testCompile "junit:junit:3.8.1"
+	compile "org.apache.commons:commons-lang3:3.1"
+	compile "org.apache.commons:commons-math3:3.2"
+	testCompile "junit:junit:4.8.1"
+	compile "org.apache.avro:avro:1.7.5"
+	compile "org.apache.thrift:libthrift:0.9.1"
+}
+
+test {
+        testLogging {
+                events "passed", "skipped", "failed"
+        }
+}

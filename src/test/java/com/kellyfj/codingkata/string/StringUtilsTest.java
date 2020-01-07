@@ -220,9 +220,9 @@ public class StringUtilsTest {
            Object[] listOfStringsArray = ret.toArray();
            
            List<String> ls = (List<String>) listOfStringsArray[0];
-           assertEquals(2,ls.size()); //"I saw" and "Saw I"
+           assertEquals(3,ls.size()); // "able" etc. 
            ls = (List<String>) listOfStringsArray[1];
-           assertEquals(3,ls.size()); //"able" etc.
+           assertEquals(2,ls.size()); // "I saw" and "Saw I"
            
         }
         
