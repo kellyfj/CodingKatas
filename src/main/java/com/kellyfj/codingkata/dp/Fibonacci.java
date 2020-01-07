@@ -6,7 +6,7 @@ public class Fibonacci {
     {
         int last=0;
         int current = 1;
-        StringBuffer sb = new StringBuffer(last+","+current+",");
+        StringBuilder sb = new StringBuilder(last+","+current+",");
         
         while(current < max)
         {

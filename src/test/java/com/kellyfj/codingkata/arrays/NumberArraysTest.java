@@ -165,6 +165,25 @@ public class NumberArraysTest extends TestCase {
         NumberArrays.printArray(testArray);
     }
     
+    /**
+     * Shuffle
+     */
+    public void testShuffleLong() {
+        int SIZE = 1024;
+        Integer[] testArray = new Integer[SIZE];
+        for(int i=0; i< SIZE; i++) {
+            testArray[i] = i;
+        }
+        int beforeCount = testArray.length;
+        
+        System.out.println("BEFORE");
+        NumberArrays.printArray(testArray);
+        NumberArrays.shuffle(testArray);
+        assertTrue(beforeCount==testArray.length);
+        System.out.println("AFTER");
+        NumberArrays.printArray(testArray);
+    }
+    
     public void testLongestMonotonicSequenceNone() {
         int[] testArray = {5,4,3,2,1,9};      
         int ret =   NumberArrays.lengthOfLongestMonotonicSeries(testArray);

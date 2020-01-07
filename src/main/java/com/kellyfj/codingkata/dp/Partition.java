@@ -8,22 +8,6 @@ public class Partition {
     private static final List<Integer> listA= new ArrayList<Integer>();
     private static final List<Integer> listB= new ArrayList<Integer>();
     
-    private static void printLists()
-    {
-        System.out.print("List A = {");
-        for(int i=0; i< listA.size(); i++)
-        {
-            System.out.print(listA.get(i)+",");
-        }
-        System.out.println("}");
-        System.out.print("List b = {");
-        for(int i=0; i< listB.size(); i++)
-        {
-            System.out.print(listB.get(i)+",");
-        }
-        System.out.println("}");
-    }
-    
     /**
      * GOAL: Given a set of positive integers, partition the set into two such that 
      * the difference between the sum of the two sets is minimized.
@@ -112,7 +96,7 @@ public class Partition {
          return part[sum/2][n];
     }     
 
-    // Driver program to test above funtion
+    // Driver program to test above function
     public static void main(String[] args)
     {
       int arr[] = {1,2,3};
@@ -124,5 +108,22 @@ public class Partition {
       
       getBalancedPartition(arr,0,0);
       printLists();
+    }
+    
+    
+    private static void printLists()
+    {
+        System.out.print("List A = {");
+        for(int i=0; i< listA.size(); i++)
+        {
+            System.out.print(listA.get(i)+",");
+        }
+        System.out.println("}");
+        System.out.print("List b = {");
+        for(int i=0; i< listB.size(); i++)
+        {
+            System.out.print(listB.get(i)+",");
+        }
+        System.out.println("}");
     }
 }

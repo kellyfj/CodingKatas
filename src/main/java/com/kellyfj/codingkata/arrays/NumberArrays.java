@@ -69,8 +69,8 @@ public class NumberArrays {
     /**
      * http://codercareer.blogspot.com/2011/10/no-09-numbers-with-given-sum.html
      * Given an array, please determine whether it contains three numbers whose
-     * sum equals to 0.
-     * TIME COMPLEXITY: O(nlogn) due to soirt
+     * sum equals to a target.
+     * TIME COMPLEXITY: O(nlogn) due to sort
      */
     public static boolean doesSumOfTwoEqualN_orderNlogN(int[] array, int target) {
         if (array.length < 2)
@@ -288,22 +288,24 @@ public class NumberArrays {
     }
     
     /**
-     * Counting sort for integers in the range 0 to max_range
+     * Counting sort for integers in the range 0 to max_range 
      * TIME COMPLEXITY: O(n)
      * SPACE COMPLEXITY: O(n) + O(k) = O(n)
      */
     public static int[] countingSort(int[] a, int max_range) {
-    	int[] tmparray = new int[max_range+1];
+    	int[] valueCounts = new int[max_range+1]; //0 to max_range means max_range+1 values
     	
+    	//O(n) counting
     	for(int i=0; i< a.length; i++) {
     		int value = a[i];
-    		tmparray[value] += 1;
+    		valueCounts[value] += 1;
     	}
     	
     	int[] answer = new int[a.length];
     	int k=0;
-    	for(int i=0; i< tmparray.length; i++) {
-    		for(int j=0; j< tmparray[i]; j++) {
+    	//O(nk) "sorting"
+    	for(int i=0; i< valueCounts.length; i++) {
+    		for(int j=0; j< valueCounts[i]; j++) {
     			answer[k++] = i;
     		}
     	}
