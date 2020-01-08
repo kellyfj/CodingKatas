@@ -18,6 +18,7 @@ public class TrieTest extends TestCase {
 		t.addWord("automobile");
 		t.addWord("Fred");
 	}
+	
 	@Test
 	public void test() {
 		t.print();

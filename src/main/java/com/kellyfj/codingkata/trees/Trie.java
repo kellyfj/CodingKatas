@@ -24,10 +24,10 @@ public class Trie {
 			return null;
 		
 		TrieNode curr = root;
-		List<String> answer = new ArrayList<String>();
+		List<String> answerSet = new ArrayList<String>();
 		for(Character ch : prefix.toCharArray()) {
 			if( !curr.hasChild(ch) ) {
-				return answer;
+				return answerSet;
 			} 
 			curr = curr.getChild(ch);
 		}
