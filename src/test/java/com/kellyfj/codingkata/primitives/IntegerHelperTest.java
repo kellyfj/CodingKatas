@@ -1,5 +1,7 @@
 package com.kellyfj.codingkata.primitives;
 
+import com.kellyfj.codingkata.primitives.IntegerHelper.Rectangle;
+
 import junit.framework.TestCase;
 
 public class IntegerHelperTest extends TestCase {
@@ -35,5 +37,33 @@ public class IntegerHelperTest extends TestCase {
         rev = IntegerHelper.reverseOrderN(Long.MIN_VALUE + 1);
         assertTrue(rev < 0);    
         //Same Note as above on Math.abs()
+    }
+    
+    public void testRectangleOverlap() {
+        // Complete overlap
+        Rectangle r1 = new Rectangle(0, 0, 2, 5);
+        Rectangle r2 = new Rectangle(0, 0, 1, 1);
+
+        assertTrue(IntegerHelper.IsIntersect(r1, r2));
+
+        // Partial Overlap
+        r1 = new Rectangle(0, 0, 2, 5);
+        r2 = new Rectangle(1, 1, 2, 2);
+        assertTrue(IntegerHelper.IsIntersect(r1, r2));
+
+        // No Overlap
+        r1 = new Rectangle(0, 0, 2, 5);
+        r2 = new Rectangle(10, 10, 2, 2);
+        assertFalse(IntegerHelper.IsIntersect(r1, r2));
+        
+        //No overlap closer
+        r1 = new Rectangle(0, 0, 2, 5);
+        r2 = new Rectangle(3, 6, 1, 1);
+        assertFalse(IntegerHelper.IsIntersect(r1, r2));
+        
+        //"Point" overlap
+        r1 = new Rectangle(0, 0, 2, 5);
+        r2 = new Rectangle(2, 5, 1, 1);
+        assertTrue(IntegerHelper.IsIntersect(r1, r2));
     }
 }

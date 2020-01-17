@@ -32,4 +32,21 @@ public class IntegerHelper {
         return x < 0 ? -result : result;
     }
     
+    public static class Rectangle {
+        int x, y, width, height;
+
+        public Rectangle(int x, int y, int width, int height) {
+            this.x = x;
+            this.y = y;
+            this.width = width;
+            this.height = height;
+        }
+    }
+    
+    public static boolean IsIntersect(Rectangle r1, Rectangle r2) {
+        boolean xRangesOverlap = r1.x <= r2.x + r2.width && r1.x + r1.width >= r2.x;
+        boolean yRangesOverlap = r1.y <= r2.y + r2.height && r1.y + r1.height >= r2.y;
+
+        return xRangesOverlap && yRangesOverlap;
+    }
 }
