@@ -2,6 +2,7 @@ package com.kellyfj.codingkata.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -235,6 +236,8 @@ public class NumberArrays {
     }
 
     /**
+     * EPIJava 5.1
+     * 
      * http://en.wikipedia.org/wiki/Dutch_national_flag_problem
      * TIME COMPLEXITY: O(n)
      * SPACE COMPLEXITY: O(n) for the new array
@@ -284,7 +287,6 @@ public class NumberArrays {
                 i++;
             }
         }  
-
     }
     
     /**
@@ -625,4 +627,70 @@ public class NumberArrays {
 		
 		return targetsum;
 	}
+	
+	
+	/**
+	 * Uses O(n) space
+	 */
+	public static List<Integer> incrementArbitraryPrecisionInteger(List<Integer> intList) {
+	    if(intList.isEmpty()) {
+	        return Collections.emptyList();
+	    }
+	    int listSize = intList.size();
+	    //Important notice how we assign objects not just setting the capacity
+	    //FYI it is fixed size 
+	    List<Integer> returnList = Arrays.asList(new Integer[listSize+1]);
+	    int carry=0;
+	    
+	    returnList.set(0, 0); //This number is in case of a carry later
+	    
+        int currInt = intList.get(listSize - 1);
+        if (currInt == 9) {
+            returnList.set(listSize, 0);
+            carry = 1;
+        } else { // carry remains zero
+            returnList.set(listSize, currInt + 1);
+        }
+	    
+        for (int i = listSize - 2; i >= 0; i--) {
+            currInt = intList.get(i);
+            if (carry > 0) {
+                if (currInt == 9) {
+                    returnList.set(i+1, 0);
+                    carry = 1;
+                } else {
+                    returnList.set(i+1, currInt + carry);
+                    carry = 0;
+                }
+            } //else continue
+        }
+        
+        if(carry == 1) {
+            returnList.set(0, 1);
+        }
+        
+        return returnList;
+	    
+	}
+	
+    public static List<Integer> plusOneOrder1Space(List<Integer> A) {
+        if(A.isEmpty()) {
+            return Collections.emptyList();
+        }
+        
+        int n = A.size() - 1;
+        A.set(n, A.get(n) + 1);
+
+        for (int i = n; i > 0 && A.get(i) == 10; --i) {
+            A.set(i, 0);
+            A.set(i - 1, A.get(i - 1) + 1);
+        }
+
+        if (A.get(0) == 10) {
+            A.set(0, 1);
+            A.add(0);
+
+        }
+        return A;
+    }
 }

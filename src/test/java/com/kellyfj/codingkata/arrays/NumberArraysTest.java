@@ -198,61 +198,60 @@ public class NumberArraysTest extends TestCase {
     }
     
     
-    public void testDutchNationalFlagBasic() {       
-        int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};     
+    public void testDutchNationalFlagBasic() {
+        int[] testArray = { 0, 0, 1, 0, 1, 2, 2, 1, 2, 1, 0 };
         NumberArrays.dutchNationalFlagBasic(testArray);
-        NumberArrays.printArray(testArray);  
+        NumberArrays.printArray(testArray);
         assertTrue(inOrder(testArray));
     }
     
     private boolean inOrder(int[] testArray) {
-        
-        boolean retVal = true;
-       for(int i=0; i<testArray.length-1; i++) {
-           int a = testArray[i];
-           int b = testArray[i+1];
-           if((a == b) || (a+1 == b))
-               continue;
-           else
-              retVal=false;
-       }
-       return retVal;
+        for (int i = 0; i < testArray.length - 1; i++) {
+            int a = testArray[i];
+            int b = testArray[i + 1];
+            if ((a == b) || (a + 1 == b))
+                continue;
+            else
+                return false;
+        }
+        return true;
     }
 
-    public void testDutchNationalFlagOnePass() {       
-        int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};     
+    public void testDutchNationalFlagOnePass() {
+        int[] testArray = { 0, 0, 1, 0, 1, 2, 2, 1, 2, 1, 0 };
         int originalLength = testArray.length;
-        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray,1);      
+        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray, 1);
         NumberArrays.printArray(testArray);
-        assertTrue(originalLength==testArray.length);
+        assertTrue(originalLength == testArray.length);
         assertTrue(inOrder(testArray));
-    }  
-  
-    public void testDutchNationalFlagOnePass_worstcase() {       
-        int[] testArray = {2,2,2,2,1,1,1,1,1,0,0,0,0};     
+    }
+
+    public void testDutchNationalFlagOnePass_worstcase() {
+        int[] testArray = { 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0 };
         int originalLength = testArray.length;
-        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray,1);      
+        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray, 1);
         NumberArrays.printArray(testArray);
-        assertTrue(originalLength==testArray.length);
+        assertTrue(originalLength == testArray.length);
         assertTrue(inOrder(testArray));
-    } 
-    public void testDutchNationalFlagOnePass_worstcase2() {       
-        int[] testArray = {2,2,2,2,1,1,1,1,1,0};     
+    }
+
+    public void testDutchNationalFlagOnePass_worstcase2() {
+        int[] testArray = { 2, 2, 2, 2, 1, 1, 1, 1, 1, 0 };
         int originalLength = testArray.length;
-        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray,1);      
+        NumberArrays.dutchNationalFlagOnePass_Order1AdditionalSpace(testArray, 1);
         NumberArrays.printArray(testArray);
-        assertTrue(originalLength==testArray.length);
+        assertTrue(originalLength == testArray.length);
         assertTrue(inOrder(testArray));
     } 
     
     public void testCountingSort() {
-    	 int[] testArray = {0,0,1,0,1,2,2,1,2,1,0};
-    	 int[] answer = NumberArrays.countingSort(testArray, 2);
-    	 
-    	 assertTrue(answer.length==testArray.length);
-         assertTrue(inOrder(answer));
-         assertTrue(Arrays.equals(answer, new int[] {0,0,0,0,1,1,1,1,2,2,2}));
-    	 
+        int[] testArray = { 0, 0, 1, 0, 1, 2, 2, 1, 2, 1, 0 };
+        int[] answer = NumberArrays.countingSort(testArray, 2);
+
+        assertTrue(answer.length == testArray.length);
+        assertTrue(inOrder(answer));
+        assertTrue(Arrays.equals(answer, new int[] { 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2 }));
+
     }
     
     public void testCountBinaryOnes() {
@@ -260,73 +259,70 @@ public class NumberArraysTest extends TestCase {
         assertEquals(2, NumberArrays.countBinaryOnes(3));
         assertEquals(1, NumberArrays.countBinaryOnes(4));
         assertEquals(2, NumberArrays.countBinaryOnes(5));
-        assertEquals(3, NumberArrays.countBinaryOnes(7));     
+        assertEquals(3, NumberArrays.countBinaryOnes(7));
     }
-    
+
     public void testPowerSet() {
-        int[] testArray = {1,2,3};
-        
-        List<Set<Integer>> listOfSets = NumberArrays.powerSet(testArray);             
+        int[] testArray = { 1, 2, 3 };
+
+        List<Set<Integer>> listOfSets = NumberArrays.powerSet(testArray);
         NumberArrays.printPowerSet(listOfSets);
-        assertEquals((double)listOfSets.size(),Math.pow(2,testArray.length));
-        System.out.println("There were "+listOfSets.size()+" sets in the powerset");
-    }
-    
-    
+        assertEquals((double) listOfSets.size(), Math.pow(2, testArray.length));
+        System.out.println("There were " + listOfSets.size() + " sets in the powerset");
+    }  
     
     public void testPowerSet2() {
-        int[] testArray = {1,2,3,4,5,6,7,8,9,10};
-        
-        List<Set<Integer>> listOfSets = NumberArrays.powerSet(testArray);             
+        int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        List<Set<Integer>> listOfSets = NumberArrays.powerSet(testArray);
         NumberArrays.printPowerSet(listOfSets);
-        assertEquals((double)listOfSets.size(),Math.pow(2,testArray.length));
-        System.out.println("There were "+listOfSets.size()+" sets in the powerset");
+        assertEquals((double) listOfSets.size(), Math.pow(2, testArray.length));
+        System.out.println("There were " + listOfSets.size() + " sets in the powerset");
     }
 
     public void testSetsOfSizeK() {
-        int[] testArray = {1,2,3};
-        
-        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray,2);             
+        int[] testArray = { 1, 2, 3 };
+
+        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray, 2);
         NumberArrays.printPowerSet(listOfSets);
-        assertEquals(3,listOfSets.size());
-        System.out.println("There were "+listOfSets.size()+" sets of size K");
+        assertEquals(3, listOfSets.size());
+        System.out.println("There were " + listOfSets.size() + " sets of size K");
     }
-    
-    
     
     public void testSetsOfSizeK2() {
-        int[] testArray = {1,2,3,4,5,6,7,8,9,10};
-        
-        //One set of size 10
-        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray,10);             
+        int[] testArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+        // One set of size 10
+        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray, 10);
         NumberArrays.printPowerSet(listOfSets);
-        assertEquals(1,listOfSets.size());
-        System.out.println("There were "+listOfSets.size()+" sets of size K");
-        
-        //10 sets of size 9
-        listOfSets = NumberArrays.setsOfSizeK(testArray,9);             
+        assertEquals(1, listOfSets.size());
+        System.out.println("There were " + listOfSets.size() + " sets of size K");
+
+        // 10 sets of size 9
+        listOfSets = NumberArrays.setsOfSizeK(testArray, 9);
         NumberArrays.printPowerSet(listOfSets);
-        assertEquals(10,listOfSets.size());
-        System.out.println("There were "+listOfSets.size()+" sets of size K");        
+        assertEquals(10, listOfSets.size());
+        System.out.println("There were " + listOfSets.size() + " sets of size K");
     }
-    
+
     public void testSetsOfSizeK1() {
-        int[] testArray = {1};
-        
-        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray,1);             
+        int[] testArray = { 1 };
+
+        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray, 1);
         NumberArrays.printPowerSet(listOfSets);
-        assertEquals(1,listOfSets.size());
-        System.out.println("There were "+listOfSets.size()+" sets of size K");
+        assertEquals(1, listOfSets.size());
+        System.out.println("There were " + listOfSets.size() + " sets of size K");
+    }
+
+    public void testSetsOfSizeK0Fail() {
+        int[] testArray = { 1 };
+
+        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray, 2);
+        NumberArrays.printPowerSet(listOfSets);
+        assertEquals(0, listOfSets.size());
+        System.out.println("There were " + listOfSets.size() + " sets of size K");
     }
     
-    public void testSetsOfSizeK0Fail() {
-        int[] testArray = {1};
-        
-        List<Set<Integer>> listOfSets = NumberArrays.setsOfSizeK(testArray,2);             
-        NumberArrays.printPowerSet(listOfSets);
-        assertEquals(0,listOfSets.size());
-        System.out.println("There were "+listOfSets.size()+" sets of size K");
-    }
     public void testGetBinary() {
         String s = NumberArrays.getBinaryRepresentation(2);
         assertEquals("10", s);
@@ -344,8 +340,7 @@ public class NumberArraysTest extends TestCase {
         assertEquals("1111111111111111111111111111111", s);
         assertEquals(31, s.length());
     }
-    
-    
+     
     public void testGetSquareRoot() {
 
         double maxDiff = 0;
@@ -715,4 +710,94 @@ public class NumberArraysTest extends TestCase {
 		int i = NumberArrays.findMissingNumber(a);
 		assertEquals(5,i);
 	}
+	
+	public void testIncrementArbitaryPrecisionInteger() {
+	    List<Integer> l = new ArrayList<>();
+	    List<Integer> inc = NumberArrays.incrementArbitraryPrecisionInteger(l);
+	    assertTrue(inc.isEmpty());
+	    
+	    l.add(0);
+	    inc = NumberArrays.incrementArbitraryPrecisionInteger(l);
+	    assertEquals(1, getIntFromListOfInt(inc));
+        assertTrue(inc.size() == 2);
+        
+        l = new ArrayList<>();
+        l.add(1);
+        l.add(9);
+        l.add(9);
+        l.add(9);
+        inc = NumberArrays.incrementArbitraryPrecisionInteger(l);
+        assertEquals(2000, getIntFromListOfInt(inc));
+        
+        
+        l = new ArrayList<>();
+        l.add(9);
+        l.add(9);
+        l.add(9);
+        l.add(9);
+        inc = NumberArrays.incrementArbitraryPrecisionInteger(l);
+        assertEquals(10000, getIntFromListOfInt(inc));
+	}
+	
+    public void testIncrementArbitaryPrecisionIntegerOrder1Space() {
+        List<Integer> l = new ArrayList<>();
+        List<Integer> inc = NumberArrays.plusOneOrder1Space(l);
+        assertTrue(inc.isEmpty());
+
+        l.add(0);
+        inc = NumberArrays.plusOneOrder1Space(l);
+        assertEquals(1, getIntFromListOfInt(inc));
+
+        l = new ArrayList<>();
+        l.add(1);
+        l.add(9);
+        l.add(9);
+        l.add(9);
+        inc = NumberArrays.plusOneOrder1Space(l);
+        assertEquals(2000, getIntFromListOfInt(inc));
+
+        l = new ArrayList<>();
+        l.add(9);
+        l.add(9);
+        l.add(9);
+        l.add(9);
+        inc = NumberArrays.plusOneOrder1Space(l);
+        assertEquals(10000, getIntFromListOfInt(inc));
+
+        inc = NumberArrays.plusOneOrder1Space(intToList(1999999));
+        assertEquals(2000000, getIntFromListOfInt(inc));
+
+        List<Integer> superBigInt = intToList(Integer.MAX_VALUE);
+        superBigInt.set(0, 9);
+        inc = NumberArrays.plusOneOrder1Space(superBigInt);
+        try {
+            System.out.println(getIntFromListOfInt(inc));
+            fail("Exception expected");
+        } catch (NumberFormatException expected) {
+
+        }
+    }
+	
+	private static int getIntFromListOfInt(List<Integer> l) {
+	    StringBuilder sb = new StringBuilder(l.size());
+	    for(Integer i : l) {
+	       sb.append(i); 
+	    }	    
+	    return Integer.parseInt(sb.toString());
+	}
+	
+	private static List<Integer> intToList(int i) {
+	    
+	    String s = Integer.toString(i);
+	    List<Integer> retList = Arrays.asList(new Integer[s.length()]);
+	    
+	    for(int j =0; j< s.length(); j++) {
+	        char c = s.charAt(j);
+	        int myInt = Character.getNumericValue(c);
+	        retList.set(j, myInt);
+	    }
+	    
+	    return retList;
+	}
+	
 }
