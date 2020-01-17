@@ -1,4 +1,6 @@
-package com.kellyfj.codingkata.bits;
+package com.kellyfj.codingkata.primitives;
+
+import com.kellyfj.codingkata.primitives.BitHelper;
 
 import junit.framework.TestCase;
 
@@ -80,6 +82,11 @@ public class BitHelperTest extends TestCase {
         l = BitHelper.reverseBits(7);
         assertEquals("1110000000000000000000000000000000000000000000000000000000000000", Long.toBinaryString(l));
 
+    }
+
+    public void testMultiplyLongsWithBitOperations() {    
+        long l = BitHelper.multiply(5, 25);
+        assertEquals(125L, l);
     }
     
 	public void testBitsCheckedTwosComp() {	

@@ -1,4 +1,4 @@
-package com.kellyfj.codingkata.bits;
+package com.kellyfj.codingkata.primitives;
 
 public class BitHelper {
 
@@ -170,4 +170,44 @@ public class BitHelper {
 		int intermed = i_answer+i_tmp;
 		return Integer.toBinaryString(intermed);
 	}
+	
+	/**
+	 * Our grade-school algorithm uses shift and add.
+	 * To do so with add we need to iterate through the bits of x adding 2^k*y to 
+	 * the result if the kth bit of x = 1
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+    public static long multiply(long x, long y) {
+        long sum = 0;
+        while (x != 0) {
+            // Examine each bit of x
+            if ((x & 1) != 0) {
+                sum = add(sum, y);
+            }
+            x >>>= 1; // unsigned right shift operator. It always fills 0 irrespective of the sign of
+                      // the number.
+            y <<= 1;
+        }
+        return sum;
+    }
+
+    //TODO: Understand how this works - the text in EPIJ (pp. 31) is awful
+    private static long add(long a, long b) {
+        long sum = 0, carryIn = 0, k = 1, tempA = a, tempB = b;
+
+        while (tempA != 0 || tempB != 0) {
+            long ak = a & k; //Get kth bit
+            long bk = b & k; 
+            long carryOut = (ak & bk) | (ak & carryIn) | (bk & carryIn);
+            sum |= (ak ^ bk ^ carryIn);
+            carryIn = carryOut << 1;
+            k <<= 1;
+            tempA >>>= 1;
+            tempB >>>= 1;
+        }
+
+        return sum | carryIn;
+    }
 }
