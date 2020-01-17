@@ -798,6 +798,21 @@ public class NumberArraysTest extends TestCase {
 	    }
 	    
 	    return retList;
-	}
+	}	
 	
+    public void testRemoveDupesFromSortedArray() {
+        List<Integer> A = new ArrayList<>();
+        A.add(0);
+        A.add(1);
+        A.add(2);
+        A.add(2);
+        A.add(3);
+        A.add(3);
+        A.add(3);
+        A.add(4);
+
+        int numEntriesWithoutDuplicates = NumberArrays.removeDuplicatesFromSortedArray(A);
+        assertEquals(5, numEntriesWithoutDuplicates);
+        assertEquals(5, A.size());
+    }
 }

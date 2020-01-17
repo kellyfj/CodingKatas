@@ -674,10 +674,10 @@ public class NumberArrays {
 	}
 	
     public static List<Integer> plusOneOrder1Space(List<Integer> A) {
-        if(A.isEmpty()) {
+        if (A.isEmpty()) {
             return Collections.emptyList();
         }
-        
+
         int n = A.size() - 1;
         A.set(n, A.get(n) + 1);
 
@@ -692,5 +692,29 @@ public class NumberArrays {
 
         }
         return A;
+    }
+    
+    /**
+     * EPIJ 5.3: Remove duplicates from a Sorted Array
+     */
+    public static int removeDuplicatesFromSortedArray(List<Integer> A) {
+        if(A.isEmpty()) {
+            return 0;
+        }
+        
+        int writeIndex = 1;
+        for(int i=1; i< A.size(); i++) {
+            
+            if(!A.get(writeIndex-1).equals(A.get(i))) {
+                A.set(writeIndex++, A.get(i));
+            } //else increment i without increment writeIndex
+        }
+        //OPTIONAL: remove from writeIndex onwards
+        int origSize = A.size();
+        for(int i=writeIndex; i < origSize; i++) {
+            A.remove(A.size()-1); //remove from the end backwards
+        }
+        
+        return writeIndex;
     }
 }
