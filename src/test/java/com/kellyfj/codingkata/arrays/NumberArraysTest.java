@@ -2,12 +2,14 @@ package com.kellyfj.codingkata.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 import junit.framework.TestCase;
 
 import com.kellyfj.codingkata.arrays.NumberArrays.MinMax;
+import com.kellyfj.codingkata.arrays.NumberArrays.Tuple;
 
 public class NumberArraysTest extends TestCase {
 
@@ -814,5 +816,28 @@ public class NumberArraysTest extends TestCase {
         int numEntriesWithoutDuplicates = NumberArrays.removeDuplicatesFromSortedArray(A);
         assertEquals(5, numEntriesWithoutDuplicates);
         assertEquals(5, A.size());
+    }
+    
+    
+    public void testBuyAndSellOnceBruteForce() {
+		Double[] prices = new Double[] { 310.0, 315.0, 275.0, 295.0, 260.0, 270.0, 290.0, 235.0, 255.0, 250.0 };  	
+    	
+		List<Double> priceList = Arrays.asList(prices);
+		
+		Tuple t= NumberArrays.buyAndSellOnceBruteForce(priceList);
+		System.out.println(t);
+		assertEquals(t.buyAt, 260.0);
+		assertEquals(t.sellAt, 290.0);
+    }
+    
+    public void testBuyAndSellOnceOrderN() {
+		Double[] prices = new Double[] { 310.0, 315.0, 275.0, 295.0, 260.0, 270.0, 290.0, 235.0, 255.0, 250.0 };  	
+    	
+		List<Double> priceList = Arrays.asList(prices);
+		
+		Tuple t = NumberArrays.buyAndSellOnceOrderN(priceList);
+		System.out.println(t);
+		assertEquals(t.buyAt, 260.0);
+		assertEquals(t.sellAt, 290.0);
     }
 }

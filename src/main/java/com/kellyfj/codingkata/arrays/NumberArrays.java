@@ -630,6 +630,8 @@ public class NumberArrays {
 	
 	
 	/**
+	 * EPIJ: 5.2 Increment an Arbitrary Precision Integer
+	 * Brute force version
 	 * Uses O(n) space
 	 */
 	public static List<Integer> incrementArbitraryPrecisionInteger(List<Integer> intList) {
@@ -673,6 +675,10 @@ public class NumberArrays {
 	    
 	}
 	
+	/**
+	 * EPIJ: 5.2 Increment an Arbitrary Precision Integer
+	 * More efficient version.
+	 */
     public static List<Integer> plusOneOrder1Space(List<Integer> A) {
         if (A.isEmpty()) {
             return Collections.emptyList();
@@ -695,7 +701,7 @@ public class NumberArrays {
     }
     
     /**
-     * EPIJ 5.3: Remove duplicates from a Sorted Array
+     * EPIJ 5.5: Remove duplicates from a Sorted Array
      */
     public static int removeDuplicatesFromSortedArray(List<Integer> A) {
         if(A.isEmpty()) {
@@ -716,5 +722,77 @@ public class NumberArrays {
         }
         
         return writeIndex;
+    }
+    
+    /**
+     * EPIOJ: 5.6 - Buy and Sell a Stock once
+     * 
+     * Time Complexity: O(n^2)
+     */
+	public static Tuple buyAndSellOnceBruteForce(List<Double> prices) {
+		if (prices.isEmpty() || prices.size() < 2) {
+			throw new IllegalArgumentException("Need at least two prices");
+		}
+
+		Tuple bestBuyAndSellTuple = new Tuple(prices.get(0), prices.get(1));
+		for (int buyAtPointer = 1; buyAtPointer < prices.size() - 1; buyAtPointer++) {
+			for (int sellAtPointer = buyAtPointer; sellAtPointer < prices.size() - 1; sellAtPointer++) {
+				Tuple t = new Tuple(prices.get(buyAtPointer), prices.get(sellAtPointer));
+				if (t.getProfit() > bestBuyAndSellTuple.getProfit()) {
+					bestBuyAndSellTuple = t;
+				}
+
+			}
+		}
+		return bestBuyAndSellTuple.getProfit() < 0 ? null : bestBuyAndSellTuple;
+	}
+    
+	/**
+	 * Key Insight
+	 * 	Maximum profit can be made by selling on the day determined by the minimum of the stock prices over
+	 * the previous days so we 
+	 * 	1) Iterate through the list
+	 *  2) Keep track of the minimum element
+	 *  3) If the difference between the current element and the min element is greater than max profit
+	 *      then update the maxProfit
+	 */
+	public static Tuple buyAndSellOnceOrderN(List<Double> prices) {
+		if (prices.isEmpty() || prices.size() < 2) {
+			throw new IllegalArgumentException("Need at least two prices");
+		}
+
+		Double minPrice = Double.MAX_VALUE, maxProfit = 0.0;
+		Tuple bestTuple = null;
+		for (Double price : prices) {
+			Double maxProfitBefore = maxProfit;
+			maxProfit = Math.max(maxProfit, price - minPrice);
+			if (maxProfit > maxProfitBefore) {
+				bestTuple = new Tuple(minPrice, price);
+			}
+			minPrice = Math.min(minPrice, price);
+		}
+		
+		System.out.println("Max Profit "+ maxProfit);
+
+		return bestTuple;
+	}
+	
+    public static class Tuple {
+    	public Double buyAt;
+    	public Double sellAt;
+    	
+    	public Tuple(Double buyAt, Double sellAt) {
+    		this.buyAt = buyAt;
+    		this.sellAt = sellAt;
+    	}
+    	
+    	public Double getProfit() {
+    		return (sellAt - buyAt);
+    	}
+    	
+    	@Override
+    	public String toString() {
+    		return new String("buyAt "+ buyAt + " and sellAt " + sellAt );
+    	}
     }
 }
