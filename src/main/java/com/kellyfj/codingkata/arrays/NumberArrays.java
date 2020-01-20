@@ -481,6 +481,11 @@ public class NumberArrays {
     }
     
     public static int[] merge(int[] a, int[] b) {
+    	if(a.length == 0) 
+    		return b;
+    	if(b.length == 0)
+    		return a;
+    	
         int[] answer = new int[a.length + b.length];
         int i = 0, j = 0, k = 0;
 
@@ -571,6 +576,7 @@ public class NumberArrays {
 	 * SPACE COMPLEXITY: O(1)
 	 */
 	public static boolean containsDuplicates_order1space(int[] array) {
+		//@TODO: Need to really understand how this works
 		for(int i=0; i< array.length; i++) {
 			int tmpIndex = Math.abs(array[i]);
 			if(array[tmpIndex] < 0) {
@@ -741,7 +747,6 @@ public class NumberArrays {
 				if (t.getProfit() > bestBuyAndSellTuple.getProfit()) {
 					bestBuyAndSellTuple = t;
 				}
-
 			}
 		}
 		return bestBuyAndSellTuple.getProfit() < 0 ? null : bestBuyAndSellTuple;
@@ -794,5 +799,33 @@ public class NumberArrays {
     	public String toString() {
     		return new String("buyAt "+ buyAt + " and sellAt " + sellAt );
     	}
+    }
+    
+    /**
+     * EPIJ 5.9 Enumerate all primes to n
+     * 
+     * Time Complexity: O(n log log n)
+     * Space Complexity: O(n)
+     */
+    public static List<Integer> generatePrimes(int n) {
+    	List<Integer> primes = new ArrayList<>();
+    	
+    	//Initially set prime status to true
+    	List<Boolean> isPrime = new ArrayList<>(Collections.nCopies(n+1, true));
+    	
+    	isPrime.set(0, false);
+    	isPrime.set(1, false);
+    	for(int p = 2; p <= n; ++p) {
+    		if(isPrime.get(p)) {
+    			primes.add(p);
+    			//Sieve p's multiples from isPrime 
+    			for(int i=p; i <=n; i+=p) {
+    				isPrime.set(i, false);
+    			}
+    		}
+     		
+    	}
+ 
+    	return primes;
     }
 }

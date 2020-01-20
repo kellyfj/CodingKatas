@@ -2,9 +2,10 @@ package com.kellyfj.codingkata.arrays;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.commons.math3.primes.Primes;
 
 import junit.framework.TestCase;
 
@@ -839,5 +840,16 @@ public class NumberArraysTest extends TestCase {
 		System.out.println(t);
 		assertEquals(t.buyAt, 260.0);
 		assertEquals(t.sellAt, 290.0);
+    }
+    
+    public void testGetPrimes() {
+    	
+    	List<Integer> primes = NumberArrays.generatePrimes(1000000);
+    	
+    	System.out.println(primes);
+    	
+    	for(Integer i : primes) {
+    		assertTrue(Primes.isPrime(i));
+    	}
     }
 }
