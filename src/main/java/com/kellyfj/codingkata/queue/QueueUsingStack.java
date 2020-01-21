@@ -2,6 +2,9 @@ package com.kellyfj.codingkata.queue;
 
 import java.util.Stack;
 
+/**
+ * EPIJ 8.8: Implement a Queue using Stacks (v1: Actual legacy Stack implementation) 
+ */
 public class QueueUsingStack  {
 
     Stack<Object> s1 = new Stack<Object>();

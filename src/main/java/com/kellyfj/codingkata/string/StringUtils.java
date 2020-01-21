@@ -14,6 +14,9 @@ public class StringUtils {
 
     public static int numHelperCalls;
 
+    /**
+     * EPIJ 6.5 Test Palindromicity
+     */
     public static boolean isPalindromeEasy_OrderNSpace(String s1, String s2) {
         if(s1 == null || s2== null)
             throw new IllegalArgumentException("Say something cool!");
@@ -50,9 +53,6 @@ public class StringUtils {
         }
         return new String(reverse);
     }
-
-
-
      
     public static void regExTester(String s) {
 
@@ -79,6 +79,9 @@ public class StringUtils {
         }
     }
     
+    /**
+     * EPIJ 6.6: Reverse all words in a sentence
+     */
     public static String reverseAllWords_OrderNExtraSpace(String s) {
         if (s == null)
             throw new IllegalArgumentException("S cannot be null");
@@ -117,13 +120,13 @@ public class StringUtils {
        return new String(chars);
     }
 
-
     public static String reverseAllWords(String s) {
         char[] ch = s.toCharArray();
         reverseAllWords_Order1Space(ch);
         
         return new String (ch);        
     }
+    
     public static void reverseAllWords_Order1Space(char[] c) {
         reverse(c);
 
@@ -184,11 +187,9 @@ public class StringUtils {
     
     
     /**
-     * Code courtesy of <a href="http://www.java2s.com/Code/Java/Data-Type/Returnsthelevenshteindistanceoftwostrings.htm">this source</a>
+     * Similar to EPIJ 16.2: Compute Levenshtein Distance
      * 
-     * @param s
-     * @param t
-     * @return
+     * Code courtesy of <a href="http://www.java2s.com/Code/Java/Data-Type/Returnsthelevenshteindistanceoftwostrings.htm">this source</a>
      */
     public static int levenshteinDistance(String s, String t) {
         int sLen = s.length();
@@ -267,7 +268,12 @@ public class StringUtils {
         return sNew;
     }
     
-    
+    /**
+     * EPIJ 6.8: Look-And-Say problem
+     * 
+     * @param nTimes
+     * @return
+     */
     public static String countAndSay(int nTimes) {
         if (nTimes <= 0)
             return null;
@@ -297,6 +303,12 @@ public class StringUtils {
         return newSB;
     }
     
+    /**
+     * Similar to EPIJ 5.10 and EPIJ 15.3
+     * 
+     * Time Complexity: ???
+     * Space Complexity: TBD O(n!) 
+     */
     public static  List<String> permutation(String str) {
         numHelperCalls=0;
         List<String> ret = new ArrayList<String>();
@@ -320,6 +332,9 @@ public class StringUtils {
         }
     }
    
+    /**
+     * Similar to EPIJ 15.4
+     */
     public static  List<String> powerSetOfCharacters(String str) {      
         List<String> ret = powerSetOfCharacters(str.toCharArray());
         System.out.println("String ["+str+"] has ["+ret.size()+"] permutations");
@@ -362,6 +377,9 @@ public class StringUtils {
         return sb.toString();
     }
 
+    /**
+     * Similar to EPIJ 6.5
+     */
     public static String longestPalindromeSimple(String s) {
         if (s.length() == 0)
             return "";
@@ -428,7 +446,8 @@ public class StringUtils {
     /**
      * Inspired by Dan Blumenthal 
      * http://dandreamsofcoding.com/2015/01/09/dissecting-an-interview-question-math-is-hard/
-     * TIME COMPLEXITY: O(n)  SPACE COMPLEXITY: O(n)
+     * TIME COMPLEXITY: O(n)  
+     * SPACE COMPLEXITY: O(n)
      */
 	public static String addNumberStrings(String a, String b) {
 		//Null Checks

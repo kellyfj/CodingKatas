@@ -1,0 +1,10 @@
+#Java
+.class
+
+#Gradle
+/build/
+
+#Eclipse
+.classpath
+.project
+.settings/

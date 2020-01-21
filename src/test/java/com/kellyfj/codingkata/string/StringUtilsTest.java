@@ -246,7 +246,7 @@ public class StringUtilsTest {
         
         @Test 
         public void testPermutations() {
-            String testString = "ABCDEFG";
+            String testString = "ABCDEFG";  //7! = 5040
             List<String> list = StringUtils.permutation(testString);
             long fact = ArithmeticUtils.factorial(testString.length());
             assertEquals(fact,list.size());

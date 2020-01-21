@@ -52,6 +52,8 @@ public class ListUtils {
     }    
     
     /**
+     * EPIJ 7.7: Remove k'th last elememnt from a list
+     * 
      * TIME COMPLEXITY: O(n) length of the list
      * SPACE COMPLEXITY: O(1)
      */
@@ -103,6 +105,5 @@ public class ListUtils {
             l = l.getNext();
         }
         System.out.println("}");
-
     }
 }
