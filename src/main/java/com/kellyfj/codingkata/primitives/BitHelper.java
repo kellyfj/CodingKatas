@@ -86,6 +86,9 @@ public class BitHelper {
 
     private static long[] precomputedReverse = new long[(1 << 16)];
 
+    /**
+     * Time Complexity: TBD O(n) where n is number of bits?
+     */
     private static long reverseBits(long x, int n) {
         for (int i = 0, j = n; i < j; ++i, --j) {
             x = swapBits(x, i, j);
@@ -99,6 +102,9 @@ public class BitHelper {
         }
     }
 
+    /**
+     * Time Complexity: O(1) 
+     */
     public static long reverseBits(long x) {
       final int WORD_SIZE = 16;
       final int BIT_MASK = 0xFFFF;
@@ -172,6 +178,8 @@ public class BitHelper {
 	}
 	
 	/**
+	 * EPIJ 4.5: Compute X*Y without any arithmetic operations
+	 * 
 	 * Our grade-school algorithm uses shift and add.
 	 * To do so with add we need to iterate through the bits of x adding 2^k*y to 
 	 * the result if the kth bit of x = 1

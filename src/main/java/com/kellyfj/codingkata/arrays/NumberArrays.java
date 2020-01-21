@@ -236,7 +236,7 @@ public class NumberArrays {
     }
 
     /**
-     * EPIJava 5.1
+     * EPIJ 5.1: The Dutch National Flag Problem
      * 
      * http://en.wikipedia.org/wiki/Dutch_national_flag_problem
      * TIME COMPLEXITY: O(n)
@@ -731,7 +731,7 @@ public class NumberArrays {
     }
     
     /**
-     * EPIOJ: 5.6 - Buy and Sell a Stock once
+     * EPIJ: 5.6 - Buy and Sell a Stock once
      * 
      * Time Complexity: O(n^2)
      */

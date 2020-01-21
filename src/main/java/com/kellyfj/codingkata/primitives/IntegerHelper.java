@@ -4,6 +4,8 @@ public class IntegerHelper {
 
 
     /**
+     * EPIJ: 4.8 Reverse Digits
+     * 
      * Time Complexity? Not sure O(2^n) where n is the number of digits
      * Space Complexity: String + StringBuilder + Result
      */
@@ -32,6 +34,9 @@ public class IntegerHelper {
         return x < 0 ? -result : result;
     }
     
+    /**
+     * EPIJ: 4.11 Rectangle Intersection
+     */
     public static class Rectangle {
         int x, y, width, height;
 
