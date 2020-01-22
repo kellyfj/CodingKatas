@@ -851,7 +851,7 @@ public class NumberArraysTest extends TestCase {
     	}
     }
     
-    public void testRandomSampling() {
+    public void testRandomOfflineSampling() {
     	List<Integer> list = createMonotonicIncreasingListOfSizeK(999*1000);
     	
     	NumberArrays.randomSampling(9, list);
@@ -861,6 +861,20 @@ public class NumberArraysTest extends TestCase {
     		System.out.println(list.get(i));
     	}    	
     }
+    
+	public void testRandomOnlineSampling() {
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i < 99 * 1000; i++) {
+			list.add(i);
+
+			if (i> 0 && i % 1000 == 0) {
+				//Fetch last 500
+				List<Integer> sublist = list.subList(i-500, i);
+				List<Integer> sample = NumberArrays.onlineRandomSample(sublist.iterator(), 10);
+				System.out.println(sample);
+			}
+		}
+	}
     
     private List<Integer> createMonotonicIncreasingListOfSizeK(int k) {
     	List<Integer> list = new ArrayList<>(k);

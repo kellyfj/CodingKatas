@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -847,13 +848,46 @@ public class NumberArrays {
      * the same process again with the n-1 element subarray A[1, n-1]
      * Eventually the random subset occupies that slots A[0, k-1] and the remaining elements are in the 
      * last n-k nodes
-     */
-    
+     */   
     public static void randomSampling(int k, List<Integer> A) {
     	Random gen = new Random();
     	for(int i=0; i< k; i++) {
     		Collections.swap(A, i, i + gen.nextInt(A.size()-1));
     	}
     }
+    
+    /**
+     * EPIJ 5.13 Sample Online Data
+     * 
+     * Design a program that takes as input a size (k) and reads packets, continuously maintaining
+     * a uniform random subset of size (k) of the read packets.
+     * 
+     * Suppose we read the first n packets and have a random subset of k of them. 
+     * When we read the (n+1)the packet it should belong to the new subset with the probability k/(n+1).
+     * If we choose one of the packets in the subset randomly to remove the resulting collection
+     * will be a random subset of the n+1 packets. 
+     */
+	public static List<Integer> onlineRandomSample(Iterator<Integer> sequence, int k) {
+		List<Integer> runningSample = new ArrayList<>(k);
+
+		// Store the first 'k' elements
+		for (int i = 0; i < k && sequence.hasNext(); i++) {
+			runningSample.add(sequence.next());
+		}
+
+		int numSeenSoFar = k;
+		Random gen = new Random();
+		while (sequence.hasNext()) {
+			Integer x = sequence.next();
+			numSeenSoFar++;
+			// Generate a random number in [0, numSeenSoFar] and if this number is in
+			// [0, k-1] we replace that element from the sample with x
+			int indexToReplace = gen.nextInt(numSeenSoFar);
+			if (indexToReplace < k) {
+				runningSample.set(indexToReplace, x);
+			}
+		}
+		return runningSample;
+	}
     
 }
