@@ -842,14 +842,33 @@ public class NumberArraysTest extends TestCase {
 		assertEquals(t.sellAt, 290.0);
     }
     
-    public void testGetPrimes() {
-    	
+    public void testGetPrimes() {    	
     	List<Integer> primes = NumberArrays.generatePrimes(1000000);
-    	
     	System.out.println(primes);
     	
     	for(Integer i : primes) {
     		assertTrue(Primes.isPrime(i));
     	}
     }
+    
+    public void testRandomSampling() {
+    	List<Integer> list = createMonotonicIncreasingListOfSizeK(999*1000);
+    	
+    	NumberArrays.randomSampling(9, list);
+    	
+    	for(int i=0; i<9; i++) {
+    		assertFalse(i == list.get(i)); //Highly unlikely!
+    		System.out.println(list.get(i));
+    	}    	
+    }
+    
+    private List<Integer> createMonotonicIncreasingListOfSizeK(int k) {
+    	List<Integer> list = new ArrayList<>(k);
+    	for(int i=0; i< k-1; i++) {
+    		list.add(i);
+    	}
+    	return list;   	
+    }
+    
+    
 }

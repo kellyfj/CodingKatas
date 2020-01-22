@@ -2,11 +2,10 @@ package com.kellyfj.codingkata.primitives;
 
 public class IntegerHelper {
 
-
     /**
      * EPIJ: 4.8 Reverse Digits
      * 
-     * Time Complexity? Not sure O(2^n) where n is the number of digits
+     * Time Complexity: O(n) where n is the number of digits
      * Space Complexity: String + StringBuilder + Result
      */
     public static long reverseBruteForce(long x) {

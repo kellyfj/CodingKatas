@@ -31,19 +31,18 @@ public class BitHelper {
 	 * Time Complexity: O(log n)
 	 */
 	public static int getParityOrderLogN(int number) {
-	    boolean parity = false; 
-	    
+	    boolean parity = false; 	    
         while (number > 0) {
             parity = !parity; 
             number = number & (number-1); //Unset rightmost set bit
-        }
-
-        
+        } 
         return parity ? 1 : 0;
 	}
 	
+	/**
+	 * Time Complexity: O(1)
+	 */
     private static int[] precomputedParity;
-
     static {
         precomputedParity = new int[1 << 16];
         for (int i = 0; i < (1 << 16); ++i) {
@@ -53,8 +52,6 @@ public class BitHelper {
 
     /**
      * NOTE: We switched to using Long not int (long is 64-bit, int is 32-bit)
-     * @param x
-     * @return
      */
     public static int getParityOrder1(long x) {
         final int WORD_SIZE = 16; //long has four 16-bit words
@@ -84,10 +81,8 @@ public class BitHelper {
         return x;
     }
 
-    private static long[] precomputedReverse = new long[(1 << 16)];
-
     /**
-     * Time Complexity: TBD O(n) where n is number of bits?
+     * Time Complexity: O(n) where n is number of bits
      */
     private static long reverseBits(long x, int n) {
         for (int i = 0, j = n; i < j; ++i, --j) {
@@ -96,15 +91,16 @@ public class BitHelper {
         return x;
     }
 
+    /**
+     * Time Complexity: O(n/L) = n bits, L = word size
+     */
+    private static long[] precomputedReverse = new long[(1 << 16)];
     static {
         for (int i = 0; i < (1 << 16); ++i) {
             precomputedReverse[i] = reverseBits(i, 15);
         }
     }
 
-    /**
-     * Time Complexity: O(1) 
-     */
     public static long reverseBits(long x) {
       final int WORD_SIZE = 16;
       final int BIT_MASK = 0xFFFF;

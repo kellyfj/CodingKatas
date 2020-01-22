@@ -638,7 +638,8 @@ public class NumberArrays {
 	/**
 	 * EPIJ: 5.2 Increment an Arbitrary Precision Integer
 	 * Brute force version
-	 * Uses O(n) space
+	 * Time Complexity: O(n)
+	 * Space Complexity: O(n)
 	 */
 	public static List<Integer> incrementArbitraryPrecisionInteger(List<Integer> intList) {
 	    if(intList.isEmpty()) {
@@ -684,6 +685,9 @@ public class NumberArrays {
 	/**
 	 * EPIJ: 5.2 Increment an Arbitrary Precision Integer
 	 * More efficient version.
+	 * 
+	 * Time Complexity: TBD
+	 * Space Complexity: O(1)
 	 */
     public static List<Integer> plusOneOrder1Space(List<Integer> A) {
         if (A.isEmpty()) {
@@ -708,6 +712,9 @@ public class NumberArrays {
     
     /**
      * EPIJ 5.5: Remove duplicates from a Sorted Array
+     * 
+     * Time Complexity: O(n)
+     * Space Complexity: O(1)
      */
     public static int removeDuplicatesFromSortedArray(List<Integer> A) {
         if(A.isEmpty()) {
@@ -754,12 +761,13 @@ public class NumberArrays {
     
 	/**
 	 * Key Insight
-	 * 	Maximum profit can be made by selling on the day determined by the minimum of the stock prices over
+	 * Maximum profit can be made by selling on the day determined by the minimum of the stock prices over
 	 * the previous days so we 
 	 * 	1) Iterate through the list
 	 *  2) Keep track of the minimum element
 	 *  3) If the difference between the current element and the min element is greater than max profit
 	 *      then update the maxProfit
+	 * Time Complexity: O(n)
 	 */
 	public static Tuple buyAndSellOnceOrderN(List<Double> prices) {
 		if (prices.isEmpty() || prices.size() < 2) {
@@ -775,10 +783,8 @@ public class NumberArrays {
 				bestTuple = new Tuple(minPrice, price);
 			}
 			minPrice = Math.min(minPrice, price);
-		}
-		
+		}		
 		System.out.println("Max Profit "+ maxProfit);
-
 		return bestTuple;
 	}
 	
@@ -804,6 +810,9 @@ public class NumberArrays {
     /**
      * EPIJ 5.9 Enumerate all primes to n
      * 
+     * Start with 0,1 as NOT prime, 2 is a prime then sieve out all multiples of 2
+     * from a boolean list, 3 is a prime etc. continue . . . 
+     * 
      * Time Complexity: O(n log log n)
      * Space Complexity: O(n)
      */
@@ -828,4 +837,23 @@ public class NumberArrays {
  
     	return primes;
     }
+    
+    /**
+     * EPIJ 5.12: Sample Offline Data
+     * 
+     * The key to efficiently building a random subset of size k is to first build one of size k-1
+     * and then add one more element, selected randomly from the set
+     * For k > 1 we begin by choosing one element at random and place that at A[0] and repeat
+     * the same process again with the n-1 element subarray A[1, n-1]
+     * Eventually the random subset occupies that slots A[0, k-1] and the remaining elements are in the 
+     * last n-k nodes
+     */
+    
+    public static void randomSampling(int k, List<Integer> A) {
+    	Random gen = new Random();
+    	for(int i=0; i< k; i++) {
+    		Collections.swap(A, i, i + gen.nextInt(A.size()-1));
+    	}
+    }
+    
 }

@@ -306,31 +306,30 @@ public class StringUtils {
     /**
      * Similar to EPIJ 5.10 and EPIJ 15.3
      * 
-     * Time Complexity: ???
-     * Space Complexity: TBD O(n!) 
+     * Time Complexity: O(n!)
+     * Space Complexity: ??? O(n!)  n! strings of size n 
      */
-    public static  List<String> permutation(String str) {
-        numHelperCalls=0;
-        List<String> ret = new ArrayList<String>();
-        permutation("", str,ret);
-        System.out.println("String ["+str+"] has ["+ret.size()+"] permutations");
-        return ret;
-    }
+	public static List<String> permutation(String str) {
+		numHelperCalls = 0;
+		List<String> ret = new ArrayList<String>();
+		permutation("", str, ret);
+		System.out.println("String [" + str + "] has [" + ret.size() + "] permutations");
+		return ret;
+	}
 
-    private static void permutation(String temp, String str, List<String> result) {
-        numHelperCalls++;
-        if (str.length() == 0) {
-            System.out.println(temp);
-            result.add(temp);
-        }
-        else {
-            for (int i = 0; i < str.length(); i++) {
-                String temp2 = temp + str.charAt(i);
-                String remainder = str.substring(0, i) + str.substring(i + 1, str.length());
-                permutation(temp2,remainder,result);
-            }
-        }
-    }
+	private static void permutation(String temp, String str, List<String> result) {
+		numHelperCalls++;
+		if (str.length() == 0) {
+			System.out.println(temp);
+			result.add(temp);
+		} else {
+			for (int i = 0; i < str.length(); i++) {
+				String temp2 = temp + str.charAt(i);
+				String remainder = str.substring(0, i) + str.substring(i + 1, str.length());
+				permutation(temp2, remainder, result);
+			}
+		}
+	}
    
     /**
      * Similar to EPIJ 15.4
