@@ -34,6 +34,47 @@ public class ListUtilsTest {
     }
     
     @Test
+    public void testMergeTwoSortedListsDisjointSets() {
+    	ListElement l1 = createListInRange(0, 10);
+    	System.out.println("l1: " + l1.size());
+    	ListElement l2 = createListInRange(11, 19);
+    	System.out.println("l2: " + l2.size());
+    	int expectedSize = l1.size() + l2.size();
+    	
+    	ListElement l3 = ListUtils.mergeTwoSortedLists(l1, l2);
+    	ListUtils.printList(l3);    	
+    	assertEquals(expectedSize, l3.size());	
+    }
+    
+    @Test
+    public void testMergeTwoSortedListsOverlappingSets() {
+    	ListElement l1 = createListInRange(0, 10);
+    	System.out.println("l1: " + l1.size());
+    	ListElement l2 = createListInRange(1, 120);
+    	System.out.println("l2: " + l2.size());
+    	int expectedSize = l1.size() + l2.size();
+    	
+    	ListElement l3 = ListUtils.mergeTwoSortedLists(l1, l2);
+    	ListUtils.printList(l3);    	
+    	assertEquals(expectedSize, l3.size());	
+    }
+    
+    private ListElement createListInRange(int start, int end) {
+    	ListElement listHead = new ListElement();
+    	listHead.setValue(start);
+
+    	ListElement curr = listHead;
+        for(int i=start+1; i<= end; i++)
+        {
+        	ListElement next = new ListElement();
+            next.setValue(i);
+            curr.setNext(next);
+            curr = next;
+        }
+        
+        return listHead;
+    }
+    @Test
     public void testReverseListConstantStorage() {
         ListUtils.printList(head);
         int size = head.size();

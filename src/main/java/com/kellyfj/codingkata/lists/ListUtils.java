@@ -4,6 +4,32 @@ import java.util.Stack;
 
 public class ListUtils {
 
+	/**
+	 * EPIJ 7.1 Merge two sorted lists
+	 * 
+	 * Time Complexity: O(n+m)
+	 * Space Complexity: O(1) reusing nodes
+	 */
+	public static ListElement mergeTwoSortedLists(ListElement l1, ListElement l2) {
+		ListElement dummyHead = new ListElement();
+		ListElement current = dummyHead;
+		
+		while(l1 != null && l2 != null) {
+			if(l1.getValue() <= l2.getValue()) {
+				current.setNext(l1);
+				l1 = l1.getNext();
+			} else {
+				current.setNext(l2);
+				l2 = l2.getNext();
+			}
+			current = current.getNext();
+		}
+		
+		//Append the remaining nodes
+		current.setNext((l1 != null) ? l1 : l2);
+		return dummyHead.getNext();
+	}
+	
     public static ListElement reverseListConstantStorage(ListElement head) {
         return reverseRecursively(null, head);
     }
