@@ -59,6 +59,12 @@ public class StringUtilsTest {
         assertEquals("dog lazy the over jumped fox brown quick The",ret);
     }
     
+    @Test
+    public void testPhoneMnemonics() {
+    	List<String> l = StringUtils.phoneMnemonic("2276696");
+    	
+    	assert(l.contains("ACRONYM"));
+    }
     
     @Test
     public void testRegex() {
@@ -458,4 +464,13 @@ public class StringUtilsTest {
         i = StringUtils.getSSColumnID("ZZ");       
         assertEquals(26*26+26,i);
     }
+	
+	@Test
+	public void testReplaceAndRemove() {
+		char[] charArray = new char[] {'a', 'c', 'd', 'b','b','c','a' };
+		int i = StringUtils.replaceAndRemove(charArray.length, charArray);
+		String s = new String(charArray);
+		System.out.println(i + " : " + s);
+		assertEquals("ddcdcdd", s);
+	}
 }

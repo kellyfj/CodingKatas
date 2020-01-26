@@ -127,6 +127,10 @@ public class StringUtils {
         return new String (ch);        
     }
     
+    /**
+     * Time complexity: O(n) where n is the length of the string
+     * Space Complexity: O(1)
+     */
     public static void reverseAllWords_Order1Space(char[] c) {
         reverse(c);
 
@@ -590,4 +594,76 @@ public class StringUtils {
         
         return ans;        
     }
+    
+	/**
+	 * EPIJ 6.4: Replace and Remove. 
+	 * Example:
+	 * 1) Replace each 'a' by two 'd's 
+	 * 2) Delete each entry containing a 'b'
+	 * 
+	 * The problem is trivial to solve in O(n) time if we permit O(n) additional
+	 * space.
+	 */
+	public static int replaceAndRemove(int size, char[] s) {
+		int writeIdx = 0, aCount = 0;
+		for (int i = 0; i < size; i++) {
+			if (s[i] != 'b') {
+				s[writeIdx++] = s[i];
+			}
+			if (s[i] == 'a') {
+				++aCount;
+			}
+		}
+
+		// Backward iteration replace "a"s with "dd"s starting from the end
+		int curIdx = writeIdx - 1;
+		writeIdx = writeIdx + aCount - 1;
+		final int finalSize = writeIdx + 1;
+		while (curIdx >= 0) {
+			if (s[curIdx] == 'a') {
+				s[writeIdx] = 'd';
+				writeIdx--;
+				s[writeIdx] = 'd';
+				writeIdx--;
+			} else {
+				s[writeIdx] = s[curIdx];
+				writeIdx--;
+			}
+			curIdx--;
+		}
+
+		return finalSize;
+	}
+	
+	/**
+	 * EPIJ 6.7: Compute all mnemonics for a phone number
+	 * Time Complexity: O(n*4^n) 
+	 * Space Complexity: O(4^n) as there are 4 possible characters for each digit
+	 */
+	public static List<String> phoneMnemonic(String phoneNumber) {
+		char[] partialMnemonic = new char[phoneNumber.length()];
+		List<String> mnemonics = new ArrayList<>();
+		phoneMnemonicHelper(phoneNumber, 0, partialMnemonic, mnemonics);
+		return mnemonics;
+	}
+
+	private static final String[] MAPPING = { "0", "1", "ABC", "DEF", "GHI", "JKL", "MNO", 
+			"PQRS", "TUV", "WXYZ" };
+
+	private static void phoneMnemonicHelper(String phoneNumber, int digit, char[] partialMnemonic,
+			List<String> mnemonics) {
+
+		if (digit == phoneNumber.length()) {
+			// All digits are processed so add partial mnemonic to mnemonics
+			// We add a copy because subsequent calls modify the partialMnemonic array
+			mnemonics.add(new String(partialMnemonic));
+		} else {
+			String possibleCharacters = MAPPING[phoneNumber.charAt(digit) - '0'];
+			for (int i = 0; i < possibleCharacters.length(); i++) {
+				char c = possibleCharacters.charAt(i);
+				partialMnemonic[digit] = c;
+				phoneMnemonicHelper(phoneNumber, digit + 1, partialMnemonic, mnemonics);
+			}
+		}
+	}
 }
