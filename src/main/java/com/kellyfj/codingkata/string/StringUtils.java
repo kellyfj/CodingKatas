@@ -540,4 +540,54 @@ public class StringUtils {
     	}
     	
     }
+    
+    /**
+     * EPIJ 6.1: Interconvert strings and integers
+     * 
+     * Time Complexity: O(n) where n is the number of digits
+     * Space Complexity: O(n) additional space
+     */
+	public static String intToString(int x) {
+		boolean isNegative = false;
+		if (x < 0) {
+			isNegative = true;
+		}
+
+		StringBuilder sb = new StringBuilder();
+		do {
+			sb.append((char) ('0' + Math.abs(x % 10)));
+			x /= 10;
+		} while (x != 0);
+
+		if (isNegative) {
+			sb.append("-");
+		}
+
+		sb.reverse();
+		return sb.toString();
+	}
+	
+	public static int stringToInt(String s) {
+		int result = 0;
+		for (int i = s.charAt(0) == '-' ? 1 : 0; i < s.length(); i++) {
+			final int digit = s.charAt(i) - '0';
+			result = result * 10 + digit;
+		}
+
+		return s.charAt(0) == '-' ? -result : result;
+	}
+	
+	/**
+	 * EPIJ 6.3 Compute the Spreadsheet Column Encoding
+	 */
+    public static int getSSColumnID(String colName) {
+        char[] cArray = colName.toCharArray();
+        int ans = 0;
+        
+        for(char c : cArray) {
+            ans = ans * 26 + c - 'A' +1;
+        }
+        
+        return ans;        
+    }
 }

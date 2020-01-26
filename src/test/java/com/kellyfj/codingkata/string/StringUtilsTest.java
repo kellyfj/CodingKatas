@@ -12,6 +12,8 @@ import java.util.Set;
 import org.apache.commons.math3.util.ArithmeticUtils;
 import org.junit.Test;
 
+import com.kellyfj.codingkata.roman.RomanNumeralUtils;
+
 public class StringUtilsTest {
 
     @Test
@@ -408,4 +410,52 @@ public class StringUtilsTest {
         	StringUtils.printDiamond(17);
         	StringUtils.printDiamond(81);
         }
+        
+	@Test
+	public void testIntToString() {
+
+		String str = StringUtils.intToString(123);
+		assertEquals("123", str);
+
+		str = StringUtils.intToString(-123);
+		assertEquals("-123", str);
+
+		str = StringUtils.intToString(7654321);
+		assertEquals("7654321", str);
+
+		str = StringUtils.intToString(1000000);
+		assertEquals("1000000", str);
+	}
+
+	@Test
+	public void testStringToInt() {
+
+		int i = StringUtils.stringToInt("123");
+		assertEquals(123, i);
+
+		i = StringUtils.stringToInt("-123");
+		assertEquals(-123, i);
+
+		i = StringUtils.stringToInt("7654321");
+		assertEquals(7654321, i);
+
+		i = StringUtils.stringToInt("1000000");
+		assertEquals(1000000, i);
+	}
+	
+	@Test
+    public void testSSEncoding() {
+        int i = StringUtils.getSSColumnID("A");       
+        assertEquals(1,i);
+
+        i = StringUtils.getSSColumnID("Z");       
+        assertEquals(26,i);
+
+        
+        i = StringUtils.getSSColumnID("AA");       
+        assertEquals(26*1+1,i);
+        
+        i = StringUtils.getSSColumnID("ZZ");       
+        assertEquals(26*26+26,i);
+    }
 }
