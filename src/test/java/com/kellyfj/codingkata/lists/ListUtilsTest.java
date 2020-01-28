@@ -2,6 +2,7 @@ package com.kellyfj.codingkata.lists;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -126,5 +127,71 @@ public class ListUtilsTest {
         ListUtils.printList(head);
         assertEquals(99,endSize);      
     }
+    
+    @Test
+    public void testReverseSubList() {
+    	ListElement head = createListInRange(1, 20);
+    	ListElement newHead = ListUtils.reverseSublist(head, 5, 15);
+    	String s = ListUtils.printList(newHead);
+    	assertEquals(20, ListUtils.getSize(newHead));
+    	assertEquals("{1, 2, 3, 4, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 16, 17, 18, 19, 20, }", s); 
+    }
+    
+	@Test
+	public void testHasCycle() {
+		ListElement head = createListInRange(1, 20);
+		ListElement cycle = ListUtils.hasCycle(head);
+		assertTrue(cycle == null);
 
+		ListElement temp = head;
+		for (int i = 0; i < 10; i++) {
+			temp = temp.getNext();
+			temp.setNext(head);
+		}
+		cycle = ListUtils.hasCycle(head);
+		assertTrue(cycle != null && cycle.getValue() == 1);
+	}
+
+	@Test
+	public void testOverlapping() {
+		ListElement list1 = new ListElement(1);
+		ListElement l2a = new ListElement(2);
+		ListElement list2 = new ListElement(20);
+		ListElement l3 = new ListElement(3);
+		ListElement l4 = new ListElement(4);
+		ListElement l5 = new ListElement(5);
+		
+		list1.setNext(l2a);
+		
+		list2.setNext(l2a);
+		l2a.setNext(l3);
+		l3.setNext(l4);
+		l4.setNext(l5);
+		
+		ListElement overlap = ListUtils.overlappingLists(list1, list2);
+		assertNotNull(overlap);
+		assertEquals(2, overlap.getValue());
+	}
+	
+	@Test
+	public void testRemoveDupes() {
+		ListElement head = createListInRange(1, 20);
+		ListElement newhead = ListUtils.removeDuplicatesFromSortedList(head);
+		assertEquals(20, ListUtils.getSize(newhead));
+		
+		ListElement l1 = new ListElement(1);
+		ListElement l2 = new ListElement(2);
+		ListElement l3a = new ListElement(3);
+		ListElement l3b = new ListElement(3);
+		ListElement l3c = new ListElement(3);
+		ListElement l4 = new ListElement(4);
+		l1.setNext(l2);
+		l2.setNext(l3a);
+		l3a.setNext(l3b);
+		l3b.setNext(l3c);
+		l3c.setNext(l4);
+		assertEquals(6, ListUtils.getSize(l1));
+		newhead = ListUtils.removeDuplicatesFromSortedList(l1);
+		assertEquals(4, ListUtils.getSize(newhead));	
+	}
 }

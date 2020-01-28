@@ -7,6 +7,14 @@ public class ListElement {
 
     private int value;
     private ListElement next;
+    
+    public ListElement() {
+    	
+    }
+    
+    public ListElement(int value) {
+    	this.value = value;
+    }
 
     public ListElement getNext() {
         return next;
