@@ -104,6 +104,31 @@ public class BinaryTreeUtilsTest extends TestCase {
     	small_1_22_33.getRight().setRight(new BinaryTreeNode(3));
     	
     }
+    
+    @Test
+    public void testHeightBalanced() {
+    	boolean b = BinaryTreeUtils.isHeightBalanced(small_122);
+    	assertTrue(b);
+    	
+    	b = BinaryTreeUtils.isHeightBalanced(small_1_22_3);
+    	assertTrue(b);
+    	
+    	b = BinaryTreeUtils.isHeightBalanced(small_1_22_4334);
+    	assertTrue(b);
+    	b = BinaryTreeUtils.isHeightBalanced(small_1_22_3434);
+    	assertTrue(b);
+    	b = BinaryTreeUtils.isHeightBalanced(small_1_22_33);
+    	assertTrue(b);
+    	
+    	BinaryTreeNode unbalanced = new BinaryTreeNode(1);
+    	BinaryTreeNode left = new BinaryTreeNode(2);
+    	left.setLeft(new BinaryTreeNode(3));
+    	unbalanced.setLeft(left);
+    	
+    	boolean b2 = BinaryTreeUtils.isHeightBalanced(unbalanced);
+    	assertFalse("b2 is "+ b2, b2);
+    }
+    
     @Test
     public void testBreadthFirstTraverse() {
         String str = BinaryTreeUtils.bfsTraverse(smallBst);
@@ -296,10 +321,10 @@ public class BinaryTreeUtilsTest extends TestCase {
     }
     
     public void testSymmetric() {
-    	assertTrue(BinaryTreeUtils.isSymmetric_aka_isMirror(small_122));
-    	assertFalse(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_3));
-    	assertTrue(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_4334));
-    	assertFalse(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_3434));
-    	assertTrue(BinaryTreeUtils.isSymmetric_aka_isMirror(small_1_22_33));
+    	assertTrue(BinaryTreeUtils.isSymmetric(small_122));
+    	assertFalse(BinaryTreeUtils.isSymmetric(small_1_22_3));
+    	assertTrue(BinaryTreeUtils.isSymmetric(small_1_22_4334));
+    	assertFalse(BinaryTreeUtils.isSymmetric(small_1_22_3434));
+    	assertTrue(BinaryTreeUtils.isSymmetric(small_1_22_33));
     }
 }

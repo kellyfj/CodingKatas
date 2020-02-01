@@ -303,24 +303,70 @@ public class BinaryTreeUtils {
 
     
     /**
-     * Check if a Binary Tree is Symmetric 
+     * EPIJ 9.2: Check if a Binary Tree is Symmetric 
      * 
      *  TIME COMPLEXITY: O(n) have to iterate over all nodes
      *  SPACE COMPLEXITY: O(n) on stack
      */
-    public static boolean isSymmetric_aka_isMirror(BinaryTreeNode root) {	
-    	return symmetric_aka_mirror(root.getLeft(), root.getRight());
+    public static boolean isSymmetric(BinaryTreeNode root) {	
+    	return root == null || checkSymmetric(root.getLeft(), root.getRight());
     }
     
-	private static boolean symmetric_aka_mirror(BinaryTreeNode left,
+	private static boolean checkSymmetric(BinaryTreeNode left,
 			BinaryTreeNode right) {
 		
 		if (left == null || right == null)
 			return left == null && right == null;
 		
 		return left.getValue() == right.getValue()
-				&& symmetric_aka_mirror(left.getLeft(), right.getRight())
-				&& symmetric_aka_mirror(left.getRight(), right.getLeft());
+				&& checkSymmetric(left.getLeft(), right.getRight())
+				&& checkSymmetric(left.getRight(), right.getLeft());
+	}
+    
+	/**
+	 * EPIJ 9.1: Test if a binary tree is height balanced Height Balanced = the
+	 * difference in height of the left and right subtrees is at most one. Brute
+	 * force algorithm: Compute height for the tree rooted at each node recursively
+	 * starting from the leaves and proceeding upwards. We can store the heights in
+	 * a table or in a new field. This entails O(n) storage and O(n) time
+	 * 
+	 * We can solve this by observing we do not need to store the heights of all
+	 * nodes at the same time. Once we are done with a subtree all we need to know
+	 * is whether it is height balanced and if so what its height is. This program
+	 * implements a postorder traversal with some calls possibly eliminated due to
+	 * early termination. Time Complexity: O(n) Space Complexity: O(h) height of the
+	 * tree on the program stack
+	 */
+	public static boolean isHeightBalanced(BinaryTreeNode tree) {
+		return checkBalanced(tree).balanced;
+	}
+
+	private static BalanceStatusWithHeight checkBalanced(BinaryTreeNode tree) {
+		if (tree == null) {
+			return new BalanceStatusWithHeight(true, -1);
+		}
+
+		BalanceStatusWithHeight left = checkBalanced(tree.left);
+		if (!left.balanced) {
+			return left;
+		}
+		BalanceStatusWithHeight right = checkBalanced(tree.right);
+		if (!right.balanced) {
+			return right;
+		}
+		boolean isBalanced = Math.abs(left.height - right.height) <= 1;
+		int height = Math.max(left.height, right.height) + 1;
+		return new BalanceStatusWithHeight(isBalanced, height);
+	}
+
+	private static class BalanceStatusWithHeight {
+		public boolean balanced;
+		public int height;
+
+		public BalanceStatusWithHeight(boolean balanced, int height) {
+			this.balanced = balanced;
+			this.height = height;
+		}
 	}
 }
 
