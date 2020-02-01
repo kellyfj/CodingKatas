@@ -230,38 +230,37 @@ public class BinaryTreeUtils {
         return sb.toString();
     }
 
-    /**
-     * Find the Lowest Common Ancestor of two nodes in a Binary Tree.
-     * 
-     * Recurse down the tree until you find a,b Then return a non-null and start
-     * unwinding the stack upwards until both left and right branches are not
-     * null and that node is your answer
-     * 
-     * Time Complexity: O(n) where n is the number of nodes (source: EPI pp. 257)
-     * Space Complexity: ??? O(log n) or O(h) where h is the height of the tree??
-     * 
-     * @param subTreeHead
-     * @param a
-     * @param b
-     * @return
-     */
-    public static BinaryTreeNode lowestCommonAncestor(BinaryTreeNode head, BinaryTreeNode a,
-            BinaryTreeNode b) {
+	/**
+	 * EPIJ 9.3: Find the Lowest Common Ancestor of two nodes in a Binary Tree.
+	 * 
+	 * Recurse down the tree until you find a,b Then return a non-null and start
+	 * unwinding the stack upwards until both left and right branches are not null
+	 * and that node is your answer
+	 * 
+	 * Time Complexity: O(n) where n is the number of nodes (source: EPI pp. 257 /
+	 * EPIJ pp. 129) Space Complexity: O(log n) or O(h) where h is the height of the
+	 * tree
+	 */
+	public static BinaryTreeNode lowestCommonAncestor(BinaryTreeNode head, 
+			BinaryTreeNode a, BinaryTreeNode b) {
 
-        if (head == null)
-            return null;
+		if (head == null)
+			return null;
 
-        if (head.equals(a) || head.equals(b))
-            return head;
-        BinaryTreeNode l = lowestCommonAncestor(head.getLeft(), a, b);
-        BinaryTreeNode r = lowestCommonAncestor(head.getRight(), a, b);
+		if (head.equals(a) || head.equals(b))
+			return head;
+		BinaryTreeNode l = lowestCommonAncestor(head.getLeft(), a, b);
+		BinaryTreeNode r = lowestCommonAncestor(head.getRight(), a, b);
 
-        if (l != null && r != null)
-            return head; // if a and b are on both sides of the subtree
-        return l != null ? l : r; // either one of a,b is on one side OR a,b is
-                                  // not in L&R subtrees
-    }
-    
+		if (l != null && r != null)
+			return head; // if a and b are on both sides of the subtree
+		return l != null ? l : r; // either one of a,b is on one side OR a,b is
+									// not in L&R subtrees
+	}
+  
+	/**
+	 * EPIJ 9.4: Compute the LCA when nodes have parent pointers
+	 */
     public static BinaryTreeNode lowestCommonAncestor_Order1Space_OrderHTime(BinaryTreeNode head, 
             BinaryTreeNode a, BinaryTreeNode b) {
         if (head == null)
