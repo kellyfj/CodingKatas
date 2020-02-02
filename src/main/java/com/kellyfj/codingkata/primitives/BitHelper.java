@@ -16,6 +16,17 @@ public class BitHelper {
 		return numEnabledBits;
 	}
 	
+	public static int countEnabledBitsTwosComplement(int chkInt) {
+		int numEnabledBits = 0;
+		int numChkedBits = 0;
+		while ((chkInt != 0) && (numChkedBits < 32)) {
+			numEnabledBits += chkInt & 1;
+			chkInt = chkInt >> 1;
+			numChkedBits++;
+		}
+		return numEnabledBits;
+	}
+	
     /**
      * EPIJ 4.1: Compute the Parity of a word
      */
@@ -70,13 +81,13 @@ public class BitHelper {
         // Extract the i-th and j-th bits, and see if they differ.
         long ithBit = x >>> i;
         long jthBit = x >>> j;
-
+        
         if ((ithBit & 1) != (jthBit & 1)) {
             // i-th and j-th bits differ. We will swap them by flipping their values.
             // Select the bits to flip with bitMask. Since x^1 = 0 when x = 1 and 1
             // when x = 0, we can perform the flip XOR.
             long bitMask = (1L << i) | (1L << j);
-            x ^= bitMask;
+            x ^= bitMask; //XOR flips bits 1^1 -> 0,  0^1 -> 1
         }
         return x;
     }
@@ -109,23 +120,9 @@ public class BitHelper {
              | precomputedReverse[(int)((x >>> (2 * WORD_SIZE)) & BIT_MASK)] << WORD_SIZE
              | precomputedReverse[(int)((x >>> (3 * WORD_SIZE)) & BIT_MASK)];
     }
-    
-    /****************
-     */
-	public static int countEnabledBitsTwosComplement(int chkInt) {
-		int numEnabledBits = 0;
-		int numChkedBits = 0;
-		while ((chkInt != 0) && (numChkedBits < 32)) {
-			numEnabledBits += chkInt & 1;
-			chkInt = chkInt >> 1;
-			numChkedBits++;
-		}
-		return numEnabledBits;
-	}
 	
 	/**
-	 * Example
-	 * 				"0111"
+	 * Example		"0111"
 	 * 			x	"0110"
 	 * 			==========
 	 * 			     0000
@@ -133,8 +130,7 @@ public class BitHelper {
 	 *             0111
 	 *            0000 
 	 *          ==========
-	 *          101010
-	 *          
+	 *          101010          
 	 */
 	public static String binaryMultiply(String s1, String s2) {
 
@@ -164,8 +160,6 @@ public class BitHelper {
 	}
 
 	private static String binaryAdd(String answer, String tmp) {
-		System.out.println(tmp);
-		
 		int i_answer = Integer.parseInt(answer,2);
 		int i_tmp = Integer.parseInt(tmp, 2);
 		System.out.println("Adding "+ i_answer + " to " +i_tmp );
@@ -204,8 +198,8 @@ public class BitHelper {
         while (tempA != 0 || tempB != 0) {
             long ak = a & k; //Get kth bit
             long bk = b & k; 
+            sum |= (ak ^ bk ^ carryIn);  
             long carryOut = (ak & bk) | (ak & carryIn) | (bk & carryIn);
-            sum |= (ak ^ bk ^ carryIn);
             carryIn = carryOut << 1;
             k <<= 1;
             tempA >>>= 1;

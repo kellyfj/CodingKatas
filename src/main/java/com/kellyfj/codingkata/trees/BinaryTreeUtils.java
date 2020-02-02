@@ -195,6 +195,14 @@ public class BinaryTreeUtils {
     }
     
     
+    /**
+     * EPIJ 9.11: Implement an inorder traversal with O(1) space.
+     * 
+     * One way to do the inorder traversal without recursion is to know the parent node for
+     * each node we begin a traversal from
+     * @param n
+     * @return
+     */
     public static String inOrder_Order1Space(BinaryTreeNode n) {
         if (n == null)
             return "";

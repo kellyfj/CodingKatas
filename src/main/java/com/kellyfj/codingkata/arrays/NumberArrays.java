@@ -108,6 +108,8 @@ public class NumberArrays {
     public static boolean doesSumOfTwoEqualN_orderN(int[] array, int sumOfTwoTarget) {
         if (array.length < 2)
             throw new IllegalArgumentException("Array length should be 2 or greater");
+        //Use a map in-case the number and it's complement are the same 
+        // i.e. n = n/2 + n/2 so we need > 1 copy
         Map<Integer, Integer> numberCount = new HashMap<Integer, Integer>();
 
         // Pre-process
@@ -524,6 +526,10 @@ public class NumberArrays {
         return s.toArray(new Integer[0]);
     }
     
+    /**
+     * TIME COMPLEXITY: O(m+n)
+     * SPACE COMPLEXITY: O(1)
+     */
 	public static int getKthSmallestElementInTwoSortedArrays(int[] array1,
 			int[] array2, int k) {
 		if(k > array1.length + array2.length) {
@@ -538,7 +544,8 @@ public class NumberArrays {
 			else
 				index2++;
 			k--;
-		}
+		} 
+		//Either k=1 or one array exhausted
 
 		//If you haven't reached end of either array - pick smallest of remaining pointers
 		if (index1 < array1.length && index2 < array2.length) {
@@ -595,26 +602,26 @@ public class NumberArrays {
 	 * SPACE COMPLEXITY: O(n)
 	 */
 	public static int findMostFrequentlyOccurringElement(int[] array) {
-		Map<Integer,Integer> map = new HashMap<Integer,Integer>(array.length);
-		for(int i: array) {
-			if(map.containsKey(i)) {
+		Map<Integer, Integer> map = new HashMap<Integer, Integer>(array.length);
+		for (int i : array) {
+			if (map.containsKey(i)) {
 				Integer a = map.get(i);
-				map.put(i, a+1);
+				map.put(i, a + 1);
 			} else {
 				map.put(i, 1);
 			}
 		}
-		
+
 		int maxCount = 0;
 		int mostFrequentlyOccurElement = array[0];
-		for(int i: array) {
+		for (Integer i : map.keySet()) {
 			Integer a = map.get(i);
-			if(a > maxCount) {
+			if (a > maxCount) {
 				maxCount = a;
 				mostFrequentlyOccurElement = i;
 			}
 		}
-		
+
 		return mostFrequentlyOccurElement;
 	}
 	
@@ -715,11 +722,14 @@ public class NumberArrays {
      * EPIJ 5.5: Remove duplicates from a Sorted Array
      * 
      * Time Complexity: O(n)
-     * Space Complexity: O(1)
+     * Space Complexity: O(1) - return the size of the array with duplicates moved to end
      */
     public static int removeDuplicatesFromSortedArray(List<Integer> A) {
         if(A.isEmpty()) {
             return 0;
+        }
+        if(A.size() == 1) {
+        	return 1;
         }
         
         int writeIndex = 1;
