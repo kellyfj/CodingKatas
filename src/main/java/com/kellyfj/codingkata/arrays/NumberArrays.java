@@ -319,7 +319,7 @@ public class NumberArrays {
     }
 
     /**
-     * Binary search in array that is sorted
+     * EPIJ 11.1: Search a sorted array for first occurrence of an integer
      * 
      * TIME COMPLEXITY: O(log n)
      * SPACE COMPLEXITY: O(1)
@@ -344,6 +344,35 @@ public class NumberArrays {
         
         return result;
     }
+    
+	/**
+	 * EPIJ 11.3: Search a cyclically sorted array. 
+	 * Cyclically sorted means it is possible to cyclically shift the entries so that it becomes sorted. 
+	 * Example: 378 - 478 - 550 - 631 - 103 - 203 - 220 - 234 - 279 - 368 
+	 * Brute force approach is to iterate through the array comparing against running minimum - complexity
+	 * O(n). But we should take advantage of properties of the array if A[m] >
+	 * A[n-1] then the min value must be in the range [m+1, n-1]
+	 * Time Complexity: O(log n)
+	 */
+	public static int searchSmallest(List<Integer> A) {
+		int left = 0;
+		int right = A.size() - 1;
+
+		while (left < right) {
+			int mid = left + ((right - left) / 2);
+			if (A.get(mid) > A.get(right)) {
+				// Min must be in A.sublist(mid+1, right+1)
+				left = mid + 1;
+			} else {
+				// A.get(mid) < A.get(right)
+				// Minimum cannot be in A.sublist(mid+1, right+1) so it must be in
+				// A.sublist(left, mid+1)
+				right = mid;
+			}
+		}
+		//Loop ends when left == right;
+		return A.get(left);
+	}
     
     private static void swap(int[] a, int startIndex, int i) {
         int temp;
@@ -429,6 +458,27 @@ public class NumberArrays {
             System.out.println("}");
         }
     }
+    
+    /**
+     * EPIJ 11.4: Calculate the Integer Square Root
+     * Time Complexity: O(log k)
+     */
+	public static int calcSquareRoot(int k) {
+		long left = 0, right = k;
+		// Candidate interval [left, right] where everything before left has
+		// square <= k, and everything after right has square > k
+		while (left <= right) {
+			long mid = left + ((right - left) / 2);
+			long midSquared = mid * mid;
+			if (midSquared <= k) {
+				left = mid + 1;
+			} else {
+				right = mid - 1;
+			}
+		}
+
+		return (int) left - 1;
+	}
 
     public static double calcSquareRoot(double num) {
         double guess = 1;
@@ -626,22 +676,32 @@ public class NumberArrays {
 	}
 	
 	/**
-	 * We are given a list of n-1 integers in the range 1 to n with no duplicates.
+	 * EPIJ 11.10: We are given a list of n-1 integers in the range 1 to n with no duplicates.
 	 * Find the missing integers.
 	 * 
 	 * TIME COMPLEXITY: O(n)
 	 * SPACE COMPLEXITY: O(1)
 	 */
 	public static int findMissingNumber(int[] array) {
-		int n = array.length+1;
-		int targetsum = n*(n+1)/2;
-		for(int i=0; i<array.length; i++) {
+		int n = array.length + 1;
+		int targetsum = (n * (n + 1)) / 2;
+		for (int i = 0; i < array.length; i++) {
 			targetsum -= array[i];
 		}
-		
+
 		return targetsum;
 	}
-	
+
+	public static int findDuplicateNumber(int[] array) {
+		int n = array.length - 1;
+		int targetSum = (n * (n + 1)) / 2;
+		int actualSum = 0;
+		for (int i = 0; i < array.length; i++) {
+			actualSum += array[i];
+		}
+
+		return actualSum - targetSum;
+	}
 	
 	/**
 	 * EPIJ: 5.2 Increment an Arbitrary Precision Integer

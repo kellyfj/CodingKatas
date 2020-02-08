@@ -14,6 +14,23 @@ import com.kellyfj.codingkata.arrays.NumberArrays.Tuple;
 
 public class NumberArraysTest extends TestCase {
 
+	public void testSearchCyclicalArray() {		
+		List<Integer> l = new ArrayList<>();
+		l.add(378);
+		l.add(478);
+		l.add(550);
+		l.add(631);
+		l.add(103);
+		l.add(203);
+		l.add(220);
+		l.add(234);
+		l.add(279);
+		l.add(368);
+		
+		int smallest = NumberArrays.searchSmallest(l);
+		assertEquals(103, smallest);
+	}
+	
     public void testDoesSumOfTwoEqualN_Error() {
         int[] testArray = { 1 };
         try {
@@ -362,7 +379,17 @@ public class NumberArraysTest extends TestCase {
         NumberArrays.calcSquareRoot(16.0);
     }
     
-    
+    public void testIntSquareRoot() {
+    	int root = NumberArrays.calcSquareRoot(64);  	
+    	assertEquals(8, root);
+    	
+    	root = NumberArrays.calcSquareRoot(1024*1024);  	
+    	assertEquals(1024, root);
+    	
+    	root = NumberArrays.calcSquareRoot(65);  	
+    	assertEquals(8, root);
+    }
+       
     public void testFindCombinationsToReachTargetSum() {
         int target=6;
         ArrayList<Integer> numbers = new ArrayList<Integer>();
@@ -713,6 +740,13 @@ public class NumberArraysTest extends TestCase {
 		int i = NumberArrays.findMissingNumber(a);
 		assertEquals(5,i);
 	}
+	
+	public void testFindDuplicateNumber() {
+		int[] a = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 8 };
+		int i = NumberArrays.findDuplicateNumber(a);
+		assertEquals(8,i);
+	}
+	
 	
 	public void testIncrementArbitaryPrecisionInteger() {
 	    List<Integer> l = new ArrayList<>();
