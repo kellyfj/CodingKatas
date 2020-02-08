@@ -159,6 +159,17 @@ public class BinaryTreeUtilsTest extends TestCase {
                         + "2, 5, 8, 11, 14, 17, 20, 22, 24, 27, 30, 33, 36, 39, 42, 45, 47, 49, 52, 55, 58, 61, 64, 67, 70, 72, 74, 77, 80, 83, 85, 87, 90, 93, 96, 98, 100, \n");
     }
    
+	@Test
+	public void testTreeToList() {
+		List<BinaryTreeNode> list = BinaryTreeUtils.createListOfLeaves(smallBst);
+		assertTrue(list.size() == 4); // 1, 3, 5, 6
+
+		list = BinaryTreeUtils.createListOfLeaves(bst);
+		list.contains(new BinaryTreeNode(2));
+		list.contains(new BinaryTreeNode(100));
+		assertEquals(37, list.size());
+	}
+    
     @Test
     public void testInOrderTraverse() {
         String s = BinaryTreeUtils.inOrder(smallBst);

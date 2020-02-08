@@ -237,6 +237,29 @@ public class BinaryTreeUtils {
 
         return sb.toString();
     }
+    
+	/**
+	 * EPIJ 9.14: Form a Linked List from leaves of binary tree
+	 * 
+	 * Time Complexity: O(n)
+	 * Space Complexity: O(n)
+	 */
+	public static List<BinaryTreeNode> createListOfLeaves(BinaryTreeNode tree) {
+		List<BinaryTreeNode> leaves = new ArrayList<>();
+		addLeavesLeftToRight(tree, leaves);
+		return leaves;
+	}
+
+	private static void addLeavesLeftToRight(BinaryTreeNode tree, List<BinaryTreeNode> leaves) {
+		if (tree != null) {
+			if (tree.left == null && tree.right == null) {
+				leaves.add(tree);
+			} else {
+				addLeavesLeftToRight(tree.left, leaves);
+				addLeavesLeftToRight(tree.right, leaves);
+			}
+		}
+	}
 
 	/**
 	 * EPIJ 9.3: Find the Lowest Common Ancestor of two nodes in a Binary Tree.
