@@ -3,6 +3,11 @@ plugins {
         id 'eclipse'
 }
 
+java {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+}
+
 repositories {
         mavenCentral()
 }
@@ -19,4 +24,9 @@ test {
         testLogging {
                 events "passed", "skipped", "failed"
         }
+}
+
+// Enforce Java 17+ at build time
+if (JavaVersion.current() < JavaVersion.VERSION_17) {
+        throw new GradleException("Java 17 or higher is required to build this project. You are using Java ${JavaVersion.current()}")
 }

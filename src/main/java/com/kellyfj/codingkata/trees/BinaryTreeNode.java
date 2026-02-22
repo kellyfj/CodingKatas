@@ -138,7 +138,7 @@ public class BinaryTreeNode {
             String value = nodeDetails[0];
             boolean isLeaf = nodeDetails[1].equals("L");
 
-            node = new BinaryTreeNode(new Integer(value));
+            node = new BinaryTreeNode(Integer.valueOf(value));
             if (!isLeaf) {
                 node.setLeft(reconstruct(q));
                 node.setRight(reconstruct(q));
