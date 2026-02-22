@@ -16,7 +16,7 @@ public class GraphAsAdjacencyMatrix implements Graph {
         this.nodes = nodes;
 
         for (int i = 0; i < nodes.size(); i++) {
-            nodeToIndexMap.put(nodes.get(i), new Integer(i));
+            nodeToIndexMap.put(nodes.get(i), Integer.valueOf(i));
         }
     }
     

@@ -351,8 +351,8 @@ public class StringUtilsTest {
         			
         	String answer = StringUtils.addNumberStrings(s1, s2);
         	System.out.println(answer);
-        	Integer i_answer = new Integer(answer);
-        	assertEquals(new Integer(1801), i_answer);
+        	Integer i_answer = Integer.valueOf(answer);
+        	assertEquals(Integer.valueOf(1801), i_answer);
         }
         
         @Test
@@ -394,8 +394,8 @@ public class StringUtilsTest {
         			
         	String answer = StringUtils.addStringsByDan(s1, s2);
         	System.out.println(answer);
-        	Integer i_answer = new Integer(answer);
-        	assertEquals(new Integer(1801), i_answer);
+        	Integer i_answer = Integer.valueOf(answer);
+        	assertEquals(Integer.valueOf(1801), i_answer);
         }
         
         @Test
