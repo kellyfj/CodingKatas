@@ -1,6 +1,7 @@
 package com.kellyfj.codingkata.trees;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Trie {
@@ -24,10 +25,9 @@ public class Trie {
 			return null;
 		
 		TrieNode curr = root;
-		List<String> answerSet = new ArrayList<String>();
 		for(Character ch : prefix.toCharArray()) {
 			if( !curr.hasChild(ch) ) {
-				return answerSet;
+				return Collections.emptyList();
 			} 
 			curr = curr.getChild(ch);
 		}

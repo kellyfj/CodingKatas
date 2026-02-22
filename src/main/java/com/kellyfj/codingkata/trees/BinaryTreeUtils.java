@@ -13,6 +13,11 @@ import java.util.concurrent.LinkedBlockingQueue;
  */
 public class BinaryTreeUtils {
 
+    /**
+     * BFS Traversal of a Binary Tree
+     * TIME COMPLEXITY: O(n) since considering each node twice on-queue, off-queue
+     * SPACE COMPLEXITY: O(n/2) width of tree at bottom on the queue = O(n)
+     */
     public static String bfsTraverse(BinaryTreeNode n) {
         final Queue<BinaryTreeNode> tempQueue = new LinkedBlockingQueue<BinaryTreeNode>();
         final BinaryTreeNode DUMMY = new BinaryTreeNode(Integer.MAX_VALUE);
@@ -42,6 +47,15 @@ public class BinaryTreeUtils {
         return sb.toString();
     }
     
+    /**
+     * DFS Traversal of a Binary Tree
+     * 
+     * TIME COMPLEXITY: O(n) since we have to visit each node once
+     * SPACE COMPLEXITY: O(h) where h is the height of the tree on the program stack
+     * @param head
+     * @param k
+     * @return
+     */
     public static boolean dfsTraverse(BinaryTreeNode head, int k) {
 
         if (head == null)
